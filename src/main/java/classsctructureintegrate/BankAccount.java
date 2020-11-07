@@ -25,4 +25,8 @@ public class BankAccount {
     public String getInfo() {
         return this.owner + " (" + this.accountNumber + "): " + this.balance + " Ft";
     }
+
+//    public int transfer( String accountNumber, int amount) {
+//        return
+//    }
 }
