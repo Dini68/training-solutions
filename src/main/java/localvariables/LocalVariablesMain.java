@@ -10,7 +10,7 @@ public class LocalVariablesMain {
 
         System.out.println(b);
 
-        int a = 22;
+        int a = 2;
 
         System.out.println(a);
 
