@@ -32,5 +32,8 @@ public class LiteralsMain {
 
         String s = "árvíztűrőtükörfúrógép";
         System.out.println(s);
+
+        String word = "title".toUpperCase();
+        System.out.println(word);
     }
 }
