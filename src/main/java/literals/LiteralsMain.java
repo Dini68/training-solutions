@@ -38,5 +38,8 @@ public class LiteralsMain {
 
         System.out.println(Integer.toBinaryString(1));
         System.out.println(Integer.toBinaryString(-2));
+
+        System.out.println(Integer.MIN_VALUE);
+        System.out.println(Integer.MAX_VALUE);
     }
 }
