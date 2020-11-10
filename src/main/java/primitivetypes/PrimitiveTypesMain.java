@@ -21,6 +21,9 @@ public class PrimitiveTypesMain {
 
         System.out.println("Equals? " + s1.equals(s2));
 
+        int number1 = Integer.parseInt(s1, 2);
+        int number2 = Integer.parseInt(s2, 2);
 
+        System.out.println("Value equals? " + (number1 == number2));
     }
 }
