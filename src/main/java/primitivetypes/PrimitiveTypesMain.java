@@ -20,5 +20,7 @@ public class PrimitiveTypesMain {
         System.out.println("by java method: " + s2);
 
         System.out.println("Equals? " + s1.equals(s2));
+
+
     }
 }
