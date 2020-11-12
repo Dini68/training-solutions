@@ -24,5 +24,7 @@ public class IntroControlMain {
                 introControl.calculateBonus(1_000_000) + "Ft");
         System.out.println("999.000Ft-nál jutalék: " +
                 introControl.calculateBonus(999_000) + "Ft");
+
+
     }
 }
