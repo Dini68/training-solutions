@@ -47,5 +47,11 @@ public class IntroControl {
         }
     }
 
+    public void printNumbers(int max) {
+        for (int i = 0; i <= max; i++) {
+            System.out.println(i);
+        }
+    }
+
 
 }

@@ -28,5 +28,9 @@ public class IntroControlMain {
         System.out.println(introControl.calculateConsumption(999, 1002));
         System.out.println(introControl.calculateConsumption(9999, 2));
         System.out.println(introControl.calculateConsumption(99, 105));
+
+        introControl.printNumbers(10);
+        introControl.printNumbers(20);
     }
+
 }
