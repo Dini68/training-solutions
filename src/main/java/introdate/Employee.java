@@ -14,7 +14,10 @@ public class Employee {
     public Employee(int year, int month, int day, String name) {
         this.name = name;
         this.dateOfBirth = LocalDate.of(year, month, day);
-        this.beginEmployment = LocalDateTime.now();
+        LocalDateTime time = LocalDateTime.now();
+        LocalDateTime time2 = LocalDateTime.of(time.getYear(), time.getMonth(),
+                time.getDayOfMonth(), time.getHour(), time.getMinute());
+        this.beginEmployment = time2;
     }
 
     public String getName() {
