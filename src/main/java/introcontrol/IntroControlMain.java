@@ -25,6 +25,8 @@ public class IntroControlMain {
         System.out.println("999.000Ft-nál jutalék: " +
                 introControl.calculateBonus(999_000) + "Ft");
 
-
+        System.out.println(introControl.calculateConsumption(999, 1002));
+        System.out.println(introControl.calculateConsumption(9999, 2));
+        System.out.println(introControl.calculateConsumption(99, 105));
     }
 }

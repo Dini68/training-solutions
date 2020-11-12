@@ -38,5 +38,14 @@ public class IntroControl {
 
     }
 
+    public int calculateConsumption(int prev, int next) {
+        if (next > prev) {
+            return next - prev;
+        }
+        else {
+            return next + 10000 - prev;
+        }
+    }
+
 
 }
