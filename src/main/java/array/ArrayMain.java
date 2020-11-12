@@ -22,5 +22,18 @@ public class ArrayMain {
             System.out.println(i+ ". " + exponent[i]);
         }
 
+        boolean[] b = new boolean[6];
+        b[0] = false;
+        b[1] = true;
+        b[2] = false;
+        b[3] = true;
+        b[4] = false;
+        b[5] = true;
+
+        for (int i = 1; i < 6; i++) {
+            System.out.println(b[i]);
+        }
+
+
     }
 }
