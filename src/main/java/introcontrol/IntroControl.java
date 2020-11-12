@@ -28,4 +28,15 @@ public class IntroControl {
         }
 
     }
+    public int calculateBonus(int sale) {
+        if (sale >= 1_000_000) {
+            return (int) (sale * 0.1);
+        }
+        else {
+            return 0;
+        }
+
+    }
+
+
 }

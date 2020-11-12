@@ -18,6 +18,11 @@ public class IntroControlMain {
         System.out.println("Joe: " + introControl.greetingToJoe("Joe"));
         System.out.println("Joel: " + introControl.greetingToJoe("Joel"));
 
-
+        System.out.println("2.000.000Ft-nál jutalék: " +
+                introControl.calculateBonus(2_000_000) + "Ft");
+        System.out.println("1.000.000Ft-nál jutalék: " +
+                introControl.calculateBonus(1_000_000) + "Ft");
+        System.out.println("999.000Ft-nál jutalék: " +
+                introControl.calculateBonus(999_000) + "Ft");
     }
 }
