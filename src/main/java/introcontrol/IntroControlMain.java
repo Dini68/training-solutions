@@ -31,6 +31,14 @@ public class IntroControlMain {
 
         introControl.printNumbers(10);
         introControl.printNumbers(20);
+
+        introControl.printNumbersBetween(10, 20);
+        introControl.printNumbersBetween(8, 13);
+
+        introControl.printNumbersBetweenAnyDirection(10,15);
+        introControl.printNumbersBetweenAnyDirection(15,10);
+
+        introControl.printOddNumbers(14);
     }
 
 }

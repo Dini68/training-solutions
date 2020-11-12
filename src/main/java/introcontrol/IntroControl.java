@@ -53,5 +53,30 @@ public class IntroControl {
         }
     }
 
+    public void printNumbersBetween(int min, int max) {
+        for (int i = min+1; i < max; i++) {
+            System.out.println(i);
+        }
+    }
 
+    public void printNumbersBetweenAnyDirection(int a, int b) {
+        if (a < b) {
+            for (int i = a + 1; i < b; i++) {
+                System.out.println(i);
+            }
+        }
+        else
+            {
+                for (int i = a - 1; i > b; i--) {
+                    System.out.println(i);
+            }
+        }
+    }
+
+    public void printOddNumbers(int max) {
+        for (int i = 1; i <= max; i +=2) {
+            System.out.println(i);
+        }
+
+    }
 }
