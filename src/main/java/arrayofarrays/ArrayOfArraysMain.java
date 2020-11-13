@@ -1,20 +1,6 @@
 package arrayofarrays;
 
 public class ArrayOfArraysMain {
-    public void printArrayOfArrays(int[][] a) {
-        for (int i[] : a) {
-            for (int j : i) {
-                if (j < 10) {
-                    System.out.print("  ");
-                } else if (j < 100) {
-                    System.out.print(" ");
-                }
-                System.out.print(j);
-                System.out.print(" ");
-            }
-            System.out.println();
-        }
-    }
 
     public int[][] multiplicationTable(int size) {
         int [][] multi = new int[size][size];
@@ -28,12 +14,25 @@ public class ArrayOfArraysMain {
         return multi;
     }
 
+    public int[][] triangularMatrix(int size) {
+        int[][] tringMatrix = new int[size][size];
+        for (int i = 0; i < size; i++ ) {
+            for (int j = 0; j < i + 1; j++) {
+                System.out.print(i + " ");
+            }
+            System.out.println();
+        }
+        return tringMatrix;
+    }
+
     public static void main(String[] args) {
 
         ArrayOfArraysMain arrayOfArraysMain = new ArrayOfArraysMain();
 
         System.out.println("Multiplication table");
         arrayOfArraysMain.multiplicationTable(4);
+        System.out.println();
+        arrayOfArraysMain.triangularMatrix(4);
     }
 
 
