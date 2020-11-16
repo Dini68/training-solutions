@@ -34,7 +34,7 @@ public class ArraysMain {
             }
         }
         if (azonos) {
-            System.out.println("Volt azonos mérés a két nap hőmérsékletei között.");
+            System.out.println("Volt azonos mérés a két nap hőmérsékletei között!");
         }
 
     }
