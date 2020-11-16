@@ -35,9 +35,9 @@ public class Office {
         for (int i = 0; i < meetingRooms.size(); i++) {
             System.out.println(i + 1 +
                     ". "  + meetingRooms.get(i).getName() +
-                    " "   + meetingRooms.get(i).getWidth() +
-                    " * " + meetingRooms.get(i).getLength() +
-                    " = " + meetingRooms.get(i).getArea());
+                    ":  sz="   + meetingRooms.get(i).getWidth() +
+                    "  h=" + meetingRooms.get(i).getLength() +
+                    "  T=" + meetingRooms.get(i).getArea());
         }
 
     }
