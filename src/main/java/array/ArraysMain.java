@@ -39,15 +39,32 @@ public class ArraysMain {
 
     }
 
+    public boolean wonLottery(int[] tipNumbers, int[] wonNumbers) {
+        boolean sameNumbers = false;
+        Arrays.sort(tipNumbers);
+        Arrays.sort(wonNumbers);
+        System.out.println(Arrays.toString(tipNumbers));
+        System.out.println(Arrays.toString(wonNumbers));
+        if (Arrays.equals(tipNumbers, wonNumbers)) {
+            sameNumbers = true;
+        }
+        return sameNumbers;
+    }
+
+
     public static void main(String[] args) {
         ArraysMain arraysMain = new ArraysMain();
 
         System.out.println(arraysMain.numberOfDaysAsString());
         System.out.println(arraysMain.daysOfWeek());
         System.out.println(arraysMain.multiplicationTableAsString(5));
-        double [] day = {4, 3, 2, 3, 4, 5, 6, 6, 7, 7, 8, 8, 9, 10, 11, 12, 13, 12, 11, 10, 9, 8, 7, 5};
-        double [] anotherDay = {4, 3, 2, 3, 4, 5, 6, 6, 7, 7, 8, 8, 9, 10, 11, 12, 13, 12, 11, 10, 9, 8, 7, 5};
+        double[] day = {4, 3, 2, 3, 4, 5, 6, 6, 7, 7, 8, 8, 9, 10, 11, 12, 13, 12, 11, 10, 9, 8, 7, 5};
+        double[] anotherDay = {4, 3, 2, 3, 4, 5, 6, 6, 7, 7, 8, 8, 9, 10, 11, 12, 13, 12, 11, 10, 9, 8, 7, 5};
         arraysMain.sameTempValues(day, anotherDay);
+        int[] tipNumbers = {3, 2, 4, 5, 1};
+        int[] wonNumbers = {5, 2, 1, 3, 4};
+        System.out.println(arraysMain.wonLottery(tipNumbers, wonNumbers));
     }
 }
+
 
