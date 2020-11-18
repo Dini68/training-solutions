@@ -10,6 +10,8 @@ public class PiMain {
 
         CylinderCalculator cylinderCalculator = new CylinderCalculator();
 
+        CircleCalculator circleCalculator = new CircleCalculator();
+
         System.out.print("Kérem a henger sugarát: ");
         double r = scanner.nextInt();
 
@@ -19,5 +21,7 @@ public class PiMain {
         System.out.println("A henger térfogat: " + cylinderCalculator.calculateVolume(r, h));
         System.out.println("A henger felszíne: " + cylinderCalculator.calculateSurfaceArea(r, h));
 
+
+        System.out.println(circleCalculator.getPI());
     }
 }
