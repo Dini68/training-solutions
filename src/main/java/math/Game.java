@@ -29,7 +29,7 @@ public class Game {
 
 
         boolean attack = false;
-        int i = 0;
+        int i = 1;
         while (!attack) {
             System.out.println(i + ". forduló: ");
             if ((warrior1.getPosition().getX() == warrior2.getPosition().getX()) &&
