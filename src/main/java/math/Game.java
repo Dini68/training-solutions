@@ -27,11 +27,11 @@ public class Game {
         System.out.println(warrior1.getName() + ": (" + warrior1.getPosition().getX() + ", " + warrior1.getPosition().getY() + ")");
         System.out.println(warrior2.getName() + ": (" + warrior2.getPosition().getX() + ", " + warrior2.getPosition().getY() + ")");
 
-        System.out.println("1. forduló: ");
 
         boolean attack = false;
-
+        int i = 0;
         while (!attack) {
+            System.out.println(i + ". forduló: ");
             if ((warrior1.getPosition().getX() == warrior2.getPosition().getX()) &&
                 (warrior1.getPosition().getY() == warrior2.getPosition().getY())) {
                 warrior1.attack(warrior2);
@@ -54,6 +54,7 @@ public class Game {
                 System.out.print(warrior1.getName() + ": (" + warrior1.getPosition().getX() + ", " + warrior1.getPosition().getY() + ")");
                 System.out.println(warrior2.getName() + ": (" + warrior2.getPosition().getX() + ", " + warrior2.getPosition().getY() + ")");
             }
+            i++;
         }
 
 
