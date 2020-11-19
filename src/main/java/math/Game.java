@@ -31,20 +31,20 @@ public class Game {
         boolean attack = false;
         int i = 1;
         while (!attack) {
-            System.out.println(i + ". forduló: ");
             if ((warrior1.getPosition().getX() == warrior2.getPosition().getX()) &&
                 (warrior1.getPosition().getY() == warrior2.getPosition().getY())) {
-                warrior1.attack(warrior2);
                 attack = true;
+                warrior1.attack(warrior2);
             }
             else {
+                System.out.println(i + ". forduló: ");
                 warrior1.move(warrior2);
                 System.out.print(warrior1.getName() + ": (" + warrior1.getPosition().getX() + ", " + warrior1.getPosition().getY() + ")");
                 System.out.println(warrior2.getName() + ": (" + warrior2.getPosition().getX() + ", " + warrior2.getPosition().getY() + ")");
             }
 
 
-            if ((!attack) && (warrior2.getPosition().getX() == warrior1.getPosition().getX()) &&
+            if ((warrior2.getPosition().getX() == warrior1.getPosition().getX()) &&
                 (warrior2.getPosition().getY() == warrior1.getPosition().getY())) {
                 warrior2.attack(warrior1);
                 attack = true;
