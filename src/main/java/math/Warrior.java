@@ -35,8 +35,18 @@ public class Warrior {
     }
 
     public void move(Warrior warrior) {
-
-
+        if (this.position.getX() < warrior.position.getX()) {
+            this.position.setX(this.position.getX() + 1);
+        }
+        if (this.position.getX() > warrior.position.getX()) {
+            this.position.setX(this.position.getX() - 1);
+        }
+        if (this.position.getY() < warrior.position.getY()) {
+            this.position.setY(this.position.getY() + 1);
+        }
+        if (this.position.getY() > warrior.position.getY()) {
+            this.position.setY(this.position.getY() - 1);
+        }
     }
 
     public void attack(Warrior warrior) {

@@ -23,5 +23,43 @@ public class Game {
                                               + ", Y=" + warrior2.getPosition().getY()
                                               + ", Életerő: " + warrior2.getStamina()
                                               + ", Ügyesség:  " + warrior2.getSkill());
+
+        System.out.println(warrior1.getName() + ": (" + warrior1.getPosition().getX() + ", " + warrior1.getPosition().getY() + ")");
+        System.out.println(warrior2.getName() + ": (" + warrior2.getPosition().getX() + ", " + warrior2.getPosition().getY() + ")");
+
+        System.out.println("1. forduló: ");
+
+        boolean attack = false;
+
+        while (!attack) {
+            if ((warrior1.getPosition().getX() == warrior2.getPosition().getX()) &&
+                (warrior1.getPosition().getY() == warrior2.getPosition().getY())) {
+                warrior1.attack(warrior2);
+                attack = true;
+            }
+            else {
+                warrior1.move(warrior2);
+                System.out.print(warrior1.getName() + ": (" + warrior1.getPosition().getX() + ", " + warrior1.getPosition().getY() + ")");
+                System.out.println(warrior2.getName() + ": (" + warrior2.getPosition().getX() + ", " + warrior2.getPosition().getY() + ")");
+            }
+
+
+            if ((!attack) && (warrior2.getPosition().getX() == warrior1.getPosition().getX()) &&
+                (warrior2.getPosition().getY() == warrior1.getPosition().getY())) {
+                warrior2.attack(warrior1);
+                attack = true;
+            }
+            else {
+                warrior2.move(warrior1);
+                System.out.print(warrior1.getName() + ": (" + warrior1.getPosition().getX() + ", " + warrior1.getPosition().getY() + ")");
+                System.out.println(warrior2.getName() + ": (" + warrior2.getPosition().getX() + ", " + warrior2.getPosition().getY() + ")");
+            }
+        }
+
+
+
+
     }
+
+
 }
