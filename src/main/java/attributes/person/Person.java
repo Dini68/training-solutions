@@ -14,4 +14,9 @@ public class Person {
     public String personToString() {
         return "Név: " + name + "\nSzemélyi igazolvány száma: " + identificationCard;
     }
+
+    public void correctData(String name, String identificationCard) {
+        this.name = name;
+        this.identificationCard = identificationCard;
+    }
 }

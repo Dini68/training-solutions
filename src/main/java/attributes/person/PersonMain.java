@@ -12,5 +12,12 @@ public class PersonMain {
                 "Lobogó utca 10", "1098");
 
         System.out.println(address.addressToString());
+
+        person.correctData("Simon Ferenc", "BC 987654");
+        System.out.println(person.personToString());
+
+        address.correctData("Magyarország", "Budapest",
+                "Vikár Béla utca 9", "1181");
+        System.out.println(address.addressToString());
     }
 }
