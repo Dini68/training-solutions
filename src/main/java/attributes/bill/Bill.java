@@ -13,4 +13,12 @@ public class Bill {
     public List<Item> getItems() {
         return items;
     }
+
+    public void calculateTotalPrice() {
+        double totalPrice = 0;
+        for (int i = 0; i < items.size(); i++) {
+            totalPrice += items.get(i).quantity * items.get(i).price;
+        }
+        System.out.println(totalPrice);
+    }
 }
