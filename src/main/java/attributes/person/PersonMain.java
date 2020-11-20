@@ -19,5 +19,13 @@ public class PersonMain {
         address.correctData("Magyarország", "Budapest",
                 "Vikár Béla utca 9", "1181");
         System.out.println(address.addressToString());
+
+        Address newAddress = new Address("USA", "LA", "Lincoln str 8", "1234");
+
+        person.moveTo(newAddress);
+
+        System.out.println(person.getAddress().addressToString());
+
+
     }
 }
