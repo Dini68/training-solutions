@@ -1,5 +1,9 @@
 package objects;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class ObjectsMain {
 
     public static void main(String[] args) {
@@ -31,6 +35,14 @@ public class ObjectsMain {
 
         System.out.println(anotherBook instanceof Book);
 
+        Book[] books = new Book[3];
 
+        List<Book> bookList = Arrays.asList(books);
+
+        List<Book> emptyBookList = new ArrayList<>();
+
+        emptyBookList.add(new Book());
+        emptyBookList.add(new Book());
+        emptyBookList.add(new Book());
     }
 }
