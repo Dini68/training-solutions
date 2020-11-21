@@ -2,9 +2,9 @@ package attributes.bill;
 
 public class Item {
 
-    String product;
-    int quantity;
-    double price;
+    private String product;
+    private int quantity;
+    private double price;
 
     public Item(String product, int quantity, double price) {
         this.product = product;
