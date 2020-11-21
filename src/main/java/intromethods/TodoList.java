@@ -30,9 +30,12 @@ public class TodoList {
 
     public  List<String> todosToFinish() {
         List<String> todosToFinishList = new ArrayList<>();
-        todosToFinishList.add("találkozó");
-        todosToFinishList.add("bevásárlás");
-        todosToFinishList.add("fogorvos");
+        for (Todo t: todos
+             ) {
+            if (!t.isFinished()) {
+                todosToFinishList.add(t.getCaption());
+            }
+        }
         return todosToFinishList;
     }
 
@@ -45,5 +48,10 @@ public class TodoList {
             }
         }
         return number;
+    }
+
+    @Override
+    public String toString() {
+        return "{" + todos + '}';
     }
 }

@@ -20,4 +20,8 @@ public class Todo {
     public void finish() {
         finished = true;
     }
+
+    public String toString() {
+        return this.getCaption() + "(" + this.isFinished() + ")";
+    }
 }
