@@ -19,5 +19,11 @@ public class MathOperations {
         }else {
             System.out.println("A megoldás hibás.");
         }
+        String s = "dog";
+        s.toUpperCase();
+        System.out.println(s);
+
+
     }
+
 }
