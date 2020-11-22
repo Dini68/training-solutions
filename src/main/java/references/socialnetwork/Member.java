@@ -6,7 +6,7 @@ import java.util.List;
 public class Member {
 
     private String name;
-    private List<String> connections = new ArrayList<>();
+    private List<Member> connections = new ArrayList<>();
 
     public Member (String name) {
         this.name = name;
@@ -16,8 +16,11 @@ public class Member {
         return name;
     }
 
+    public List<Member> getConnections() {
+        return connections;
+    }
 
-/*    public List<Member> getConnections() {
-        return ;
-    }*/
+    public void connectMember(Member member){
+        connections.add(member);
+    }
 }
