@@ -1,6 +1,7 @@
 package references.parameters;
 
-import java.util.ArrayList;
+import references.parameters.Person;
+
 import java.util.Arrays;
 
 public class ReferencesMain {
