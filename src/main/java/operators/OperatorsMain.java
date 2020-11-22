@@ -12,5 +12,19 @@ public class OperatorsMain {
         int number = rnd.nextInt(1000);
         System.out.println(number + " páros? " + operators.isEven(number));
 
+        System.out.println(16 >> 1);
+        System.out.println(16 << 1);
+
+        System.out.println(13 >> 1);
+        System.out.println(13 << 1);
+
+        System.out.println(operators.multiplyByPowerOfTwo(5, 5));
+
+        int i = -1;
+        String s = Integer.toBinaryString(i);
+        System.out.println(s);
+        int j = Long.valueOf(s, 2).intValue();
+//        int j = Integer.parseInt(s, 2);
+        System.out.println(j);
     }
 }
