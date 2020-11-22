@@ -26,5 +26,8 @@ public class OperatorsMain {
         int j = Long.valueOf(s, 2).intValue();
 //        int j = Integer.parseInt(s, 2);
         System.out.println(j);
+
+        System.out.println(0333);
+        // oktális számrendszerben van megadva 3*64+3*8+3 = 219
     }
 }
