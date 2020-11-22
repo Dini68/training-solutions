@@ -16,6 +16,20 @@ public class Member {
         return name;
     }
 
+    private List<String> connectedNames() {
+        List<String> connectedNames = new ArrayList<>();
+        for (Member member: connections
+             ) {
+            connectedNames().add(member.getName());
+        }
+        return connectedNames;
+    }
+
+    @Override
+    public String toString() {
+        return name + " " + connectedNames();
+    }
+
     public List<Member> getConnections() {
         return connections;
     }

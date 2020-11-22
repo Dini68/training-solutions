@@ -27,6 +27,11 @@ public class SocialNetwork {
         return null;
     }
 
+    @Override
+    public String toString() {
+        return members.toString();
+    }
+
     public List<String> bidirectionalConnections() {
         List<String> connections = new ArrayList<>();
         for (Member member: members
