@@ -28,6 +28,6 @@ public class PrimitiveTypesMain {
 
         System.out.println(new Integer(1) + new Integer(2));
 
-        // 3
+        // 3 gondolom nem kell példányositani az osztályt létrehozni, ez automatikus.
     }
 }
