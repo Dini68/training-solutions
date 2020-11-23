@@ -2,7 +2,7 @@ package controlselection.month;
 
 public class DayInMonth {
 
-    public int dayOfMonthNumber (int year, String month){
+    public int numberOfDays (int year, String month){
         int dayNumber = 0;
         switch (month.toLowerCase()){
             case "január" :
@@ -55,15 +55,15 @@ public class DayInMonth {
 
         DayInMonth dayInMonth = new DayInMonth();
 
-        dayInMonth.dayOfMonthNumber(1900, "február");
-        dayInMonth.dayOfMonthNumber(2020, "Február");
-        dayInMonth.dayOfMonthNumber(2000, "február");
-        dayInMonth.dayOfMonthNumber(2021, "FEBRUÁR");
+        dayInMonth.numberOfDays(1900, "február");
+        dayInMonth.numberOfDays(2020, "Február");
+        dayInMonth.numberOfDays(2000, "február");
+        dayInMonth.numberOfDays(2021, "FEBRUÁR");
 
-        dayInMonth.dayOfMonthNumber(1900, "április");
-        dayInMonth.dayOfMonthNumber(2020, "December");
-        dayInMonth.dayOfMonthNumber(2000, "Június");
-        dayInMonth.dayOfMonthNumber(2021, "Januá");
+        dayInMonth.numberOfDays(1900, "április");
+        dayInMonth.numberOfDays(2020, "December");
+        dayInMonth.numberOfDays(2000, "Június");
+        dayInMonth.numberOfDays(2021, "Januá");
     }
 
 }
