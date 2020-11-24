@@ -23,10 +23,4 @@ public class Tutor {
         return false;
     }
 
-    public static void main(String[] args) {
-        Tutor tutor = new Tutor("Nagy Csilla",Arrays.asList(new Subject("vhjhjk"),
-                                                                  new Subject("vhjhjk"),
-                                                                  new Subject("vhjhjk")));
-
-    }
 }
