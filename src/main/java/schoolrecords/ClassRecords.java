@@ -56,4 +56,5 @@ public class ClassRecords {
     public String listStudentNames() {
         return "";
     }//kilistázza a diákok neveit, vesszővel elválasztva
+
 }

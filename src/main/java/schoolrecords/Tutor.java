@@ -1,6 +1,7 @@
 package schoolrecords;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Tutor {
@@ -20,5 +21,12 @@ public class Tutor {
     public boolean tutorTeachingSubject(Subject subject) {
         // program
         return false;
+    }
+
+    public static void main(String[] args) {
+        Tutor tutor = new Tutor("Nagy Csilla",Arrays.asList(new Subject("vhjhjk"),
+                                                                  new Subject("vhjhjk"),
+                                                                  new Subject("vhjhjk")));
+
     }
 }

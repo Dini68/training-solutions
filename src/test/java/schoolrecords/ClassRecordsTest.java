@@ -15,14 +15,14 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ClassRecordsTest {
 
     private ClassRecords classRecords;
-    private Tutor tutor = new Tutor("Nagy Csilla",
-            Arrays.asList(new Subject("földrajz"),
-                    new Subject("matematika"),
-                    new Subject("biológia"),
-                    new Subject("zene"),
-                    new Subject("fizika"),
-                    new Subject("kémia")));
 
+    private Tutor tutor = new Tutor("Nagy Csilla",
+            Arrays.asList(new schoolrecords.Subject("földrajz"),
+                    new schoolrecords.Subject("matematika"),
+                    new schoolrecords.Subject("biológia"),
+                    new schoolrecords.Subject("zene"),
+                    new schoolrecords.Subject("fizika"),
+                    new schoolrecords.Subject("kémia")));
 
     @BeforeEach
     public void setUp() {
@@ -30,15 +30,15 @@ public class ClassRecordsTest {
         Student firstStudent = new Student("Kovács Rita");
         Student secondStudent = new Student("Nagy Béla");
         Student thirdStudent = new Student("Varga Márton");
-        firstStudent.grading(new Mark(MarkType.A, new Subject("földrajz"), tutor));
-        firstStudent.grading(new Mark(MarkType.C, new Subject("matematika"), tutor));
-        firstStudent.grading(new Mark(MarkType.D, new Subject("földrajz"), tutor));
-        secondStudent.grading(new Mark(MarkType.A, new Subject("biológia"), tutor));
-        secondStudent.grading(new Mark(MarkType.C, new Subject("matematika"), tutor));
-        secondStudent.grading(new Mark(MarkType.D, new Subject("zene"), tutor));
-        thirdStudent.grading(new Mark(MarkType.A, new Subject("fizika"), tutor));
-        thirdStudent.grading(new Mark(MarkType.C, new Subject("kémia"), tutor));
-        thirdStudent.grading(new Mark(MarkType.D, new Subject("földrajz"), tutor));
+        firstStudent.grading(new Mark(MarkType.A, new schoolrecords.Subject("földrajz"), tutor));
+        firstStudent.grading(new Mark(MarkType.C, new schoolrecords.Subject("matematika"), tutor));
+        firstStudent.grading(new Mark(MarkType.D, new schoolrecords.Subject("földrajz"), tutor));
+        secondStudent.grading(new Mark(MarkType.A, new schoolrecords.Subject("biológia"), tutor));
+        secondStudent.grading(new Mark(MarkType.C, new schoolrecords.Subject("matematika"), tutor));
+        secondStudent.grading(new Mark(MarkType.D, new schoolrecords.Subject("zene"), tutor));
+        thirdStudent.grading(new Mark(MarkType.A, new schoolrecords.Subject("fizika"), tutor));
+        thirdStudent.grading(new Mark(MarkType.C, new schoolrecords.Subject("kémia"), tutor));
+        thirdStudent.grading(new Mark(MarkType.D, new schoolrecords.Subject("földrajz"), tutor));
         classRecords.addStudent(firstStudent);
         classRecords.addStudent(secondStudent);
         classRecords.addStudent(thirdStudent);
