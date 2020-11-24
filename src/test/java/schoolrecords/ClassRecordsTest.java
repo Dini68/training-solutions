@@ -1,10 +1,9 @@
 package schoolrecords;
 
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -15,7 +14,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ClassRecordsTest {
 
     private ClassRecords classRecords;
-
     private Tutor tutor = new Tutor("Nagy Csilla",
             Arrays.asList(new Subject("földrajz"),
                     new Subject("matematika"),
@@ -23,6 +21,7 @@ public class ClassRecordsTest {
                     new Subject("zene"),
                     new Subject("fizika"),
                     new Subject("kémia")));
+
 
     @BeforeEach
     public void setUp() {
