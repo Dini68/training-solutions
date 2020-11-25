@@ -20,10 +20,11 @@ public class ClassRecords {
     }
 
     private boolean isEmpty(String str) {
-        return false;
+        return str.equals("") || str.equals(null);
     }
 
     public boolean addStudent(Student student) {
+
         return false;
     } // felvesz egy diákot az osztályba
 

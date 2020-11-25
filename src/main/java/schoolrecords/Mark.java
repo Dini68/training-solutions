@@ -1,5 +1,9 @@
 package schoolrecords;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Stack;
+
 public class Mark {
 
     private MarkType markType;
@@ -7,10 +11,14 @@ public class Mark {
     private Tutor tutor;
 
     public Mark(MarkType markType, Subject subject, Tutor tutor) {
+        if (subject == null) {
+            throw new NullPointerException("Both subject and tutor must be provided!");
+        }
         this.markType = markType;
         this.subject = subject;
         this.tutor = tutor;
     }
+
 
     public MarkType getMarkType() {
         return markType;
@@ -26,10 +34,8 @@ public class Mark {
 
     @Override
     public String toString() {
-        return "Mark{" +
-                "markType=" + markType +
-                ", subject=" + subject +
-                ", tutor=" + tutor +
-                '}';
+        return markType.getDescription() + "(" +markType.getValue() +")";
+
+
     }
 }
