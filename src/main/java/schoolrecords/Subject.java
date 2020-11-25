@@ -13,7 +13,4 @@ public class Subject {
         return subjectName;
     }
 
-    public static void main(String[] args) {
-        new Subject("földrajz");
-    }
 }
