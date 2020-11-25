@@ -24,15 +24,36 @@ public class ClassRecords {
     }
 
     public boolean addStudent(Student student) {
-
-        return false;
+        boolean isExists = false;
+        for (Student st: students
+             ) {
+            if (st.getName().equals(student.getName())) {
+                isExists = true;
+                break;
+            }
+        }
+        if (!isExists) students.add(student);
+        return !isExists;
     } // felvesz egy diákot az osztályba
 
     public boolean removeStudent(Student student) {
-        return false;
+
+        boolean isExists = false;
+        for (Student st: students
+        ) {
+            if (st.getName().equals(student.getName())) {
+                isExists = true;
+                students.remove(student);
+                break;
+            }
+        }
+        return isExists;
     }//kivesz egy diákot az osztályból
 
     public double calculateClassAverage() {
+        if (students.size() == 0) {
+            throw new ArithmeticException("No student in the class, average calculation aborted!");
+        }
         return 1;
     }//osztályátlagot számol, minden diákot figyelembe véve
 
