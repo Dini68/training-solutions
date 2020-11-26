@@ -7,23 +7,32 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class StoreTest {
 
-    private Store store;
-    List<Product> products = Arrays.asList(new Product("tej", 2020, 12, 03),
-        new Product("tej", 2020, 12, 03),
-        new Product("vaj", 2020, 11, 03),
-        new Product("csirkemell", 2020, 11, 23),
-        new Product("csokoládé", 2021, 11, 03),
-        new Product("tej2", 2020, 11, 27),
-        new Product("teavaj", 2020, 11, 25),
-        new Product("csirkecomb", 2020, 11, 20),
-        new Product("tea", 2021, 10, 03));
+    @Test
+    public void addProductTest() {
+        Store store = new Store();
 
+        assertTrue(store.addProduct(new Product("tej", 2020, 12, 03)));
+        assertFalse(store.addProduct(new Product("vaj", 2020, 11, 03)));
+        assertTrue(store.addProduct(new Product("csirkemell", 2020, 11, 28)));
+        assertTrue(store.addProduct(new Product("csokoládé", 2021, 11, 03)));
+        assertFalse(store.addProduct(new Product("tej", 2020, 11, 27)));
+        assertFalse(store.addProduct(new Product("teavaj", 2020, 11, 25)));
+        assertFalse(store.addProduct(new Product("csirkemell", 2020, 11, 30)));
+        assertTrue(store.addProduct(new Product("tea", 2021, 10, 03)));
+
+    }
     @Test
     public void getNumberOfExpiredTest() {
-        assertEquals(4, store.getNumberOfExpired(products));
+        List<Product> testList = new ArrayList<>();
+        testList.add(new Product("csirkemell", 2020, 11, 30));
+        testList.add(new Product("csirkemell", 2020, 11, 30));
+        testList.add(new Product("tea", 2021, 10, 03));
+        Store store = new Store();
+
+        assertEquals(3,store.getNumberOfNonExpired(testList));
     }
 }

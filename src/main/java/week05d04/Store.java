@@ -8,6 +8,8 @@ public class Store {
 
     private List<Product> products = new ArrayList<>();
 
+
+
     public boolean addProduct(Product product) {
         boolean isGoodProduct = true;
         if (product.getExpirationDate().isBefore(LocalDate.now())){
@@ -25,7 +27,7 @@ public class Store {
         return isGoodProduct;
     }
 
-    public int getNumberOfExpired(List<Product> products) {
+    public int getNumberOfNonExpired(List<Product> products) {
         int count = 0;
         for (Product p: products
              ) {
@@ -47,7 +49,7 @@ public class Store {
         store.addProduct(new Product("teavaj", 2020, 11, 25));
         store.addProduct(new Product("csirkemell", 2020, 11, 30));
         store.addProduct(new Product("tea", 2021, 10, 03));
-        System.out.println(store.getNumberOfExpired(store.products));
+        System.out.println(store.getNumberOfNonExpired(store.products));
     }
 }
 
