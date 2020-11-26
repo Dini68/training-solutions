@@ -67,7 +67,24 @@ public class Student {
     }// tantárgyhoz tartozó átlag számítása
 
     public String toString() {
-        return getName() + " marks: " + marks.get(0).getSubject().getSubjectName() + ": " + marks.get(0).toString();
+        String s = "";
+        int j = 0;
+        for (Mark m: marks) {
+            if (j > 0) {
+                s = s + "\n";
+            }
+            j++;
+            s = s + getName() + " marks: " + m.getSubject().getSubjectName() + ": " + m.toString();
+        }
+/*
+        for (int i = 0; i < marks.size(); i++) {
+            if (i>0) {
+                s = s + "\n";
+            }
+            s = s + getName() + " marks: " + marks.get(i).getSubject().getSubjectName() + ": " + marks.get(i).toString();
+        }
+  */      return s;
+//        return getName() + " marks: " + marks.get(0).getSubject().getSubjectName() + ": " + marks.get(0).toString();
     } // diák szöveges reprezentációja
 
 }
