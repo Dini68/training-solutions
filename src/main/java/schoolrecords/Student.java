@@ -19,6 +19,10 @@ public class Student {
         return name;
     }
 
+    public List<Mark> getMarks() {
+        return marks;
+    }
+
     private boolean isEmpty(String str) {
         return str.equals("") || str.equals(null);
     }

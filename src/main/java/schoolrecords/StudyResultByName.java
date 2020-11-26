@@ -1,5 +1,8 @@
 package schoolrecords;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StudyResultByName {
 
     private String studentName;
@@ -17,4 +20,5 @@ public class StudyResultByName {
     public double getStudyAverage() {
         return studyAverage;
     }
+
 }
