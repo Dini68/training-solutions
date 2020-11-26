@@ -1,9 +1,6 @@
 package schoolrecords;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class SchoolRecordsController {
 
@@ -39,6 +36,50 @@ public class SchoolRecordsController {
             Arrays.asList(new Subject("angol"), new Subject("informatika"))));
     }
 
+    public void listOfStudents() {
+        //
+    }
+
+    public void findByNameOfStudent() {
+        //
+    }
+
+    public void createStudent() {
+        //
+    }
+
+    public void removeByNameOfStudent() {
+        //
+    }
+
+    public void answeringByStudent() {
+        //
+    }
+
+    public void classAverage() {
+        //
+    }
+
+    public void subjectAverage() {
+        //
+    }
+
+    public void showAverageStudents() {
+        //
+    }
+
+    public void studentAverageDisplay() {
+        //
+    }
+
+    public void studentAverageForSubjectDisplay() {
+        //
+    }
+
+    public void exit() {
+        //
+    }
+
     public static void main(String[] args) {
 
         SchoolRecordsController schoolRecordsController = new SchoolRecordsController();
@@ -47,16 +88,40 @@ public class SchoolRecordsController {
 
         schoolRecordsController.initSchool();
 
-        System.out.println( "\t\t1. Diákok nevének listázása\n" +
-                            "\t\t2. Diák név alapján keresése\n" +
-                            "\t\t3. Diák létrehozása\n" +
-                            "\t\t4. Diák név alapján törlése\n" +
-                            "\t\t5. Diák feleltetése\n" +
-                            "\t\t6. Osztályátlag kiszámolása\n" +
-                            "\t\t7. Tantárgyi átlag kiszámolása\n" +
-                            "\t\t8. Diákok átlagának megjelenítése\n" +
-                            "\t\t9. Diák átlagának kiírása\n" +
-                            "\t\t10. Diák tantárgyhoz tartozó átlagának kiírása\n" +
-                            "\t\t11. Kilépés");
+        Scanner scanner = new Scanner(System.in);
+
+        int menuPoint = 0;
+        do {
+            System.out.println("\t\t1. Diákok nevének listázása\n" +
+                    "\t\t2. Diák név alapján keresése\n" +
+                    "\t\t3. Diák létrehozása\n" +
+                    "\t\t4. Diák név alapján törlése\n" +
+                    "\t\t5. Diák feleltetése\n" +
+                    "\t\t6. Osztályátlag kiszámolása\n" +
+                    "\t\t7. Tantárgyi átlag kiszámolása\n" +
+                    "\t\t8. Diákok átlagának megjelenítése\n" +
+                    "\t\t9. Diák átlagának kiírása\n" +
+                    "\t\t10. Diák tantárgyhoz tartozó átlagának kiírása\n" +
+                    "\t\t11. Kilépés");
+
+            System.out.print("Menüpont: ");
+            menuPoint = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (menuPoint) {
+                case 1 : schoolRecordsController.listOfStudents(); break;
+                case 2 : schoolRecordsController.findByNameOfStudent(); break;
+                case 3 : schoolRecordsController.createStudent(); break;
+                case 4 : schoolRecordsController.removeByNameOfStudent(); break;
+                case 5 : schoolRecordsController.answeringByStudent(); break;
+                case 6 : schoolRecordsController.classAverage(); break;
+                case 7 : schoolRecordsController.subjectAverage(); break;
+                case 8 : schoolRecordsController.showAverageStudents(); break;
+                case 9 : schoolRecordsController.studentAverageDisplay(); break;
+                case 10 : schoolRecordsController.studentAverageForSubjectDisplay(); break;
+                case 11 : schoolRecordsController.exit(); break;
+            }
+
+        } while (menuPoint!=11);
     }
 }
