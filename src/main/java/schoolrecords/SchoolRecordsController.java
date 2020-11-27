@@ -36,8 +36,42 @@ public class SchoolRecordsController {
             Arrays.asList(new Subject("angol"), new Subject("informatika"))));
     }
 
+    public void menuPointsToDisplay () {
+        System.out.println("\t\t1. Diákok nevének listázása\n" +
+                "\t\t2. Diák név alapján keresése\n" +
+                "\t\t3. Diák létrehozása\n" +
+                "\t\t4. Diák név alapján törlése\n" +
+                "\t\t5. Diák feleltetése\n" +
+                "\t\t6. Osztályátlag kiszámolása\n" +
+                "\t\t7. Tantárgyi átlag kiszámolása\n" +
+                "\t\t8. Diákok átlagának megjelenítése\n" +
+                "\t\t9. Diák átlagának kiírása\n" +
+                "\t\t10. Diák tantárgyhoz tartozó átlagának kiírása\n" +
+                "\t\t11. Kilépés");
+    }
+
+    public void changeMenuPoint(int menuPoint) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Menüpont: ");
+        menuPoint = scanner.nextInt();
+        scanner.nextLine();
+        switch (menuPoint) {
+            case 1 : listOfStudents(); break;
+            case 2 : findByNameOfStudent(); break;
+            case 3 : createStudent(); break;
+            case 4 : removeByNameOfStudent(); break;
+            case 5 : answeringByStudent(); break;
+            case 6 : classAverage(); break;
+            case 7 : subjectAverage(); break;
+            case 8 : showAverageStudents(); break;
+            case 9 : studentAverageDisplay(); break;
+            case 10 : studentAverageForSubjectDisplay(); break;
+            case 11 : break;
+            default : System.out.println("Nincs ilyen Menüpont! 1 .. 11 között lehet választani.");
+        }
+    }
     public void listOfStudents() {
-        //
+        classRecords.listStudentNames();
     }
 
     public void findByNameOfStudent() {
@@ -45,7 +79,10 @@ public class SchoolRecordsController {
     }
 
     public void createStudent() {
-        //
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Kérem a tanuló nevét: ");
+        String name = scanner.nextLine();
+        classRecords.addStudent(new Student(name));
     }
 
     public void removeByNameOfStudent() {
@@ -76,51 +113,16 @@ public class SchoolRecordsController {
         //
     }
 
-    public void exit() {
-        //
-    }
-
     public static void main(String[] args) {
 
         SchoolRecordsController schoolRecordsController = new SchoolRecordsController();
-
         ClassRecords classRecords = new ClassRecords("First class", new Random(5));
-
         schoolRecordsController.initSchool();
-
-        Scanner scanner = new Scanner(System.in);
 
         int menuPoint = 0;
         do {
-            System.out.println("\t\t1. Diákok nevének listázása\n" +
-                    "\t\t2. Diák név alapján keresése\n" +
-                    "\t\t3. Diák létrehozása\n" +
-                    "\t\t4. Diák név alapján törlése\n" +
-                    "\t\t5. Diák feleltetése\n" +
-                    "\t\t6. Osztályátlag kiszámolása\n" +
-                    "\t\t7. Tantárgyi átlag kiszámolása\n" +
-                    "\t\t8. Diákok átlagának megjelenítése\n" +
-                    "\t\t9. Diák átlagának kiírása\n" +
-                    "\t\t10. Diák tantárgyhoz tartozó átlagának kiírása\n" +
-                    "\t\t11. Kilépés");
-
-            System.out.print("Menüpont: ");
-            menuPoint = scanner.nextInt();
-            scanner.nextLine();
-
-            switch (menuPoint) {
-                case 1 : schoolRecordsController.listOfStudents(); break;
-                case 2 : schoolRecordsController.findByNameOfStudent(); break;
-                case 3 : schoolRecordsController.createStudent(); break;
-                case 4 : schoolRecordsController.removeByNameOfStudent(); break;
-                case 5 : schoolRecordsController.answeringByStudent(); break;
-                case 6 : schoolRecordsController.classAverage(); break;
-                case 7 : schoolRecordsController.subjectAverage(); break;
-                case 8 : schoolRecordsController.showAverageStudents(); break;
-                case 9 : schoolRecordsController.studentAverageDisplay(); break;
-                case 10 : schoolRecordsController.studentAverageForSubjectDisplay(); break;
-                case 11 : schoolRecordsController.exit(); break;
-            }
+            schoolRecordsController.menuPointsToDisplay();
+            schoolRecordsController.changeMenuPoint(menuPoint);
 
         } while (menuPoint!=11);
     }
