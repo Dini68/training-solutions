@@ -44,7 +44,7 @@ public class ClassRecords {
         ) {
             if (st.getName().equals(student.getName())) {
                 isExists = true;
-                students.remove(student);
+                students.remove(st);
                 break;
             }
         }
