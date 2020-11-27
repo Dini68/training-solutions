@@ -67,23 +67,34 @@ public class SchoolRecordsController {
         scanner.nextLine();
         return menuPoint;
     }
-    public void listOfStudents(ClassRecords classRecords) {
-        classRecords.listStudentNames();
+    public void listOfStudents(ClassRecords classRecords){
+        System.out.println(classRecords.listStudentNames());
     }
 
-    public void findByNameOfStudent() {
-        //
+    public Student findByNameOfStudent(ClassRecords classRecords) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Kérem a tanuló nevét: ");
+        String name = scanner.nextLine();
+        Student student = classRecords.findStudentByName(name);
+        System.out.println(student.getName());
+        return student;
     }
 
-    public void createStudent(ClassRecords classRecords) {
+    public ClassRecords createStudent(ClassRecords classRecords) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Kérem a tanuló nevét: ");
         String name = scanner.nextLine();
         classRecords.addStudent(new Student(name));
+        return classRecords;
     }
 
-    public void removeByNameOfStudent() {
-        //
+    public ClassRecords removeByNameOfStudent(ClassRecords classRecords) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Kérem a törölni kívánt tanuló nevét: ");
+        String name = scanner.nextLine();
+        Student student = new Student(name);
+        System.out.println(classRecords.removeStudent(student));
+        return classRecords;
     }
 
     public void answeringByStudent() {
@@ -123,9 +134,9 @@ public class SchoolRecordsController {
             changeMenuPointValue = schoolRecordsController.changeMenuPoint();
             switch (changeMenuPointValue) {
                 case 1 : schoolRecordsController.listOfStudents(classRecords1); break;
-                case 2 : schoolRecordsController.findByNameOfStudent(); break;
-                case 3 : schoolRecordsController.createStudent(classRecords1); break;
-                case 4 : schoolRecordsController.removeByNameOfStudent(); break;
+                case 2 : schoolRecordsController.findByNameOfStudent(classRecords1); break;
+                case 3 : classRecords1 = schoolRecordsController.createStudent(classRecords1); break;
+                case 4 : classRecords1 = schoolRecordsController.removeByNameOfStudent(classRecords1); break;
                 case 5 : schoolRecordsController.answeringByStudent(); break;
                 case 6 : schoolRecordsController.classAverage(); break;
                 case 7 : schoolRecordsController.subjectAverage(); break;
