@@ -11,19 +11,19 @@ public class User {
 
     public void charactersInEmail (String email) {
         if (!email.contains("@")) {
-            throw new MissingFormatArgumentException("Hiányzik a '@' karakter");
+            throw new IllegalArgumentException("Hiányzik a '@' karakter");
         }
         if (email.indexOf('@') == 0) {
-            throw new MissingFormatArgumentException("Nem kezdődhet '@' karakterrel");
+            throw new IllegalArgumentException("Nem kezdődhet '@' karakterrel");
         }
         if (!email.contains(".")) {
-            throw new MissingFormatArgumentException("Hiányzik a '.' karakter");
+            throw new IllegalArgumentException("Hiányzik a '.' karakter");
         }
         if (email.indexOf('.') < email.indexOf('@')+1) {
-            throw new MissingFormatArgumentException("A '.' karakternek a '@' után kell lennie.");
+            throw new IllegalArgumentException("A '.' karakternek a '@' után kell lennie.");
         }
         if (email.indexOf('.') == email.length() - 1) {
-            throw new MissingFormatArgumentException("A '.' karakter nem lehet utolsó.");
+            throw new IllegalArgumentException("A '.' karakter nem lehet utolsó.");
         }
     }
 
