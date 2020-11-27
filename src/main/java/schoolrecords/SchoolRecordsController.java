@@ -65,26 +65,9 @@ public class SchoolRecordsController {
         System.out.print("Menüpont: ");
         menuPoint = scanner.nextInt();
         scanner.nextLine();
-        switch (menuPoint) {
-            case 1 : listOfStudents(); break;
-            case 2 : findByNameOfStudent(); break;
-            case 3 : createStudent(); break;
-            case 4 : removeByNameOfStudent(); break;
-            case 5 : answeringByStudent(); break;
-            case 6 : classAverage(); break;
-            case 7 : subjectAverage(); break;
-            case 8 : showAverageStudents(); break;
-            case 9 : studentAverageDisplay(); break;
-            case 10 : studentAverageForSubjectDisplay(); break;
-            case 11 : break;
-            default : {
-                System.out.println("Nincs ilyen Menüpont! 1 .. 11 között lehet választani.");
-                menuPoint = 12;
-            }
-        }
         return menuPoint;
     }
-    public void listOfStudents() {
+    public void listOfStudents(ClassRecords classRecords) {
         classRecords.listStudentNames();
     }
 
@@ -92,7 +75,7 @@ public class SchoolRecordsController {
         //
     }
 
-    public void createStudent() {
+    public void createStudent(ClassRecords classRecords) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Kérem a tanuló nevét: ");
         String name = scanner.nextLine();
@@ -131,13 +114,30 @@ public class SchoolRecordsController {
     public static void main(String[] args) {
 
         SchoolRecordsController schoolRecordsController = new SchoolRecordsController();
-        ClassRecords classRecords = new ClassRecords("First class", new Random(5));
+        ClassRecords classRecords1 = new ClassRecords("First class", new Random(5));
         schoolRecordsController.initSchool();
 
         int changeMenuPointValue= 0;
         do {
             if (changeMenuPointValue != 12) schoolRecordsController.menuPointsToDisplay();
             changeMenuPointValue = schoolRecordsController.changeMenuPoint();
+            switch (changeMenuPointValue) {
+                case 1 : schoolRecordsController.listOfStudents(classRecords1); break;
+                case 2 : schoolRecordsController.findByNameOfStudent(); break;
+                case 3 : schoolRecordsController.createStudent(classRecords1); break;
+                case 4 : schoolRecordsController.removeByNameOfStudent(); break;
+                case 5 : schoolRecordsController.answeringByStudent(); break;
+                case 6 : schoolRecordsController.classAverage(); break;
+                case 7 : schoolRecordsController.subjectAverage(); break;
+                case 8 : schoolRecordsController.showAverageStudents(); break;
+                case 9 : schoolRecordsController.studentAverageDisplay(); break;
+                case 10 :schoolRecordsController.studentAverageForSubjectDisplay(); break;
+                case 11 : break;
+                default : {
+                    System.out.println("Nincs ilyen Menüpont! 1 .. 11 között lehet választani.");
+                    changeMenuPointValue = 12;
+                }
+            }
         }
         while (changeMenuPointValue!=11);
     }
