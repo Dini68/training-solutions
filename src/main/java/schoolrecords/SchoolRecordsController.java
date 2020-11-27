@@ -4,10 +4,20 @@ import java.util.*;
 
 public class SchoolRecordsController {
 
+    Scanner scanner = new Scanner(System.in);
+
     private ClassRecords classRecords;
     private List<Subject> subjects = new ArrayList<>();
     private List<Tutor> tutors = new ArrayList<>();
 
+
+    public ClassRecords getClassRecords() {
+        return classRecords;
+    }
+
+    public void setClassRecords(ClassRecords classRecords) {
+        this.classRecords = classRecords;
+    }
 
     public void initSchool() {
         subjects.add(new Subject("matematika"));
@@ -50,8 +60,8 @@ public class SchoolRecordsController {
                 "\t\t11. Kilépés");
     }
 
-    public void changeMenuPoint(int menuPoint) {
-        Scanner scanner = new Scanner(System.in);
+    public int changeMenuPoint() {
+        int menuPoint = 0;
         System.out.print("Menüpont: ");
         menuPoint = scanner.nextInt();
         scanner.nextLine();
@@ -67,8 +77,12 @@ public class SchoolRecordsController {
             case 9 : studentAverageDisplay(); break;
             case 10 : studentAverageForSubjectDisplay(); break;
             case 11 : break;
-            default : System.out.println("Nincs ilyen Menüpont! 1 .. 11 között lehet választani.");
+            default : {
+                System.out.println("Nincs ilyen Menüpont! 1 .. 11 között lehet választani.");
+                menuPoint = 12;
+            }
         }
+        return menuPoint;
     }
     public void listOfStudents() {
         classRecords.listStudentNames();
@@ -110,6 +124,7 @@ public class SchoolRecordsController {
     }
 
     public void studentAverageForSubjectDisplay() {
+
         //
     }
 
@@ -119,11 +134,11 @@ public class SchoolRecordsController {
         ClassRecords classRecords = new ClassRecords("First class", new Random(5));
         schoolRecordsController.initSchool();
 
-        int menuPoint = 0;
+        int changeMenuPointValue= 0;
         do {
-            schoolRecordsController.menuPointsToDisplay();
-            schoolRecordsController.changeMenuPoint(menuPoint);
-
-        } while (menuPoint!=11);
+            if (changeMenuPointValue != 12) schoolRecordsController.menuPointsToDisplay();
+            changeMenuPointValue = schoolRecordsController.changeMenuPoint();
+        }
+        while (changeMenuPointValue!=11);
     }
 }
