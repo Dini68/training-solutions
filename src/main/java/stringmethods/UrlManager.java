@@ -11,6 +11,10 @@ public class UrlManager {
     private String setProtocol(String url) {
         return url.substring(0,url.indexOf(":"));
     }
+    private String setPath(String url) {
+
+        return url.substring(url.indexOf("/", url.indexOf(":") + 3)+1, url.length());
+    }
     private String setHost(String url) {
         if (url.indexOf(":",url.indexOf(":")+3) == -1 ||
                 (url.indexOf("/",url.indexOf(":")+3) < url.indexOf(":",url.indexOf(":")+3))) {
@@ -22,6 +26,7 @@ public class UrlManager {
     public UrlManager(String url) {
         this.protocol = setProtocol(url);
         this.host = setHost(url);
+        this.path = setPath(url);
     }
 
     public String getProtocol() {
@@ -45,5 +50,6 @@ public class UrlManager {
         UrlManager urlManager = new UrlManager(url);
         System.out.println(urlManager.getProtocol());
         System.out.println(urlManager.getHost());
+        System.out.println(urlManager.getPath());
     }
 }
