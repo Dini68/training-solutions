@@ -42,8 +42,14 @@ public class Pet {
         return registrationNumber;
     }
 
-    public static void main(String[] args) {
-        Pet pet = new Pet("Manci", LocalDate.of(2020,3,1), Gender.MALE, "123456");
-        System.out.println(pet.getName()+pet.dateOfBirth+pet.gender+pet.registrationNumber);
+    public String toString() {
+        return "Pet{" +
+                "name='" + name + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", gender=" + gender +
+                ", registrationNumber='" + registrationNumber + '\'' +
+                '}';
     }
+
+
 }
