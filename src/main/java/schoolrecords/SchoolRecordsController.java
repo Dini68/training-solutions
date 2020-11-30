@@ -69,35 +69,36 @@ public class SchoolRecordsController {
         scanner.nextLine();
         return menuPoint;
     }
-    public void listOfStudents(){
+    public void listOfStudents(){       // 1.
         System.out.println(classRecords.listStudentNames());
+        System.out.println(">>> folytatás bármelyik gombbal");
+        scanner.nextLine();
     }
 
-    public void findByNameOfStudent() {
-        Scanner scanner = new Scanner(System.in);
+    public void findByNameOfStudent() {     // 2.
         System.out.print("Kérem a tanuló nevét: ");
-        String name = scanner.nextLine();
-        Student student = classRecords.findStudentByName(name);
+        Student student = classRecords.findStudentByName(scanner.nextLine());
         System.out.println(student.getName());
     }
 
-    public void createStudent() {
-        Scanner scanner = new Scanner(System.in);
+    public void createStudent() {   // 3.
         System.out.print("Kérem a tanuló nevét: ");
         String name = scanner.nextLine();
         classRecords.addStudent(new Student(name));
+        System.out.println("\"" + name + "\"" + " felvéve a listába!      >>> folytatás bármelyik gombbal");
+        scanner.nextLine();
     }
 
-    public void removeByNameOfStudent() {
-        Scanner scanner = new Scanner(System.in);
+    public void removeByNameOfStudent() {   // 4.
         System.out.print("Kérem a törölni kívánt tanuló nevét: ");
         String name = scanner.nextLine();
-//        Student student = new Student(name);
-        Student student = classRecords.findStudentByName(name);
-        System.out.println(classRecords.removeStudent(student));
+        if (classRecords.removeStudent(classRecords.findStudentByName(name))) {
+            System.out.println("\"" + name + "\"" + " törölve a listából!      >>> folytatás bármelyik gombbal");
+        }
+        scanner.nextLine();
     }
 
-    public void answeringByStudent() {
+    public void answeringByStudent() {      // 5.
         Student student;
         student = classRecords.repetition();
         System.out.print("Érdemjegy: ");
@@ -148,7 +149,7 @@ public class SchoolRecordsController {
     }
 
     public void studentAverageForSubjectDisplay() {
-        Scanner scanner = new Scanner(System.in);
+      //  Scanner scanner = new Scanner(System.in);
         System.out.print("Kérem a tanuló nevét: ");
         String name = scanner.nextLine();
         System.out.print("Kérem a tantárgy nevét: ");

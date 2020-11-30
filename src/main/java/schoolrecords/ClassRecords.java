@@ -38,7 +38,6 @@ public class ClassRecords {
 
     public boolean removeStudent(Student student) {
 
-        System.out.println(student.getName());
         boolean isExists = false;
         for (Student st: students
         ) {
