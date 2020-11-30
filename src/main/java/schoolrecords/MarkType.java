@@ -1,5 +1,7 @@
 package schoolrecords;
 
+import java.util.Scanner;
+
 public enum MarkType {
 
     A(5, "excellent"),
@@ -21,6 +23,9 @@ public enum MarkType {
     }
 
     public String getDescription() {
+
         return description;
     }
+
 }
+

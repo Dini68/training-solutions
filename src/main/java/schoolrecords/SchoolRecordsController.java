@@ -2,6 +2,8 @@ package schoolrecords;
 
 import java.util.*;
 
+import static schoolrecords.MarkType.*;
+
 public class SchoolRecordsController {
 
     Scanner scanner = new Scanner(System.in);
@@ -90,20 +92,44 @@ public class SchoolRecordsController {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Kérem a törölni kívánt tanuló nevét: ");
         String name = scanner.nextLine();
-        Student student = new Student(name);
+//        Student student = new Student(name);
+        Student student = classRecords.findStudentByName(name);
         System.out.println(classRecords.removeStudent(student));
     }
 
     public void answeringByStudent() {
-        //
+        Student student;
+        student = classRecords.repetition();
+        System.out.print("Érdemjegy: ");
+        String givenMark = scanner.nextLine();
+        Mark mark = new Mark(A, subjects.get(0), tutors.get(0));
+        switch (givenMark) {
+            case "5":
+                mark = new Mark(A, subjects.get(0), tutors.get(0));
+                break;
+            case "4":
+                mark = new Mark(B, subjects.get(0), tutors.get(0));
+                break;
+            case "3":
+                mark = new Mark(C, subjects.get(0), tutors.get(0));
+                break;
+            case "2":
+                mark = new Mark(D, subjects.get(0), tutors.get(0));
+                break;
+            case "1":
+                mark = new Mark(F, subjects.get(0), tutors.get(0));
+                break;
+        }
+        student.grading(mark);
+        System.out.println(student.getName());
     }
 
     public void classAverage() {
-        //
+        System.out.println(classRecords.calculateClassAverage());
     }
 
     public void subjectAverage() {
-        //
+        System.out.println(classRecords.calculateClassAverageBySubject( new Subject("matematika")));
     }
 
     public void showAverageStudents() {
