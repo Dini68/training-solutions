@@ -133,16 +133,28 @@ public class SchoolRecordsController {
     }
 
     public void showAverageStudents() {
-        //
+        List<StudyResultByName> lsrbn = new ArrayList<>();
+        lsrbn = classRecords.listStudyResults();
+        for (int i = 0; i < lsrbn.size(); i++ ) {
+            System.out.println(classRecords.listStudyResults().get(i).getStudentName() +
+                        " " + (classRecords.listStudyResults().get(i).getStudyAverage()));
+        }
     }
 
     public void studentAverageDisplay() {
-        //
+        System.out.print("Kérem a diák nevét: ");
+        String name = scanner.nextLine();
+        System.out.println(name + ": " + classRecords.findStudentByName(name).calculateAverage());
     }
 
     public void studentAverageForSubjectDisplay() {
-
-        //
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Kérem a tanuló nevét: ");
+        String name = scanner.nextLine();
+        System.out.print("Kérem a tantárgy nevét: ");
+        String subjectName = scanner.nextLine();
+        Student student = classRecords.findStudentByName(name);
+        System.out.println(name + ": " + subjectName + ": " + student.calculateSubjectAverage(new Subject(subjectName)));
     }
 
     public static void main(String[] args) {
