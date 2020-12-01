@@ -132,8 +132,8 @@ public class SchoolRecordsController {
 
         if (!isTutorAndSubject) return;
 
-        Mark mark = new Mark(A, subjects.get(subjektIndex), tutors.get(tutorIndex));
-        switch (givenMark) {
+        Mark mark = new Mark(findByValue(givenMark), subjects.get(subjektIndex), tutors.get(tutorIndex));
+/*        switch (givenMark) {
             case "5":
                 mark = new Mark(A, subjects.get(subjektIndex), tutors.get(tutorIndex));
                 break;
@@ -150,7 +150,7 @@ public class SchoolRecordsController {
                 mark = new Mark(F, subjects.get(subjektIndex), tutors.get(tutorIndex));
                 break;
         }
-        student.grading(mark);
+  */      student.grading(mark);
         System.out.print(student.getName() + " osztályozva!\n\t\t>>> folytatás 'Enter' gombbal");
         scanner.nextLine();
     }
