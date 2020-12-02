@@ -37,17 +37,14 @@ public class ClassRecords {
     } // felvesz egy diákot az osztályba
 
     public boolean removeStudent(Student student) {
-
         boolean isExists = false;
-        Student findStudent = null;
-        for (Student st: students) {
-            if (st.getName().equals(student.getName())) {
-                isExists = true;
-                findStudent = st;
-            }
+        int i = 0;
+        while (!isExists && (i < students.size())) {
+            isExists = students.get(i).getName().equals(student.getName());
+            i++;
         }
         if (isExists) {
-            students.remove(findStudent);
+            students.remove(student);
         }
         return isExists;
     }//kivesz egy diákot az osztályból
@@ -62,7 +59,6 @@ public class ClassRecords {
                 throw new ArithmeticException("No marks present, average calculation aborted!");
             }
         }
-
         double sum = 0;
         double count = 0;
         for (Student st: students
