@@ -1,4 +1,4 @@
-package filescanner.book;
+package filescanner.library;
 
 public class Book {
 

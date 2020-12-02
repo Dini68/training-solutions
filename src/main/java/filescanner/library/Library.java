@@ -1,6 +1,5 @@
-package filescanner.book;
+package filescanner.library;
 
-import javax.security.sasl.SaslClient;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
