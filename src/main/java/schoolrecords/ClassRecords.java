@@ -39,13 +39,15 @@ public class ClassRecords {
     public boolean removeStudent(Student student) {
 
         boolean isExists = false;
-        for (Student st: students
-        ) {
+        Student findStudent = null;
+        for (Student st: students) {
             if (st.getName().equals(student.getName())) {
                 isExists = true;
-                students.remove(st);
-                break;
+                findStudent = st;
             }
+        }
+        if (isExists) {
+            students.remove(findStudent);
         }
         return isExists;
     }//kivesz egy diákot az osztályból
