@@ -9,7 +9,7 @@ public class Student {
     private String name;
 
     public Student(String name) {
-        if ( name.equals("")) {
+        if (isEmpty(name)) {
             throw new IllegalArgumentException("Student name must not be empty!");
         }
         this.name = name;
@@ -24,8 +24,9 @@ public class Student {
     }
 
     private boolean isEmpty(String str) {
-        return str.equals("") || str.equals(null);
+        return (str == null) || str.equals("");
     }
+
 
     public void grading(Mark mark) {
         if (mark == null) {
@@ -76,15 +77,7 @@ public class Student {
             j++;
             s = s + getName() + " marks: " + m.getSubject().getSubjectName() + ": " + m.toString();
         }
-/*
-        for (int i = 0; i < marks.size(); i++) {
-            if (i>0) {
-                s = s + "\n";
-            }
-            s = s + getName() + " marks: " + marks.get(i).getSubject().getSubjectName() + ": " + marks.get(i).toString();
-        }
-  */      return s;
-//        return getName() + " marks: " + marks.get(0).getSubject().getSubjectName() + ": " + marks.get(0).toString();
+        return s;
     } // diák szöveges reprezentációja
 
 }

@@ -11,6 +11,9 @@ public class ClassRecords {
     private List<Student> students = new ArrayList<>();
 
     public ClassRecords(String className, Random rnd) {
+        if (isEmpty(className)) {
+            throw new IllegalArgumentException("Az osztálynév nincs megadva!");
+        }
         this.className = className;
         this.rnd = rnd;
     }
@@ -20,17 +23,15 @@ public class ClassRecords {
     }
 
     private boolean isEmpty(String str) {
-        return str.equals("") || str.equals(null);
+        return (str == null) || str.equals("");
     }
 
     public boolean addStudent(Student student) {
         boolean isExists = false;
-        for (Student st: students
-             ) {
-            if (st.getName().equals(student.getName())) {
-                isExists = true;
-                break;
-            }
+        int i = 0;
+        while (!isExists && (i < students.size())) {
+            isExists = students.get(i).getName().equals(student.getName());
+            i++;
         }
         if (!isExists) students.add(student);
         return !isExists;
@@ -43,9 +44,7 @@ public class ClassRecords {
             isExists = students.get(i).getName().equals(student.getName());
             i++;
         }
-        if (isExists) {
-            students.remove(student);
-        }
+        if (isExists) students.remove(student);
         return isExists;
     }//kivesz egy diákot az osztályból
 
@@ -53,16 +52,14 @@ public class ClassRecords {
         if (students.size() == 0) {
             throw new ArithmeticException("No student in the class, average calculation aborted!");
         }
-        for (Student st: students
-             ) {
-            if (st.getMarks().size() == 0 || st.getMarks() == null) {
+        for (Student st: students) {
+            if ((st.getMarks() == null) || (st.getMarks().size() == 0)) {
                 throw new ArithmeticException("No marks present, average calculation aborted!");
             }
         }
         double sum = 0;
         double count = 0;
-        for (Student st: students
-        ) {
+        for (Student st: students) {
             for (Mark m: st.getMarks()
                  ) {
                 if (m != null) {
@@ -71,15 +68,13 @@ public class ClassRecords {
                 }
             }
         }
-
         return Math.round(100 * sum / count) / 100.0;
     }//osztályátlagot számol, minden diákot figyelembe véve
 
     public double calculateClassAverageBySubject(Subject subject) {
         double sum = 0;
         double count = 0;
-        for (Student st: students
-        ) {
+        for (Student st: students) {
             for (Mark m: st.getMarks()
             ) {
                 if ((m != null) && (m.getSubject().getSubjectName().equals(subject.getSubjectName()))) {
@@ -88,7 +83,6 @@ public class ClassRecords {
                 }
             }
         }
-
         return Math.round(100 * sum / count) / 100.0;
     }//tantárgy szerinti osztályátlagot számol,
     // kihagyja azon diákokat, akiknek az adott tantárgyból nincs jegye
@@ -97,14 +91,11 @@ public class ClassRecords {
         if (isEmpty(name)) {
             throw new IllegalArgumentException("Student name must not be empty!");
         }
-
-        if ((students.size() == 0) || (students == null)) {
+        if ((students == null) || (students.size() == 0)) {
             throw new IllegalStateException("No students to search!");
         }
-
         boolean isExisting = false;
-        for (Student st: students
-             ) {
+        for (Student st: students) {
             if (st.getName().equals(name)) {
                 isExisting = true;
                 return st;
@@ -136,15 +127,12 @@ public class ClassRecords {
 
     public String listStudentNames() {
         String listStudents ="";
-        for (Student st: students
-             ) {
+        for (Student st: students) {
             if (!listStudents.equals("")) {
                 listStudents += ", ";
             }
             listStudents += st.getName();
-
         }
         return listStudents;
     }//kilistázza a diákok neveit, vesszővel elválasztva
-
 }
