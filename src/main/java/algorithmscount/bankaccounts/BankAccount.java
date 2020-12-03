@@ -1,4 +1,4 @@
-package algorithmscount.bankaccount;
+package algorithmscount.bankaccounts;
 
 public class BankAccount {
 

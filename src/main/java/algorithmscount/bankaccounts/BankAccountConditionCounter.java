@@ -1,4 +1,4 @@
-package algorithmscount.bankaccount;
+package algorithmscount.bankaccounts;
 
 import java.util.List;
 
