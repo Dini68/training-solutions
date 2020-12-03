@@ -1,4 +1,6 @@
-package algorithmssum;
+package algorithmssum.salespeople;
+
+import algorithmssum.salespeople.Salesperson;
 
 import java.util.List;
 

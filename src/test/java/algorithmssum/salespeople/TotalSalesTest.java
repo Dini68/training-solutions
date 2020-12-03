@@ -1,7 +1,8 @@
-package algorithmssum;
+package algorithmssum.salespeople;
 
+import algorithmssum.salespeople.Salesperson;
+import algorithmssum.salespeople.TotalSales;
 import org.junit.jupiter.api.Test;
-import week05d05.User;
 
 import java.util.Arrays;
 import java.util.List;
