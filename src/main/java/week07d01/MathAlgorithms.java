@@ -33,5 +33,6 @@ public class MathAlgorithms {
         System.out.println(m.isPrime(10));
         System.out.println(m.isPrime(11));
         System.out.println(m.isPrime(12));
+        System.out.println(m.isPrime(-2));
     }
 }
