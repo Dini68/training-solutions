@@ -23,8 +23,4 @@ public class BigBoss extends Boss {
         return super.getSalary() + getBonus();
     }
 
-    public static void main(String[] args) {
-        BigBoss boss = new BigBoss("John Doe", "1117 Budapest, Budafoki út 56.", 1_000_000, 6, 200_000);
-        System.out.println(boss.getSalary());
-    }
 }

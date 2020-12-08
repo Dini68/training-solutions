@@ -2,7 +2,7 @@ package introinheritance.personemployeeboss;
 
 public class Boss extends Employee{
 
-    public final static double LEADERSHIP_FACTOR = 0.1;
+    private final static double LEADERSHIP_FACTOR = 0.1;
 
     private int numberOfEmployees;
 
