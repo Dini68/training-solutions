@@ -12,7 +12,7 @@ public class Basket{
         items.add(item);
     }
     public void removeItem(String barcode) {
-        Item delItem = new Item();
+        Item delItem = new Item("",0,0);
         boolean isFound = false;
         for (Item it: items) {
             if (it.getBarcode().equals(barcode)){

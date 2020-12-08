@@ -4,12 +4,13 @@ public class ShoppingBasket extends Basket{
 
     private Basket basket;
 
-//    @Override
+
+    @Override
     public void addItem(Item item) {
         super.addItem(item);
     }
 
-//    @Override
+   @Override
     public void removeItem(String barcode) {
         super.removeItem(barcode);
     }
@@ -45,5 +46,12 @@ public class ShoppingBasket extends Basket{
             }
         }
         this.removeItem(expensiveItem);
+    }
+
+    public static void main(String[] args) {
+
+        ShoppingBasket shoppingBasket = new ShoppingBasket();
+        shoppingBasket.addItem(new Item("123456", 1500, 27));
+
     }
 }
