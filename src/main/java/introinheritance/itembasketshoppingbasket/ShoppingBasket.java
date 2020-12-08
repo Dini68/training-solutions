@@ -1,18 +1,16 @@
 package introinheritance.itembasketshoppingbasket;
 
-public class ShoppingBasket extends Basket{
+public class ShoppingBasket{
 
-    private Basket basket;
+    private Basket basket = new Basket();
 
 
-    @Override
     public void addItem(Item item) {
-        super.addItem(item);
+        basket.addItem(item);
     }
 
-   @Override
     public void removeItem(String barcode) {
-        super.removeItem(barcode);
+        basket.removeItem(barcode);
     }
 
     public double sumNettoPrice() {
@@ -34,7 +32,7 @@ public class ShoppingBasket extends Basket{
     }
 
     public void checkout() {
-        super.clearBasket();
+        basket.clearBasket();
     }
     public void removeMostExpensiveItem() {
         String expensiveItem = "";
@@ -52,6 +50,8 @@ public class ShoppingBasket extends Basket{
 
         ShoppingBasket shoppingBasket = new ShoppingBasket();
         shoppingBasket.addItem(new Item("123456", 1500, 27));
-
+        shoppingBasket.addItem(new Item("789456", 2500, 0));
+        shoppingBasket.addItem(new Item("147258", 5000, 27));
+        System.out.println(Math.round(shoppingBasket.sumNettoPrice()));
     }
 }
