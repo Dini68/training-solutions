@@ -30,11 +30,21 @@ public class Jeep extends Car{
 
     @Override
     public void drive(int km) {
-        super.drive(km);
+        if (getFuel() + getExtraFuel() < km * getFuelRate() / 100.0) {
+            throw new RuntimeException("Not enough fuel available!");
+        }
+        double fuelConsumption = km * getFuelRate() / 100.0;
+        if (fuelConsumption > extraFuel) {
+            modifyFuelAmount(extraFuel - fuelConsumption);
+            extraFuel = 0;
+        } else {
+            extraFuel -= fuelConsumption;
+        }
     }
 
     @Override
     public double calculateRefillAmount() {
-        return super.calculateRefillAmount() + extraFuel + extraCapacity;
+        return super.calculateRefillAmount() + extraCapacity - extraFuel;
     }
+
 }
