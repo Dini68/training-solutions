@@ -8,4 +8,19 @@ public class CreditAccount extends DebitAccount {
         super(accountNumber, balance);
         this.overdraftLimit = overdraftLimit;
     }
+
+    public long getOverdraftLimit() {
+        return overdraftLimit;
+    }
+
+    @Override
+    public boolean transaction(long amount) {
+        if (super.transaction(amount)) return true;
+        if (amount <= getBalance() - costOfTransaction(amount) + overdraftLimit) {
+            overdraftLimit -= amount - getBalance() + costOfTransaction(amount);
+            balanceToZero();
+            return true;
+        }
+        return false;
+    }
 }

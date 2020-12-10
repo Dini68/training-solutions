@@ -24,6 +24,7 @@ public class DebitAccount {
     }
 
     public final long costOfTransaction(long amount) {
+
         return (long)Math.max(-amount * COST / 100, -MIN_COST);
     }
 
