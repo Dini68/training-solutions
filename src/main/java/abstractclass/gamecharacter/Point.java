@@ -1,5 +1,7 @@
 package abstractclass.gamecharacter;
 
+import java.util.Random;
+
 public class Point {
 
     private long x;
@@ -18,7 +20,9 @@ public class Point {
         return y;
     }
 
-    public double distance(long x, long y) {
-        return Math.sqrt((this.x - x) * (this.x - x) + (this.y - y)*(this.y - y));
+    public double distance(Point otherPoint) {
+        return Math.round(Math.sqrt((this.x - otherPoint.x) * (this.x - otherPoint.x)
+                + (this.y - otherPoint.y)*(this.y - otherPoint.y)));
     }
+
 }

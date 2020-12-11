@@ -6,17 +6,21 @@ public abstract class Character {
 
     private Point position;
 
-    private int hitPoint;
+    private int hitPoint = 100;
 
     private Random random;
 
-    private boolean isAlive() {
+    public Random getRandom() {
+        return random;
+    }
+
+    public boolean isAlive() {
         return (hitPoint > 0);
     }
 
-    public Character(Point position) {
+    public Character(Point position, Random random) {
         this.position = position;
-        this.hitPoint = 100;
+        this.random = random;
     }
 
     public Point getPosition() {
