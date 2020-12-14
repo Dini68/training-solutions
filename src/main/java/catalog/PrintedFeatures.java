@@ -11,6 +11,15 @@ public class PrintedFeatures implements Feature {
     private List<String> authors;
 
     public PrintedFeatures(String title, int numberOfPages, List<String> authors) {
+        if (new Validators().isBlank(title)) {
+            throw new IllegalArgumentException("Empty title");
+        }
+        if (numberOfPages < 0) {
+            throw new IllegalArgumentException();
+        }
+        if (new Validators().isEmpty(authors)) {
+            throw new IllegalArgumentException();
+        }
         this.title = title;
         this.numberOfPages = numberOfPages;
         this.authors = authors;

@@ -14,12 +14,30 @@ public class AudioFeatures implements Feature{
     private List<String> composer;
 
     public AudioFeatures(String title, int length, List<String> performers) {
+        if (new Validators().isBlank(title)) {
+            throw new IllegalArgumentException();
+        }
+        if (length <= 0) {
+            throw new IllegalArgumentException();
+        }
+        if (new Validators().isEmpty(performers)) {
+            throw new IllegalArgumentException();
+        }
         this.title = title;
         this.length = length;
         this.performers = performers;
     }
 
     public AudioFeatures(String title, int length, List<String> performers, List<String> composer) {
+        if (new Validators().isBlank(title)) {
+            throw new IllegalArgumentException();
+        }
+        if (length <= 0) {
+            throw new IllegalArgumentException();
+        }
+        if (new Validators().isEmpty(performers)) {
+            throw new IllegalArgumentException();
+        }
         this.title = title;
         this.length = length;
         this.performers = performers;
@@ -28,8 +46,19 @@ public class AudioFeatures implements Feature{
 
     @Override
     public List<String> getContributors() {
-        // performers & composer list ???
-        return composer;
+        List<String > commonList = new ArrayList<>();
+        if (new Validators().isEmpty(performers)) {
+            throw new IllegalArgumentException();
+        }
+        if (!(new Validators().isEmpty(composer))) {
+            for (String st: composer) {
+                commonList.add(st);
+            }
+        }
+        for (String st: performers) {
+            commonList.add(st);
+        }
+        return commonList;
     }
 
     @Override
