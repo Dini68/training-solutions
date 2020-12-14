@@ -30,7 +30,7 @@ public class Robot {
     }
 
     public static void main(String[] args) {
-        Robot robot = new Robot();
+         Robot robot = new Robot();
         robot.move("FFLLLLLBBBBJJJJJJJ");
         System.out.println(robot.position.getX() + ", " + robot.position.getY());
     }
