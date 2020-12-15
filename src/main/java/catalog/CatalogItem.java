@@ -61,10 +61,22 @@ public class CatalogItem{
         return fullLength; //??
     }
     public boolean hasAudioFeature() {
-        return false; //?
+        boolean has = false;
+        for (Feature fe: features) {
+            if (fe instanceof AudioFeatures){
+                has = true;
+            }
+        }
+        return has; //?
     }
     public boolean hasPrintedFeature() {
-        return false; //??
+        boolean has = false;
+        for (Feature fe: features) {
+            if (fe instanceof PrintedFeatures){
+                has = true;
+            }
+        }
+        return has; //?
     }
     public int numberOfPagesAtOneItem() {
         int numberOfPages = 0;
