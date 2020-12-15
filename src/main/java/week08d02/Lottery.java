@@ -7,12 +7,20 @@ import java.util.Random;
 public class Lottery {
 
     public List<Integer> getNumbers(int interval, int numbers) {
+        return getNumbers(interval,numbers,0);
+    }
+
+    public List<Integer> getNumbers(int interval, int numbers, int seed) {
         List<Integer> lottoNumbers = new ArrayList<>();
         for (int i = 1; i <= interval; i++) {
            lottoNumbers.add(i);
         }
 
         Random rnd = new Random();
+        if (seed != 0) {
+            rnd = new Random(seed);
+        }
+
         List<Integer> lottoList = new ArrayList<>();
 
         int index = interval;
