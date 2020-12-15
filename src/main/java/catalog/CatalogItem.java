@@ -1,6 +1,7 @@
 package catalog;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class CatalogItem{
@@ -11,10 +12,10 @@ public class CatalogItem{
 
     private List<Feature> features = new ArrayList<>();
 
-    public CatalogItem(String registrationNumber, int price, List<Feature> features) {
+    public CatalogItem(String registrationNumber, int price, Feature... features) {
         this.registrationNumber = registrationNumber;
         this.price = price;
-        this.features = features;
+        this.features = Arrays.asList(features);
     }
 
 
@@ -31,7 +32,13 @@ public class CatalogItem{
     }
 
     public List<String> getContributors() {
-        return null;
+        List<String> contributors = new ArrayList<>();
+        for (Feature fe: features) {
+            for (String str: fe.getContributors()) {
+                contributors.add(str);
+            }
+        }
+        return contributors;
     }
 
     public List<String> getTitles() {
@@ -43,7 +50,15 @@ public class CatalogItem{
     }
 
     public int fullLengthAtOneItem() {
-        return 1; // ??
+        int fullLength = 0;
+        for (Feature fe: features) {
+            if(fe instanceof AudioFeatures) {
+                AudioFeatures af = (AudioFeatures) fe;
+                fullLength += af.getLength();
+                // itt mar elered azt a metodust
+            }
+        }
+        return fullLength; //??
     }
     public boolean hasAudioFeature() {
         return false; //?
@@ -52,7 +67,14 @@ public class CatalogItem{
         return false; //??
     }
     public int numberOfPagesAtOneItem() {
-        return 1; //??
+        int numberOfPages = 0;
+        for (Feature fe: features) {
+            if(fe instanceof PrintedFeatures) {
+                PrintedFeatures pf = (PrintedFeatures) fe;
+                numberOfPages += pf.getNumberOfPages();
+                // itt mar elered azt a metodust
+            }
+        }
+        return numberOfPages; //??
     }
-
 }
