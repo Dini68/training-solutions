@@ -3,19 +3,20 @@ package catalog;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CatalogItem implements Feature{
+public class CatalogItem{
 
     private String registrationNumber;
 
     private int price;
 
-    private List<Feature> features;
+    private List<Feature> features = new ArrayList<>();
 
     public CatalogItem(String registrationNumber, int price, List<Feature> features) {
         this.registrationNumber = registrationNumber;
         this.price = price;
         this.features = features;
     }
+
 
     public String getRegistrationNumber() {
         return registrationNumber;
@@ -29,15 +30,18 @@ public class CatalogItem implements Feature{
         return features;
     }
 
-    @Override
     public List<String> getContributors() {
         return null;
     }
 
-    @Override
-    public String getTitle() {
-        return null;
+    public List<String> getTitles() {
+        List<String> titles = new ArrayList<>();
+        for (Feature fe: features) {
+            titles.add(fe.getTitle());
+        }
+        return titles;
     }
+
     public int fullLengthAtOneItem() {
         return 1; // ??
     }

@@ -25,6 +25,7 @@ public class PrintedFeatures implements Feature {
         this.authors = authors;
     }
 
+    @Override
     public String getTitle() {
         return title;
     }
