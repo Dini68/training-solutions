@@ -10,14 +10,29 @@ public class SearchCriteria {
         this.title = title;
         this.contributor = contributor;
     }
-    public SearchCriteria createByBoth(String title, String contributor) {
-        return null; //??
+
+    public static SearchCriteria createByBoth(String title, String contributor) {
+        if (Validators.isBlank(title) || Validators.isBlank(contributor)) {
+            throw new IllegalArgumentException();
+        }
+        SearchCriteria searchCriteria = new SearchCriteria(title, contributor);
+        return searchCriteria;
     }
-    public SearchCriteria createContributor(String contributor) {
-        return null; //??
+
+    public static SearchCriteria createByContributor(String contributor) {
+        if (Validators.isBlank(contributor)) {
+            throw new IllegalArgumentException();
+        }
+            SearchCriteria searchCriteria = new SearchCriteria("", contributor);
+        return searchCriteria;
     }
-    public SearchCriteria createByTitle(String title) {
-        return null; //??
+
+    public static SearchCriteria createByTitle(String title) {
+        if (Validators.isBlank(title)) {
+            throw new IllegalArgumentException();
+        }
+        SearchCriteria searchCriteria = new SearchCriteria(title, "");
+        return searchCriteria;
     }
 
     public String getTitle() {
@@ -27,10 +42,11 @@ public class SearchCriteria {
     public String getContributor() {
         return contributor;
     }
+
     public boolean hasContributor() {
-        return false;
+        return !Validators.isBlank(contributor);
     }
     public boolean hasTitle() {
-        return false;
+        return !Validators.isBlank(title);
     }
 }
