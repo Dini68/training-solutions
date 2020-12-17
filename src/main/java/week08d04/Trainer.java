@@ -18,4 +18,5 @@ public class Trainer {
         System.out.println(trainerGoodMood.giveMark());
         System.out.println(trainerBadMood.giveMark());
     }
+
 }

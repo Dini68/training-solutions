@@ -6,4 +6,5 @@ public class BadMood implements CanMark{
     public int giveMark() {
         return 3;
     }
+
 }

@@ -13,4 +13,5 @@ public class TrainerTest {
         assertEquals(5, trainerGoodMood.giveMark());
         assertEquals(3, trainerBadMood.giveMark());
     }
+
 }
