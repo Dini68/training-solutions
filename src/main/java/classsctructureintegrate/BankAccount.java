@@ -14,19 +14,20 @@ public class BankAccount {
         this.balance = balance;
     }
 
-    public int deposit ( int amount) {
-        return this.balance += amount;
+    public void deposit ( int amount) {
+        this.balance += amount;
     }
 
-    public int withdraw ( int amount) {
-        return this.balance -= amount;
+    public void withdraw ( int amount) {
+        this.balance -= amount;
     }
 
     public String getInfo() {
         return this.owner + " (" + this.accountNumber + "): " + this.balance + " Ft";
     }
 
-//    public int transfer( String accountNumber, int amount) {
-//        return
-//    }
+    public void transfer( BankAccount to, int amount) {
+        this.balance -= amount;
+        to.balance += amount;
+    }
 }

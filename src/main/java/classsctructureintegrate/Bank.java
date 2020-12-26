@@ -51,5 +51,13 @@ public class Bank {
         bankAccount2.withdraw(scanner.nextInt());
 
         System.out.println(bankAccount2.getInfo());
+
+        System.out.print("1. számláról a 2. számlára az átutalás összege: ");
+        int amount = (scanner.nextInt());
+        scanner.nextLine();
+
+        bankAccount1.transfer(bankAccount2,amount);
+        System.out.println(bankAccount1.getInfo());
+        System.out.println(bankAccount2.getInfo());
     }
 }
