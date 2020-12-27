@@ -6,6 +6,7 @@ import java.util.List;
 public class Member {
 
     private String name;
+
     private List<Member> connections = new ArrayList<>();
 
     public Member (String name) {
@@ -14,20 +15,6 @@ public class Member {
 
     public String getName() {
         return name;
-    }
-
-    private List<String> connectedNames() {
-        List<String> connectedNames = new ArrayList<>();
-        for (Member member: connections
-             ) {
-            connectedNames().add(member.getName());
-        }
-        return connectedNames;
-    }
-
-    @Override
-    public String toString() {
-        return name + " " + connectedNames();
     }
 
     public List<Member> getConnections() {
