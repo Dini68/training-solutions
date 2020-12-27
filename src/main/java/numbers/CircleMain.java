@@ -18,10 +18,10 @@ public class CircleMain {
         scanner.nextLine();
         Circle circle2 = new Circle(diameter);
 
-        System.out.print("Az 1. kör kerülete:\t" + circle1.perimeter());
-        System.out.println("\t területe: " + circle1.area());
-        System.out.print("A 2. kör kerülete:\t" + circle2.perimeter());
-        System.out.println("\tterülete: " + circle2.area());
+        System.out.print("Az 1. kör kerülete:\t" + Math.round(circle1.perimeter() * 1000) / 1000.0);
+        System.out.println("\t területe: " + Math.round(circle1.area() * 1000) / 1000.0);
+        System.out.print("Az 2. kör kerülete:\t" + Math.round(circle2.perimeter() * 1000) / 1000.0);
+        System.out.println("\t területe: " + Math.round(circle2.area() * 1000) / 1000.0);
     }
 
 }

@@ -3,7 +3,7 @@ package numbers;
 public class Circle {
 
     private int diameter;
-    private final static double PI = 3.14;
+    private final static double PI = 3.1415;
 
     public Circle(int diameter) {
         this.diameter = diameter;
