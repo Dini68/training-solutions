@@ -1,10 +1,16 @@
 package controliteration.pi;
 
-public class Pi {
+public class PiGenerator {
 
 
-    public String conversionOfPoem(String poem) {
-      String stringToPi = "";
+    public String getPi() {
+        String poem = "Nem a régi s durva közelítés, " +
+                "Mi szótól szóig így kijön Betűiket számlálva. " +
+                "Ludolph eredménye már, Ha itt végezzük húsz jegyen. " +
+                "De rendre kijő még tíz pontosan, " +
+                "Azt is bízvást ígérhetem.";
+
+        String stringToPi = "";
       int j = 0;
       boolean first = true;
       for (int i = 0; i < poem.length(); i++) {
@@ -27,15 +33,9 @@ public class Pi {
 
     public static void main(String[] args) {
 
-        String poem = "Nem a régi s durva közelítés, " +
-                "Mi szótól szóig így kijön Betűiket számlálva. " +
-                "Ludolph eredménye már, Ha itt végezzük húsz jegyen. " +
-                "De rendre kijő még tíz pontosan, " +
-                "Azt is bízvást ígérhetem.";
+        PiGenerator pi = new PiGenerator();
 
-        Pi pi = new Pi();
-
-        System.out.println(pi.conversionOfPoem(poem));
+        System.out.println(pi.getPi());
         System.out.println(Math.PI);
     }
 }
