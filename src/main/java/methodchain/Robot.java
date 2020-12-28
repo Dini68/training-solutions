@@ -1,10 +1,13 @@
 package methodchain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Robot {
 
     private int distance;
-
     private int azimut;
+    private List<NavigationPoint> navigationList = new ArrayList<>();
 
     public int getDistance() {
         return distance;
@@ -12,6 +15,10 @@ public class Robot {
 
     public int getAzimut() {
         return azimut;
+    }
+
+    public List<NavigationPoint> getNavigationList() {
+        return navigationList;
     }
 
     public Robot go(int meter) {
@@ -23,4 +30,10 @@ public class Robot {
         this.azimut += angle;
         return this;
     }
+
+    public Robot registerNavigationPoint() {
+        this.navigationList.add(new NavigationPoint(this.distance, this.azimut));
+        return this;
+    }
+
 }
