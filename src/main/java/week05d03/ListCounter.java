@@ -21,20 +21,4 @@ public class ListCounter {
         return count;
     }
 
-    public static void main(String[] args) {
-
-        ListCounter listCounter = new ListCounter();
-        List<String> testList = new ArrayList<>();
-        testList.add("Asztal");
-        testList.add("malom");
-        testList.add("atom");
-        testList.add("akkor");
-
-        testList.add("barack");
-        testList.add("Abrak");
-        testList.add("másik");
-        testList.add("a");
-
-        System.out.println(listCounter.listCounter(testList));
-    }
 }
