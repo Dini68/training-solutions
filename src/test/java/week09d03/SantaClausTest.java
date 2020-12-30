@@ -13,9 +13,9 @@ public class SantaClausTest {
     @Test
     public void setPresentTest() {
 
-        Person person = new Person("ST",50);
-        Person person1 = new Person("KH",9);
-        Person person2 = new Person("KD",52);
+        Person person = new Person("Simon Tünde",50);
+        Person person1 = new Person("Kovács Hunor",9);
+        Person person2 = new Person("Kovács Dénes",52);
 
         List<Person> persons = new ArrayList<>();
         persons.add(person);
@@ -29,7 +29,7 @@ public class SantaClausTest {
         }
 
         assertEquals(52, persons.get(2).getAge());
-        assertEquals("KH", persons.get(1).getName());
+        assertEquals("Kovács Hunor", persons.get(1).getName());
         assertFalse(Present.TOY == persons.get(0).getPresent());
     }
 }
