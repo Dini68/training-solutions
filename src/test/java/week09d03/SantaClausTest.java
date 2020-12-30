@@ -15,7 +15,7 @@ public class SantaClausTest {
 
         Person person = new Person("Simon Tünde",50);
         Person person1 = new Person("Kovács Hunor",9);
-        Person person2 = new Person("Kovács Dénes",52);
+        Person person2 = new Person("K Dénes",52);
 
         List<Person> persons = new ArrayList<>();
         persons.add(person);
