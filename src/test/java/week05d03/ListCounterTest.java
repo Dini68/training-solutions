@@ -21,10 +21,10 @@ public class ListCounterTest {
 
         testList.add("barack");
         testList.add("Abrak");
-        testList.add("másik");
+        testList.add("Asztal");
         testList.add("a");
 
-        assertEquals(5, listCounter.listCounter(testList));
+        assertEquals(6, listCounter.listCounter(testList));
     }
 
 }
