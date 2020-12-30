@@ -35,20 +35,11 @@ public class Person {
     public void setPresent() {
         int presentItems = Present.values().length;
         if (age > 14) {
-            this.present = Present.values()[new Random().nextInt(presentItems-1) + 1];
-        }
-        else {
+            this.present = Present.values()[new Random().nextInt(presentItems - 1) + 1];
+        } else {
             this.present = Present.values()[new Random().nextInt(presentItems)];
         }
 
     }
 
-    public static void main(String[] args) {
-        Person person = new Person("KD",52);
-        person.setPresent();
-        System.out.println(person.present);
-        Person person2 = new Person("KD",12);
-        person2.setPresent();
-        System.out.println(person2.present);
-    }
 }
