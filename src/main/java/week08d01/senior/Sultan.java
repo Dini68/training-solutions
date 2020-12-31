@@ -1,19 +1,20 @@
 package week08d01.senior;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Sultan {
 
 
-    public boolean[] openDoors() {
-        boolean[] openDoors = new boolean[100];
+    public boolean[] openDoors(int doorNumber) {
+        boolean[] openDoors = new boolean[doorNumber];
         int j = 0;
         boolean open = false;
-        while (j < 100) {
+        while (j < doorNumber) {
             j++;
             int index = 0;
-            while (index < 100) {
+            while (index < doorNumber) {
                 for (Boolean b: openDoors) {
                     index ++;
                     if (index % j == 0) {
@@ -30,12 +31,12 @@ public class Sultan {
 
     public static void main(String[] args) {
         Sultan sultan = new Sultan();
-        System.out.println(sultan.openDoors());
         int i = 0;
-        for (Boolean b: sultan.openDoors()) {
+        for (Boolean b: sultan.openDoors(200)) {
             i++;
             System.out.print(i + ": ");
-            System.out.println(b);
+            if (b) System.out.println("<<--- " + b);
+            if (!b) System.out.println(b);
         }
     }
 }
