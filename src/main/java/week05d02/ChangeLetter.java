@@ -3,6 +3,9 @@ package week05d02;
 public class ChangeLetter {
 
     public String changeVowels(String text){
+        if (text == null || text.isBlank()) {
+            throw new IllegalArgumentException("Text is empty");
+        }
         String modifiedText = text;
         String englishVowels = "aeiouAEIOU";
         for (int i = 0; i < englishVowels.length(); i++) {
