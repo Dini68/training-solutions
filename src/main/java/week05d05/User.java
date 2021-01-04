@@ -8,6 +8,14 @@ public class User {
     private String lastName;
     private String email;
 
+    public void nameValid(String firstName, String lastName) {
+        if (firstName == null || firstName.isBlank()) {
+            throw new IllegalArgumentException("Empty");
+        }
+        if (lastName == null || lastName.isBlank()) {
+            throw new IllegalArgumentException("Empty");
+        }
+    }
 
     public void charactersInEmail (String email) {
         if (!email.contains("@")) {
@@ -29,6 +37,7 @@ public class User {
 
     public User(String firstName, String lastName, String email) {
         charactersInEmail(email);
+        nameValid(firstName, lastName);
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

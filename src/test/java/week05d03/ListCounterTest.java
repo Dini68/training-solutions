@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ListCounterTest {
 
@@ -25,6 +26,12 @@ public class ListCounterTest {
         testList.add("a");
 
         assertEquals(6, listCounter.listCounter(testList));
+    }
+
+    @Test
+    public void testNullAndEmptyList() {
+        assertThrows(IllegalArgumentException.class, () -> new ListCounter().listCounter(null));
+        assertThrows(IllegalArgumentException.class, () -> new ListCounter().listCounter(new ArrayList<>()));
     }
 
 }

@@ -41,4 +41,11 @@ public class UserTest {
                 new User("Dénes","Kovács","kdini68@gmailcom."));
         assertEquals("A '.' karakter nem lehet utolsó.", ex.getMessage());
     }
+    @Test
+    public void testNameValid() {
+        assertThrows(IllegalArgumentException.class, () -> new User("  ","Kovács","kdini68@gmail.com"));
+        assertThrows(IllegalArgumentException.class, () -> new User(null,"Kovács","kdini68@gmail.com"));
+        assertThrows(IllegalArgumentException.class, () -> new User("Dénes","  ","kdini68@gmail.com"));
+        assertThrows(IllegalArgumentException.class, () -> new User("Dénes",null,"kdini68@gmail.com"));
+    }
 }
