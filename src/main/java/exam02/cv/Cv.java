@@ -17,8 +17,10 @@ public class Cv {
         return skills;
     }
 
-    public void addSkills(Skill skill) {
-        skills.add(skill);
+    public void addSkills(List<Skill> skills) {
+        for (Skill sk: skills) {
+            this.skills.add(sk);
+        }
     }
 
     public String getName() {
