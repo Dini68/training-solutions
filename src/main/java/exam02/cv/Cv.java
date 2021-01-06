@@ -7,7 +7,7 @@ public class Cv {
 
     private String name;
 
-    private List<Skill> skills ;
+    private List<Skill> skills = new ArrayList<>() ;
 
     public Cv(String name) {
         this.name = name;
@@ -17,8 +17,13 @@ public class Cv {
         return skills;
     }
 
-    public void addSkills(Skill... skills) {
-        for (Skill sk: skills) {
+    public void addSkills(String... skills) {
+        String level;
+        String name;
+        for (int i = 0; i < skills.length; i++) {
+            name = skills[i].substring(0, skills[i].length() - 4);
+            level = skills[i].substring(skills[i].length() - 2, skills[i].length() - 1);
+            Skill sk = new Skill(name, Integer.parseInt(level));
             this.skills.add(sk);
         }
     }
