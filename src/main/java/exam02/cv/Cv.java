@@ -9,9 +9,16 @@ public class Cv {
 
     private List<Skill> skills = new ArrayList<>();
 
-    public Cv(String name, List<Skill> skills) {
+    public Cv(String name) {
         this.name = name;
-        this.skills = skills;
+    }
+
+    public List<Skill> getSkills() {
+        return skills;
+    }
+
+    public void addSkills(Skill skill) {
+        skills.add(skill);
     }
 
     public String getName() {
