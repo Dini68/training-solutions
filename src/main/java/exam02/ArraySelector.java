@@ -2,21 +2,21 @@ package exam02;
 
 public class ArraySelector {
 
-    public String selectEvens (int[] words) {
-        if (words == null) {
+    public String selectEvens (int[] numbers) {
+        if (numbers == null) {
             throw new IllegalArgumentException("Nincs tömb");
         }
 
         String evenList = "[";
-        if (words.length == 0) {
+        if (numbers.length == 0) {
             evenList = "";
         }
         else {
             int index = 0;
-            for (int s : words) {
+            for (int s : numbers) {
                 if (index % 2 == 0) {
                     evenList += s;
-                    if (index + 2 < words.length){
+                    if (index + 2 < numbers.length){
                         evenList += ", ";
                     }
                 }
