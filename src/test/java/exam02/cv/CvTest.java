@@ -31,7 +31,7 @@ public class CvTest {
         assertEquals(2, cv.findSkillLevelByName("oo design"));
     }
 
-
+// ezt ne m tudom megoldani.
 /*    @Test
     public void testNotFoundSkill() {
         Cv cv1 = new Cv("John Doe");
