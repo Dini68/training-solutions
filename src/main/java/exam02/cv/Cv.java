@@ -7,7 +7,7 @@ public class Cv {
 
     private String name;
 
-    private List<Skill> skills = new ArrayList<>();
+    private List<Skill> skills ;
 
     public Cv(String name) {
         this.name = name;
@@ -17,7 +17,7 @@ public class Cv {
         return skills;
     }
 
-    public void addSkills(List<Skill> skills) {
+    public void addSkills(Skill... skills) {
         for (Skill sk: skills) {
             this.skills.add(sk);
         }
