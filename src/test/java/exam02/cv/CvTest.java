@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CvTest {
-
+/*
     @Test
     public void testCreateWithName() {
         Cv cv1 = new Cv("John Doe");
@@ -39,5 +39,5 @@ public class CvTest {
                 () -> cv1.findSkillLevelByName("programming"));
 
     }
-
+*/
 }

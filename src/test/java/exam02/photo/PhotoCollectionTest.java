@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PhotoCollectionTest {
-
+/*
     @Test
     public void testCreatePhoto() {
         Photo photo = new Photo("a.jpg");
@@ -76,4 +76,4 @@ public class PhotoCollectionTest {
         photoCollection.starPhoto("b.jpg", Quality.TWO_STAR);
         assertEquals(3, photoCollection.numberOfStars());
     }
-}
+*/}
