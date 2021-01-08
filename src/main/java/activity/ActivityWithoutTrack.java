@@ -1,13 +1,10 @@
 package activity;
 
-public class ActivityWidthTrack implements Activity{
-
-    private Track track;
+public class ActivityWithoutTrack implements Activity{
 
     private ActivityType activityType;
 
-    public ActivityWidthTrack(Track track, ActivityType activityType) {
-        this.track = track;
+    public ActivityWithoutTrack(ActivityType activityType) {
         this.activityType = activityType;
     }
 
