@@ -38,4 +38,8 @@ public class Track {
     public List<TrackPoint> getTrackPoints() {
         return trackPoints;
     }
+
+    public void loadFromGpx() {
+
+    }
 }
