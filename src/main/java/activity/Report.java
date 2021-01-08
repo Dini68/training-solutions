@@ -4,7 +4,7 @@ public class Report {
 
     private final ActivityType activityType;
 
-    private final double distance;
+    private final  double distance;
 
     public Report(ActivityType activityType, double distance) {
         this.activityType = activityType;
