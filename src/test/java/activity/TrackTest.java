@@ -10,7 +10,7 @@ public class TrackTest {
     public Track track = new Track();
 
     @Test
-    public void testAddItemGetPoinsts() {
+    public void testAddItemGetPoints() {
         assertEquals(0, track.getTrackPoints().size());
         track.addTrackPoint(new TrackPoint(new Coordinate(12.5, 34.89), 123));
         assertEquals(1, track.getTrackPoints().size());
