@@ -7,6 +7,12 @@ public class ActivityWithTrack implements Activity{
     private ActivityType activityType;
 
     public ActivityWithTrack(Track track, ActivityType activityType) {
+        if (track == null) {
+            throw new IllegalArgumentException("Rossz adat.");
+        }
+        if (activityType == null) {
+            throw new IllegalArgumentException("Rossz adat.");
+        }
         this.track = track;
         this.activityType = activityType;
     }

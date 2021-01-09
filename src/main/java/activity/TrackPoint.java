@@ -7,6 +7,9 @@ public class TrackPoint {
     private double elevation;
 
     public TrackPoint(Coordinate coordinate, double elevation) {
+        if (coordinate == null) {
+            throw new NullPointerException("Null nem lehet.");
+        }
         this.coordinate = coordinate;
         this.elevation = elevation;
     }
