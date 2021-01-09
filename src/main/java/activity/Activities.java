@@ -9,6 +9,12 @@ public class Activities {
     private List<Activity> activities;
 
     public Activities(List<Activity> activities) {
+        if (activities.size() == 0) {
+            throw new IllegalArgumentException("Üres a lista.");
+        }
+        if (activities == null) {
+            throw new IllegalArgumentException("Nincs lista.");
+        }
         this.activities = new ArrayList<>(activities);
     }
 
