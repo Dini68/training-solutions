@@ -10,7 +10,7 @@ class ActivityWithTrackTest {
 
 
     Track track = new Track();
-    Activity activityWithTrack = new ActivityWidthTrack(
+    Activity activityWithTrack = new ActivityWithTrack(
             track, ActivityType.RUNNING
     );
 
