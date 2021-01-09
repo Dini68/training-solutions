@@ -6,11 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
-public class ActivityWithTrackTest {
+class ActivityWithTrackTest {
 
 
     Track track = new Track();
-    Activity activityWithTrack = new ActivityWithTrack(
+    Activity activityWithTrack = new ActivityWidthTrack(
             track, ActivityType.RUNNING
     );
 
