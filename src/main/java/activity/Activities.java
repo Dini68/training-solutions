@@ -1,6 +1,7 @@
 package activity;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Activities {
@@ -8,7 +9,7 @@ public class Activities {
     private List<Activity> activities;
 
     public Activities(List<Activity> activities) {
-        this.activities = activities;
+        this.activities = new ArrayList<>(activities);
     }
 
     public void addActivity (Activity activity) {
