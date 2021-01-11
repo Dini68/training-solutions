@@ -26,6 +26,7 @@ public class Calculator {
     }
 
     public static void main(String[] args) {
+        System.out.println(new Calculator().findMinSum(new int[]{1,3,5,7,9}));
         System.out.println(new Calculator().findMinSum(new int[]{14,10,3,5,7,0,5,8,9}));
         System.out.println(new Calculator().findMinSum(new int[]{0,0,0,0,0,0,0}));
         System.out.println(new Calculator().findMinSum(new int[]{4,10,3,5,7,9}));
