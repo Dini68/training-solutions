@@ -11,7 +11,7 @@ public class DivisorFinder {
             if (digit != 0 && n % digit == 0) {
                 numberOfDivisors++;
             }
-            number = number / 10;
+            number /= 10;
         }
         return numberOfDivisors;
     }
