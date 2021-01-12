@@ -6,46 +6,50 @@ import java.util.List;
 public class Courier {
     private List<Ride> rides = new ArrayList<>();
 
-    public void addRide(Ride ride) {
+    private boolean isCorrect(Ride ride) {
+        boolean isCorrect = true;
+
         if (ride == null) {
             throw new IllegalArgumentException("ride cannot be not null");
         }
-
-        boolean added = false;
 
         if (rides.isEmpty() && ride.getRideNr() != 1) {
             throw new IllegalArgumentException("The number of ride must be 1.");
         }
 
         if (rides.isEmpty() && ride.getRideNr() == 1) {
-            rides.add(ride);
-            added = true;
+            return isCorrect;
         }
 
-
         int last = rides.size() - 1;
-
-        if (rides.get(last).getDay() > ride.getDay() && !added) {
+        if (rides.get(last).getDay() > ride.getDay()) {
             throw new IllegalArgumentException("The day of number is wrong.");
         }
 
-        if (rides.get(last).getDay() < ride.getDay() && !added) {
+        if (rides.get(last).getDay() < ride.getDay()) {
             if (ride.getRideNr() == 1) {
-                rides.add(ride);
-                added = true;
+                return isCorrect;
             }
             else {
                 throw new IllegalArgumentException("rideNR must be 1");
             }
         }
 
-        if (rides.get(last).getDay() == ride.getDay() && !added) {
+        if (rides.get(last).getDay() == ride.getDay()) {
             if (rides.get(last).getRideNr() == ride.getRideNr() - 1) {
-                rides.add(ride);
+                return isCorrect;
             }
             else {
                 throw new IllegalArgumentException("rideNR is wrong");
             }
+        }
+
+        return isCorrect;
+    }
+
+    public void addRide(Ride ride) {
+        if (isCorrect(ride)) {
+            rides.add(ride);
         }
     }
 
@@ -63,14 +67,5 @@ public class Courier {
             freeday = true;
         }
         return -1;
-    }
-
-    public static void main(String[] args) {
-        Courier cu = new Courier();
-        Ride r1=new Ride(3,1,34.5);
-        cu.addRide(r1);
-        Ride r2=new Ride(2,1,34.5);
-        cu.addRide(r2);
-        System.out.println(cu.firstFreeDay());
     }
 }
