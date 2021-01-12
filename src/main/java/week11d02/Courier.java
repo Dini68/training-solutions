@@ -1,7 +1,6 @@
 package week11d02;
 
 import java.util.ArrayList;
-import java.util.Currency;
 import java.util.List;
 
 public class Courier {
@@ -10,14 +9,6 @@ public class Courier {
     public void addRide(Ride ride) {
         if (ride == null) {
             throw new IllegalArgumentException("ride cannot be not null");
-        }
-
-        if (ride.getDay() < 1 || ride.getDay() > 7)  {
-            throw new IllegalArgumentException("The number of days should be between 1 and 7.");
-        }
-
-        if (ride.getRideNr() < 1)  {
-            throw new IllegalArgumentException("The number of ride must be at least 1.");
         }
 
         boolean added = false;

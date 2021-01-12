@@ -14,14 +14,12 @@ class CourierTest {
     @Test
     void addRideWithErrorDay() {
         Courier cu = new Courier();
-        Ride r1=new Ride(0,1,34.5);
-        assertThrows(IllegalArgumentException.class, () -> cu.addRide(r1));
+        assertThrows(IllegalArgumentException.class, () -> cu.addRide(new Ride(0,1,34.5)));
     }
     @Test
     void addRideWithErrorDay2() {
         Courier cu = new Courier();
-        Ride r1=new Ride(8,1,34.5);
-        assertThrows(IllegalArgumentException.class, () -> cu.addRide(r1));
+        assertThrows(IllegalArgumentException.class, () -> cu.addRide(new Ride(8,1,34.5)));
     }
     @Test
     void addRideWithErrorDay3() {
