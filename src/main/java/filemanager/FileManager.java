@@ -16,7 +16,7 @@ public class FileManager {
             try {
                 names = Files.readAllLines(Path.of("humans.txt"));
             } catch (IOException e) {
-                throw new IllegalArgumentException("", e);
+                throw new IllegalStateException("Can not read file", e);
             }
         }
         for (String name: names) {
