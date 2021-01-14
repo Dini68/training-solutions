@@ -16,7 +16,7 @@ public class Transactions {
             try {
                 acc = Files.readAllLines(Path.of("accounts.txt"));
             } catch (IOException e) {
-                throw new IllegalArgumentException("", e);
+                throw new IllegalStateException("Can not read file", e);
             }
             String name;
             String account;
@@ -40,7 +40,7 @@ public class Transactions {
             try {
                 tra = Files.readAllLines(Path.of("transactions.txt"));
             } catch (IOException e) {
-                throw new IllegalArgumentException("", e);
+                throw new IllegalStateException("Can not read file", e);
             }
             String account;
             int value;
