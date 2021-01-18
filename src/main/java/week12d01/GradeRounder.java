@@ -8,6 +8,9 @@ public class GradeRounder {
         }
         int[] roundGrades = new int[grades.length];
         for(int i = 0; i < grades.length; i++) {
+            if (grades[i] < 0 || grades[i] > 100) {
+                throw new IllegalArgumentException("Wrong data");
+            }
             if (grades[i] < 40 || grades[i] % 5 < 3) {
                 roundGrades[i] = grades[i];
             }
