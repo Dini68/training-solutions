@@ -23,4 +23,13 @@ public class Site {
     public Fence getFence() {
         return fence;
     }
+
+    @Override
+    public String toString() {
+        return "Site{" +
+                "s=" + side +
+                ", l=" + length +
+                "m, f=" + fence +
+                '}';
+    }
 }

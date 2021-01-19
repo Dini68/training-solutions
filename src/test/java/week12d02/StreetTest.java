@@ -22,6 +22,7 @@ class StreetTest {
 
 
         System.out.println(street.getFenceStats());
+        System.out.println(street.sites.toString());
 
     }
 
