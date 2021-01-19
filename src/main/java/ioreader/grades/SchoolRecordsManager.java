@@ -19,7 +19,7 @@ public class SchoolRecordsManager {
     }
 
     public void readGradesFromFile(String fileName) {
-        try (BufferedReader reader = Files.newBufferedReader(Path.of(fileName))){
+        try (BufferedReader reader = Files.newBufferedReader(Path.of("src/main/resources/"+fileName))){
             String line;
             String studentName;
             String marksString;
@@ -28,7 +28,7 @@ public class SchoolRecordsManager {
                 List<Integer> marks = new ArrayList<>();
                 studentName = line.substring(0, line.indexOf(' '));
                 marksString = line.substring(line.indexOf(' ') + 1);
-                for (int i = 0; i < marksString.length(); i++) {
+                for (int i = 0; i < marksString.length(); i+=2) {
                     markValue = Integer.parseInt(marksString.substring(i, i+1));
                     marks.add(markValue);
                 }
