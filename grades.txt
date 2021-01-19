@@ -1,4 +1,0 @@
-Jack_Doe 2345
-Bad_Student 23254
-Jane_Doe 5434444
-Jason_Butler 54344232
