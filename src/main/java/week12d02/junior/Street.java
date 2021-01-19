@@ -1,4 +1,8 @@
-package week12d02;
+package week12d02.junior;
+
+import week12d02.junior.Fence;
+import week12d02.junior.FenceStat;
+import week12d02.junior.Site;
 
 import java.util.ArrayList;
 import java.util.List;

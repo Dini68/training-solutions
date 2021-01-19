@@ -1,6 +1,9 @@
-package week12d02;
+package week12d02.junior;
 
 import org.junit.jupiter.api.Test;
+import week12d02.junior.Fence;
+import week12d02.junior.Site;
+import week12d02.junior.Street;
 
 import static org.junit.jupiter.api.Assertions.*;
 

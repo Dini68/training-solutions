@@ -1,4 +1,6 @@
-package week12d02;
+package week12d02.junior;
+
+import week12d02.junior.Fence;
 
 public class Site {
 

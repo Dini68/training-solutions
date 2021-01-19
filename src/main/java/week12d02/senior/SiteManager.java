@@ -19,44 +19,53 @@ public class SiteManager {
         System.out.println("Max házszám: " + readSitesFromFile(fileName));
     }
 
+    public void sideIsValid(String side) {
+        if (!side.equals("0") && !side.equals(("1"))) {
+            throw new IllegalArgumentException("It can be 0 or 1");
+        }
+    }
+
+    public void widthIsValid(String width) {
+        int wValue = Integer.parseInt(width);
+        if (wValue < 8 || wValue > 20) {
+            throw new IllegalArgumentException("It can be between 8 and 20");
+        }
+    }
+
     public int readSitesFromFile (String fileName) {
         int maxNumberOfHouse;
         Path file = Path.of(fileName);
         try {
             List<String> lines = new ArrayList<>();
             lines = Files.readAllLines(file);
+
             int streetLengthOdd = 0;
             int streetLengthEven = 0;
             String side;
             String width;
             String color;
             String number = "";
-            int countOdd = 1;
+            int countOdd  = 1;
             int countEven = 2;
+            int widthValue;
             for (String l: lines) {
                 String[] arr = l.split(" ");
-                side = arr[0];
-                if (!side.equals("0") && !side.equals(("1"))) {
-                    throw new IllegalArgumentException("It can be 0 or 1");
-                }
-                width = arr[1];
-                int wValue = Integer.parseInt(width);
-                if (wValue < 8 || wValue > 20) {
-                    throw new IllegalArgumentException("It can be between 8 and 20");
-                }
+                sideIsValid(arr[0]);
+                widthIsValid(arr[1]);
+                widthValue = Integer.parseInt(arr[1]);
                 color = arr[2];
 
-                if (side.equals("0")) {
+                if (arr[0].equals("0")) {
                     number = Integer.toString(countEven);
                     countEven +=2;
-                    streetLengthEven +=wValue;
+                    streetLengthEven += widthValue;
                 }
-                if (side.equals("1")) {
+                if (arr[0].equals("1")) {
                     number = Integer.toString(countOdd);
                     countOdd +=2;
-                    streetLengthOdd +=wValue;
+                    streetLengthOdd += widthValue;
                 }
-                sites.add(new Site(side, width, color, number));
+                sites.add(new Site(arr[0], arr[1], color, number));
             }
             if (streetLengthEven > 1000 || streetLengthOdd > 1000) {
                 throw new IllegalArgumentException("It can be up to 1000");

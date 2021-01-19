@@ -1,4 +1,4 @@
-package week12d02;
+package week12d02.junior;
 
 public enum Fence {
 
