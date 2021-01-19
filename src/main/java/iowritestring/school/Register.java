@@ -1,4 +1,4 @@
-package school;
+package iowritestring.school;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -6,10 +6,12 @@ import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.List;
 
-public class Diary {
+public class Register {
 
-    public void newMark(String name, int mark) {
-        Path path = Path.of( name + ".txt");
+
+
+    public void newMark(Path name, int mark) {
+        Path path = name;
         if (Files.exists(path)) {
             try {
                 Files.writeString(path, mark + "\n", StandardOpenOption.APPEND);
@@ -25,10 +27,10 @@ public class Diary {
         }
     }
 
-    public void average(String name) {
+    public void average(Path name) {
         double average = 0;
         double sum = 0;
-        Path path = Path.of(name + ".txt");
+        Path path = name;
         if (Files.exists(path)) {
             try {
                 List<String> marks = Files.readAllLines(path);
@@ -44,16 +46,16 @@ public class Diary {
     }
 
     public static void main(String[] args) {
-        new Diary().newMark("Kovács Hunor", 3);
-        new Diary().newMark("Kovács Dénes", 4);
-        new Diary().newMark("Kovács Hunor", 5);
-        new Diary().newMark("Kovács Dénes", 4);
-        new Diary().newMark("Kovács Hunor", 5);
-        new Diary().newMark("Kovács Dénes", 3);
-        new Diary().newMark("Kovács Hunor", 5);
-        new Diary().newMark("Kovács Dénes", 2);
-        new Diary().average("Kovács Hunor");
-        new Diary().average("Kovács Dénes");
-
+//        new Register().newMark("Kovács Hunor", 3);
+//        new Register().newMark("Kovács Dénes", 4);
+//        new Register().newMark("Kovács Hunor", 5);
+//        new Register().newMark("Kovács Dénes", 4);
+//        new Register().newMark("Kovács Hunor", 5);
+//        new Register().newMark("Kovács Dénes", 3);
+//        new Register().newMark("Kovács Hunor", 5);
+//        new Register().newMark("Kovács Dénes", 2);
+//        new Register().average("Kovács Hunor");
+//        new Register().average("Kovács Dénes");
+//
     }
 }
