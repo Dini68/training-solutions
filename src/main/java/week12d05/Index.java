@@ -10,10 +10,10 @@ public class Index {
     public int sumStringFromIndex() {
         int sum = 0;
         Path path = Path.of("Index.html");
-        try (BufferedReader reader = Files.newBufferedReader(path)){
+        try (BufferedReader br = Files.newBufferedReader(path)){
             String line;
-            while((line = reader.readLine()) != null) {
-                if (line.contains("koronavírus")) {
+            while((line = br.readLine()) != null) {
+                if (line.toLowerCase().contains("koronavírus")) {
                     sum ++;
                 }
             }
@@ -21,5 +21,10 @@ public class Index {
             throw new IllegalStateException("Can not read file", e);
         }
         return sum;
+    }
+
+    public static void main(String[] args) {
+        Index in = new Index();
+        System.out.println(in.sumStringFromIndex());
     }
 }
