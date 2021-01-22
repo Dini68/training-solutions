@@ -22,9 +22,4 @@ public class Index {
         }
         return sum;
     }
-
-    public static void main(String[] args) {
-        Index index = new Index();
-        System.out.println(index.sumStringFromIndex());
-    }
 }
