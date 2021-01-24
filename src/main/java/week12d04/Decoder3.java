@@ -4,8 +4,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Decoder3 {
+
+    private List<Integer> bufferSize = new ArrayList<>();
+
+    public List<Integer> getBufferSize() {
+        return bufferSize;
+    }
 
     public String binaryFileDecoder (String fileName){
         Path path = Path.of(fileName);
@@ -14,7 +22,7 @@ public class Decoder3 {
             byte[] buffer = new byte[100];
             int size;
             while ((size = is.read(buffer)) > 0) {
-                System.out.println(size);
+                bufferSize.add(size);
                 for (int i = 0; i < size; i++) {
                     char c = (char) (buffer[i] + 10);
                     sb.append(c);
