@@ -1,4 +1,4 @@
-package exceptions.polinom.faults;
+package exceptions.faults;
 
 public enum ProcessingResult {
 

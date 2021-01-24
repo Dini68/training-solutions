@@ -1,4 +1,4 @@
-package exceptions.polinom.faults;
+package exceptions.faults;
 
 import org.junit.jupiter.api.Test;
 
