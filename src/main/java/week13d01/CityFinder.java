@@ -38,5 +38,6 @@ public class CityFinder {
     public static void main(String[] args) {
         CityFinder cf = new CityFinder();
         System.out.println(cf.longestNamedCityFromFile("src/main/resources/iranyitoszamok-varosok.csv"));
+//
     }
 }
