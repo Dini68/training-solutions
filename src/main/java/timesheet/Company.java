@@ -98,7 +98,31 @@ public class Company {
     }
 
     public List<ReportLine> calculateProjectByNameYearMonth(String employeeName, int year, int month) {
-        return new ArrayList<>();
+        List<ReportLine> calc = new ArrayList<>();
+        boolean foundName = false;
+        for (TimeSheetItem ts: timeSheetItems) {
+            if (ts.getEmployee().getName().equals(employeeName)) {
+                foundName = true;
+            }
+            if (ts.getEmployee().getName().equals(employeeName) &&
+                ts.getBeginDate().getYear() == year &&
+                ts.getBeginDate().getMonthValue() == month) {
+                boolean isFound = false;
+                for (ReportLine rl : calc) {
+                    if (rl.getProject().getName().equals(ts.getProject().getName())) {
+                        rl.addTime(ts.hoursBetweenDates());
+                        isFound = true;
+                    }
+                }
+                if (!isFound) {
+                    calc.add(new ReportLine(ts.getProject(), ts.hoursBetweenDates()));
+                }
+            }
+        }
+        if (foundName) {
+            return calc;
+        }
+        throw new IllegalArgumentException("Not found name");
     }
 
     public void printToFile(String employeeName, int year, int month, Path file) {
@@ -119,7 +143,4 @@ public class Company {
         System.out.println(company.getEmployees().get(0).getName());
         System.out.println(company.getEmployees().get(3).getName());
         }
-
-
-
 }
