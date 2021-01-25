@@ -32,6 +32,9 @@ public class City {
 
     @Override
     public String toString() {
+        if (part == null) {
+            return postCode + ": " + name;
+        }
         return postCode + ": " + name + ": " + part;
     }
 }

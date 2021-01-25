@@ -11,33 +11,51 @@ public class CityFinder {
 
     private List<City> cities = new ArrayList<>();
 
+    public List<City> getCities() {
+        return cities;
+    }
+
+    public void skipHeader(BufferedReader br) throws IOException{
+        br.readLine();
+    }
+
+    public void addCities (String[] arr) {
+        if (arr.length == 2) {
+            cities.add(new City(arr[0], arr[1]));
+        } else {
+            cities.add(new City(arr[0], arr[1], arr[2]));
+        }
+    }
+
+    public String longestNamedCity (BufferedReader br) throws IOException{
+        String longestNamedCity = "";
+        String line;
+        int maxCityNameLength = 0;
+        while ((line = br.readLine()) != null) {
+            String[] arr = line.split(";");
+            addCities(arr);
+            if (arr[1].length() >= maxCityNameLength) {
+                maxCityNameLength = arr[1].length();
+                longestNamedCity = arr[1];
+            }
+        }
+        return longestNamedCity;
+    }
+
     public String longestNamedCityFromFile(String fileName) {
         Path path = Path.of(fileName);
-        String longestNamedCity = "";
         try (BufferedReader br = Files.newBufferedReader(path)){
-            String line;
-            int maxCityNameLength = 0;
-            while ((line = br.readLine()) != null) {
-                String[] arr = line.split(";");
-                if (arr.length == 2) {
-                    cities.add(new City(arr[0], arr[1]));
-                } else {
-                    cities.add(new City(arr[0], arr[1], arr[2]));
-                }
-                if (arr[1].length() >= maxCityNameLength) {
-                    maxCityNameLength = arr[1].length();
-                    longestNamedCity = arr[1];
-                }
-            }
+            skipHeader(br);
+            return longestNamedCity(br);
         } catch (IOException e) {
             throw new IllegalStateException("can not read file", e);
         }
-        return longestNamedCity;
     }
 
     public static void main(String[] args) {
         CityFinder cf = new CityFinder();
         System.out.println(cf.longestNamedCityFromFile("src/main/resources/iranyitoszamok-varosok.csv"));
-//
+        System.out.println(cf.getCities());
+        System.out.println(cf.getCities().size());
     }
 }
