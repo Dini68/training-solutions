@@ -12,6 +12,10 @@ public class Airplane {
 
     private List<Flight> flights = new ArrayList<>();
 
+    public List<Flight> getFlights() {
+        return flights;
+    }
+
     private Flight processLine(String line) {
         String id = line.split(" ")[0];
         FlightDirection fd = FlightDirection.DEPARTURE;
@@ -68,6 +72,22 @@ public class Airplane {
         return result;
     }
 
+    public Flight earlierDepartingFlight() {
+        if (flights.size() == 0) {
+            throw new IllegalArgumentException("Empty list.");
+        }
+        Flight result = new Flight("A0", FlightDirection.DEPARTURE, "BP", LocalTime.of(23, 59));
+        for (Flight f: flights) {
+            if (result.getTime().isAfter(f.getTime()) && f.getDirection() == FlightDirection.DEPARTURE) {
+                result = f;
+            }
+        }
+        if (result.getId().equals("A0")) {
+            throw new IllegalArgumentException("No such flight");
+        }
+        return result;
+    }
+
     public void readFromFile(String fileName) {
         Path path = Path.of(fileName);
         try (BufferedReader br = Files.newBufferedReader(path)){
@@ -84,6 +104,7 @@ public class Airplane {
         System.out.println(ap.moreDirection());
         System.out.println(ap.foundFlight("ID4963"));
         System.out.println(ap.findFlightByCity("Toronto", FlightDirection.DEPARTURE));
+        System.out.println(ap.earlierDepartingFlight());
 
     }
 }
