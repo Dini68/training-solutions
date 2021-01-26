@@ -98,15 +98,6 @@ public class Airplane {
     }
 
 
-    public static void main(String[] args) {
-        Airplane ap = new Airplane();
-        ap.readFromFile("cities.txt");
-        System.out.println(ap.moreDirection());
-        System.out.println(ap.foundFlight("ID4963"));
-        System.out.println(ap.findFlightByCity("Toronto", FlightDirection.DEPARTURE));
-        System.out.println(ap.earlierDepartingFlight());
-
-    }
 }
 //    Adott egy fájl melyben egy reptér egy napi munkáját rögzítettük. Adott egy járatszám, az, hogy érkező vagy felszálló gépről van-e szó. A kiinduló/cél város, attól függöen hogy indul vagy érkezik-e a gép és a felszállás/leszállás pontos ideje.
 //        ​
