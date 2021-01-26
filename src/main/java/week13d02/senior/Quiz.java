@@ -19,6 +19,18 @@ public class Quiz {
 
     private List<String> playerCodes = new ArrayList<>();
 
+    public List<String> getCorrectAnswers() {
+        return correctAnswers;
+    }
+
+    public List<Answer> getAnswers() {
+        return answers;
+    }
+
+    public List<String> getPlayerCodes() {
+        return playerCodes;
+    }
+
     private void addCorrectAnswers(String headerLine) {
         for (int i = 0; i < headerLine.length(); i++) {
             correctAnswers.add(String.valueOf(headerLine.charAt(i)));
@@ -96,12 +108,4 @@ public class Quiz {
         return code;
     }
 
-    public static void main(String[] args) {
-        Quiz q = new Quiz();
-        q.readResultFromFile("result.txt");
-        System.out.println(q.correctAnswers);
-        System.out.println(q.isCorrectAnswer("AB123", 5));
-        System.out.println(q.codeOfMostAnswersX());
-        System.out.println(q.codeOfMostPoints());
-    }
 }
