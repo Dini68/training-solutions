@@ -72,24 +72,26 @@ public class Airplane {
         return result;
     }
 
+    private Flight searchFirstDeparture() {
+        for (Flight fl: flights) {
+            if (fl.getDirection() == FlightDirection.DEPARTURE) {
+                return fl;
+            }
+        }
+        throw new IllegalArgumentException("No such flight");
+    }
+
     public Flight earlierDepartingFlight() {
-        Flight result = null;
         if (flights == null || flights.size() == 0) {
             throw new IllegalArgumentException("Empty list.");
         }
-        int i = 0;
-        while (i < flights.size() && result == null) {
-            if (flights.get(i).getDirection() == FlightDirection.DEPARTURE) {
-                result = flights.get(i);
-            }
-            i++;
-        }
-        if (result == null) {
-            throw new IllegalArgumentException("No such flight");
-        }
-        for (Flight f: flights) {
-            if (result.getTime().isAfter(f.getTime()) && f.getDirection() == FlightDirection.DEPARTURE) {
-                result = f;
+
+        Flight result = searchFirstDeparture();
+
+        for (Flight fl: flights) {
+            if (result.getTime().isAfter(fl.getTime()) &&
+                    fl.getDirection() == FlightDirection.DEPARTURE) {
+                result = fl;
             }
         }
         return result;
