@@ -105,6 +105,7 @@ public class TimeTable2 {
                 teachers.add(sb.getTeacherName());
             }
         }
+        Collections.sort(teachers);
         return teachers;
     }
 
@@ -113,9 +114,10 @@ public class TimeTable2 {
         timeTable2.readTimeTableFromFile("beosztas.txt");
         System.out.println(timeTable2.sumTeachingHoursPerWeekOfTeacher("Medve Melani"));
         System.out.println(timeTable2.sumTeachingHoursPerWeekOfTeacher("Antilop Anett"));
-        System.out.println(timeTable2.teachers().size());
-        for (int i = 0; i < timeTable2.teachers().size(); i++) {
-            System.out.println(timeTable2.teachers().get(i));
+        List<String> teachers = timeTable2.teachers();
+        System.out.println(teachers.size());
+        for (int i = 0; i < teachers.size(); i++) {
+            System.out.println(teachers.get(i));
         }
     }
 }
