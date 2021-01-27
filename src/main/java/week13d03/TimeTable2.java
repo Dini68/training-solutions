@@ -1,6 +1,7 @@
 package week13d03;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -126,26 +127,48 @@ public class TimeTable2 {
         return classList;
     }
 
+    public void writeSchoolToFile(String filename, List<String> result) {
+        List<String> schoolList = result;
+        Path path = Path.of(filename);
+
+        try (BufferedWriter writer = Files.newBufferedWriter(path)){
+            for (String s: schoolList) {
+                writer.write(s + "\n");
+            }
+
+        } catch (IOException e) {
+            throw new IllegalStateException("can not write file", e);
+        }
+    }
+
 
     public static void main(String[] args) {
         TimeTable2 timeTable2 = new TimeTable2();
         timeTable2.readTimeTableFromFile("beosztas.txt");
         System.out.println(timeTable2.sumTeachingHoursPerWeekOfTeacher("Medve Melani"));
         System.out.println(timeTable2.sumTeachingHoursPerWeekOfTeacher("Antilop Anett"));
+        List<String> schoolList = new ArrayList<>();
         List<String> teachers = timeTable2.teachers();
         System.out.println("    Tanárok száma: " + teachers.size());
+        schoolList.add("    Tanárok száma: " + teachers.size());
         for (String teacher : teachers) {
+            schoolList.add(teacher);
             System.out.println(teacher);
         }
         List<String> subjectList = timeTable2.subjectList();
         System.out.println("    Tantárgyak száma: " + subjectList.size());
+        schoolList.add("    Tantárgyak száma: " + subjectList.size());
         for (String sub : subjectList) {
+            schoolList.add(sub);
             System.out.println(sub);
         }
         List<String> classList = timeTable2.classList();
         System.out.println("    Osztályok száma: " + classList.size());
+        schoolList.add("    Osztályok száma: " + classList.size());
         for (String cl : classList) {
+            schoolList.add(cl);
             System.out.println(cl);
         }
+        timeTable2.writeSchoolToFile("school.txt", schoolList);
     }
 }
