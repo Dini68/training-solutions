@@ -4,8 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+
+import static java.util.Arrays.sort;
 
 public class TimeTable2 {
 
@@ -97,10 +98,24 @@ public class TimeTable2 {
         throw new IllegalArgumentException("No such teacher name: " + teacherName);
     }
 
+    public List<String> teachers() {
+        List<String> teachers = new ArrayList<>();
+        for(Subject sb: subjects) {
+            if (!(teachers.contains(sb.getTeacherName()))) {
+                teachers.add(sb.getTeacherName());
+            }
+        }
+        return teachers;
+    }
+
     public static void main(String[] args) {
         TimeTable2 timeTable2 = new TimeTable2();
         timeTable2.readTimeTableFromFile("beosztas.txt");
         System.out.println(timeTable2.sumTeachingHoursPerWeekOfTeacher("Medve Melani"));
         System.out.println(timeTable2.sumTeachingHoursPerWeekOfTeacher("Antilop Anett"));
+        System.out.println(timeTable2.teachers().size());
+        for (int i = 0; i < timeTable2.teachers().size(); i++) {
+            System.out.println(timeTable2.teachers().get(i));
+        }
     }
 }
