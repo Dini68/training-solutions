@@ -6,15 +6,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 
-import static java.util.Arrays.sort;
 
 public class TimeTable2 {
 
-    private List<Subject> subjects = new ArrayList<>();
-
-    public List<Subject> getSubjects() {
-        return subjects;
-    }
+    private final List<Subject> subjects = new ArrayList<>();
 
     private String validTeacherName(String name) {
         if (name.isBlank()) {
@@ -109,15 +104,48 @@ public class TimeTable2 {
         return teachers;
     }
 
+    public List<String> subjectList() {
+        List<String> subjectList = new ArrayList<>();
+        for(Subject sb: subjects) {
+            if (!(subjectList.contains(sb.getSubjectName()))) {
+                subjectList.add(sb.getSubjectName());
+            }
+        }
+        Collections.sort(subjectList);
+        return subjectList;
+    }
+
+    public List<String> classList() {
+        List<String> classList = new ArrayList<>();
+        for(Subject sb: subjects) {
+            if (!(classList.contains(sb.getClassName()))) {
+                classList.add(sb.getClassName());
+            }
+        }
+        Collections.sort(classList);
+        return classList;
+    }
+
+
     public static void main(String[] args) {
         TimeTable2 timeTable2 = new TimeTable2();
         timeTable2.readTimeTableFromFile("beosztas.txt");
         System.out.println(timeTable2.sumTeachingHoursPerWeekOfTeacher("Medve Melani"));
         System.out.println(timeTable2.sumTeachingHoursPerWeekOfTeacher("Antilop Anett"));
         List<String> teachers = timeTable2.teachers();
-        System.out.println(teachers.size());
-        for (int i = 0; i < teachers.size(); i++) {
-            System.out.println(teachers.get(i));
+        System.out.println("    Tanárok száma: " + teachers.size());
+        for (String teacher : teachers) {
+            System.out.println(teacher);
+        }
+        List<String> subjectList = timeTable2.subjectList();
+        System.out.println("    Tantárgyak száma: " + subjectList.size());
+        for (String sub : subjectList) {
+            System.out.println(sub);
+        }
+        List<String> classList = timeTable2.classList();
+        System.out.println("    Osztályok száma: " + classList.size());
+        for (String cl : classList) {
+            System.out.println(cl);
         }
     }
 }
