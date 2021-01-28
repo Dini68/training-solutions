@@ -12,8 +12,7 @@ public class TemplateMerger {
         StringBuilder result = new StringBuilder();
         String line = "";
         for (Employee em: employees) {
-            line = template;
-            line = line.replace("{nev}", em.getName());
+            line = template.replace("{nev}", em.getName());
             line = line.replace("{ev}", Integer.toString(em.getYearOfBirth()));
             result.append(line + "\n");
         }
@@ -21,9 +20,8 @@ public class TemplateMerger {
     }
 
     public String merge(Path file, List<Employee> employees){
-        String template;
         try {
-            template = Files.readString(file);
+            String template = Files.readString(file);
             return processList(template, employees);
         }
         catch (IOException ioe) {
