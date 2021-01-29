@@ -5,7 +5,7 @@ import java.util.Set;
 
 public class LetterCounter {
 
-    private void isValidWord(String word) {
+    private void checkedValidWord(String word) {
         if (word == null || word.isBlank()) {
             throw new IllegalArgumentException("no such word");
         }
@@ -16,11 +16,9 @@ public class LetterCounter {
     }
 
     public int numberOfDifferentLettersInWord(String word) {
-        isValidWord(word);
+        checkedValidWord(word);
         Set<Character> differentLetters = new HashSet<>();
-        Character ch;
-        for (int i = 0; i < word.length(); i++) {
-            ch = word.toLowerCase().charAt(i);
+        for (char ch: word.toLowerCase().toCharArray()) {
             if (isValidCharacter(ch)) {
                 differentLetters.add(ch);
             }
