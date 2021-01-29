@@ -5,16 +5,6 @@ import java.util.Set;
 
 public class LetterCounter {
 
-    private void checkedValidWord(String word) {
-        if (word == null || word.isBlank()) {
-            throw new IllegalArgumentException("no such word");
-        }
-    }
-
-    private boolean isValidCharacter(Character ch) {
-        return (ch >= 'a' && ch <= 'z');
-    }
-
     public int numberOfDifferentLettersInWord(String word) {
         checkedValidWord(word);
         Set<Character> differentLetters = new HashSet<>();
@@ -24,6 +14,16 @@ public class LetterCounter {
             }
         }
         return differentLetters.size();
+    }
+
+    private void checkedValidWord(String word) {
+        if (word == null || word.isBlank()) {
+            throw new IllegalArgumentException("no such word");
+        }
+    }
+
+    private boolean isValidCharacter(Character ch) {
+        return (ch >= 'a' && ch <= 'z');
     }
 
     public static void main(String[] args) {
