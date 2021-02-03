@@ -15,6 +15,7 @@ public class OnlineShopping {
 
         System.out.println(os.sumPriceById("112"));
         System.out.println(os.sumPriceByCustomer("GT23"));
+        System.out.println(os.sumPriceByCustomer("112"));
 
         System.out.println(os.productsABCById("120", "name"));
         System.out.println(os.productsABCById("120", "price"));
@@ -43,7 +44,7 @@ public class OnlineShopping {
                 customer = line.substring(0, poz).split("-")[0];
                 shoppingId = line.substring(0, poz).split("-")[1];
                 idList.put(shoppingId, customer);
-                List<String> temp = Arrays.asList(line.substring(poz + 2).split(","));
+                String[] temp = line.substring(poz + 2).split(",");
                 for(String s: temp) {
                     product = s.substring(0, s.indexOf("("));
                     price = Integer.parseInt(s.substring(s.indexOf("(") + 1, s.indexOf(")")));
@@ -65,10 +66,10 @@ public class OnlineShopping {
         return sumPriceId;
     }
 
-    private int sumPriceByCustomer (String Customer) {
+    private int sumPriceByCustomer (String customer) {
         int sumPriceCustomer = 0;
         for(String k: idList.keySet()) {
-            if (idList.get(k).equals(Customer)) {
+            if (idList.get(k).equals(customer)) {
                 sumPriceCustomer += sumPriceById(k);
             }
         }
@@ -109,7 +110,7 @@ public class OnlineShopping {
     public int sumProduct(String Item) {
         int sumProduct = 0;
         for (String k : shoppingList.keySet()) {
-            if (shoppingList.get(k).keySet().contains(Item)) {
+            if (shoppingList.get(k).containsKey(Item)) {
                 sumProduct ++;
             }
         }
