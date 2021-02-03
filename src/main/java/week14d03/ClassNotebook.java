@@ -4,8 +4,41 @@ import java.util.*;
 
 public class ClassNotebook {
 
+
+    private List<Student> students;
+
+    public ClassNotebook(List<Student> students) {
+        this.students = students;
+    }
+
+    public List<Student> sortNotebook () {
+        List<Student> sortStudent = new ArrayList<>();
+        for (Student s: students) {
+            sortStudent.add(new Student(s));
+        }
+        Collections.sort(sortStudent);
+        return sortStudent;
+    }
+
+    public List<Student> getStudents() {
+        return new ArrayList<>(students);
+    }
+
+    public void addStudent(String name) {
+        students.add(new Student(name));
+    }
+
+    public void addMarkByName(String name, String subject, int mark) {
+        for (Student st: students) {
+            if (st.getName().equals(name)) {
+                st.addMark(subject, mark);
+            }
+        }
+    }
+
+
     public static void main(String[] args) {
-        ClassNotebook cn = new ClassNotebook();
+        ClassNotebook cn = new ClassNotebook(new ArrayList<>(List.of(new Student("Kovács"))));
         cn.addStudent("Kovács");
         cn.addMarkByName("Kovács","Fizika" , 5);
         cn.addMarkByName("Kovács","Fizika" , 4);
@@ -48,40 +81,4 @@ public class ClassNotebook {
         System.out.println(cn.getStudents());
         System.out.println(cn.sortNotebook());
     }
-
-    private List<Student> students = new ArrayList<>();
-
-    public List<Student> getStudents() {
-        return students;
-    }
-
-    public void addStudent(String name) {
-        students.add(new Student(name));
-    }
-
-    public void addMarkByName(String name, String subject, int mark) {
-        for (Student st: students) {
-            if (st.getName().equals(name)) {
-                st.addMark(subject, mark);
-            }
-        }
-    }
-
-    public List<Student> sortNotebook () {
-        List<String> temp = new ArrayList<>();
-        for (Student st : students) {
-            temp.add(st.getName());
-        }
-        Collections.sort(temp);
-        List<Student> sortStudent = new ArrayList<>();
-        for (String s : temp) {
-            for (Student st : students) {
-                if (s.equals(st.getName())) {
-                    sortStudent.add(st);
-                }
-            }
-        }
-        return sortStudent;
-    }
-
 }

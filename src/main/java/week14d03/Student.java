@@ -1,22 +1,24 @@
 package week14d03;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
-public class Student {
+public class Student implements Comparable<Student>{
 
     private String name;
 
-    private Map<String, List<Integer>> marks = new TreeMap<>();
+    private Map<String, List<Integer>> marks = new HashMap<>();
 
     public Student(String name) {
         this.name = name;
     }
 
+    public Student(Student s) {
+        name = s.name;
+        marks = new HashMap<>(s.marks);
+    }
+
     public Map<String, List<Integer>> getMarks() {
-        return marks;
+        return new HashMap<>(marks);
     }
 
     public String getName() {
@@ -42,5 +44,10 @@ public class Student {
                 "name='" + name + '\'' +
                 ", marks=" + marks +
                 '}'+"\n";
+    }
+
+    @Override
+    public int compareTo(Student o) {
+        return name.compareTo(o.name);
     }
 }
