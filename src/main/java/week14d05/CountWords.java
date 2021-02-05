@@ -19,14 +19,18 @@ public class CountWords {
         initResult(result, words);
         Path path = Path.of("src/main/java/week14d05/" + fileName);
         try (BufferedReader br = Files.newBufferedReader(path)){
-            String line;
-            while (null != (line = br.readLine())) {
-                findWord(result, line, words);
-            }
-            return result;
+            return process(result, br, words);
         } catch (IOException e) {
             throw new IllegalStateException("not read file.", e);
         }
+    }
+
+    private Map<String, Integer> process(Map<String, Integer> result, BufferedReader br, String[] words) throws IOException {
+        String line;
+        while (null != (line = br.readLine())) {
+            findWord(result, line, words);
+        }
+        return result;
     }
 
     private void initResult(Map<String, Integer> result, String[] words) {
