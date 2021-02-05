@@ -19,8 +19,8 @@ public class CountWords {
         initResult(result, words);
         Path path = Path.of("src/main/java/week14d05/" + fileName);
         try (BufferedReader br = Files.newBufferedReader(path)){
-            String line = "";
-            while ((line = br.readLine()) != null) {
+            String line;
+            while (null != (line = br.readLine())) {
                 findWord(result, line, words);
             }
             return result;
@@ -30,17 +30,17 @@ public class CountWords {
     }
 
     private void initResult(Map<String, Integer> result, String[] words) {
-        for (int i = 0; i < words.length; i++) {
-            result.put(words[i], 0);
+        for (String word : words) {
+            result.put(word, 0);
         }
     }
 
     private void findWord(Map<String, Integer> result, String line, String[] words) {
         int value;
-        for (int i = 0; i < words.length; i++) {
-            if (line.toLowerCase().contains(words[i].toLowerCase())) {
-                value = result.get(words[i]) + 1;
-                result.put(words[i], value);
+        for (String word : words) {
+            if (line.toLowerCase().contains(word.toLowerCase())) {
+                value = result.get(word) + 1;
+                result.put(word, value);
             }
         }
     }
