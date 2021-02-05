@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,10 +23,10 @@ public class CountWords {
             while ((line = br.readLine()) != null) {
                 findWord(result, line, words);
             }
+            return result;
         } catch (IOException e) {
             throw new IllegalStateException("not read file.", e);
         }
-        return result;
     }
 
     private void initResult(Map<String, Integer> result, String[] words) {
