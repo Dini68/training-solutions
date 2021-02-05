@@ -28,7 +28,8 @@ public class CountWords {
     private Map<String, Integer> process(Map<String, Integer> result, BufferedReader br, String[] words) throws IOException {
         String line;
         while (null != (line = br.readLine())) {
-            findWord(result, line, words);
+//            findWord(result, line, words);
+            findWord2(result, line, words);
         }
         return result;
     }
@@ -42,11 +43,49 @@ public class CountWords {
     private void findWord(Map<String, Integer> result, String line, String[] words) {
         int value;
         for (String word : words) {
+
             if (line.toLowerCase().contains(word.toLowerCase())) {
                 value = result.get(word) + 1;
                 result.put(word, value);
             }
         }
+    }
+    private void findWord2(Map<String, Integer> result, String line, String[] words) {
+        String letters = "aábcdeéfghiíjklmnoóöőpqrstuúüűvwxyz";
+        StringBuilder sb = new StringBuilder();
+        boolean[] once = new boolean[words.length];
+        for (char ch: line.toLowerCase().toCharArray()){
+            if (letters.contains(Character.toString(ch))) {
+                sb.append(ch);
+            }
+            else {
+                evaluation(result, words, sb, once);
+                sb = new StringBuilder();
+            }
+        }
+    }
+
+    private int evaluation(Map<String, Integer> result, String[] words, StringBuilder sb, boolean[] once) {
+        String actual;
+        actual = sb.toString();
+        int count = 0;
+        for (String word : words) {
+            if (!once[count] && (equalityTest(result, actual, word))) {
+                return count;
+            }
+            count ++;
+        }
+        return -1;
+    }
+
+    private boolean equalityTest(Map<String, Integer> result, String actual, String word) {
+        int value;
+        if (word.toLowerCase().equals(actual)) {
+            value = result.get(word) + 1;
+            result.put(word, value);
+            return true;
+        }
+        return false;
     }
 }
 
