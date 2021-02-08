@@ -1,6 +1,7 @@
-package week15d01.senior;
+package week15d01.junior;
 
 import org.junit.jupiter.api.Test;
+import week15d01.junior.Function;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

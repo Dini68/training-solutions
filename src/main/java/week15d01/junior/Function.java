@@ -1,4 +1,4 @@
-package week15d01.senior;
+package week15d01.junior;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
