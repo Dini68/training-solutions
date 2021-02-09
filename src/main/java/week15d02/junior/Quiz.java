@@ -76,11 +76,11 @@ public class Quiz {
     public static void main(String[] args) {
         Quiz qu = new Quiz();
         qu.readFromFileToLines("src/main/java/week15d02/junior/kerdesek.txt");
-        System.out.println(qu.getQuestions()); // általános lista
-        System.out.println((qu.questionsByTopic("magyar")).size()); // 1.
-        System.out.println(qu.selectRandomQuestion());   // 2.
+//        System.out.println(qu.getQuestions()); // általános lista
+//        System.out.println((qu.questionsByTopic("magyar")).size()); // 1.
+//        System.out.println(qu.selectRandomQuestion());   // 2.
         System.out.println(qu.mapOfTopics());   // 3.
-        System.out.println(qu.maxSumOfPoints());   // 4.
+//        System.out.println(qu.maxSumOfPoints());   // 4.
     }
 }
 //    Adott egy vetélkedő kérdésbankja egy fájlban. A fálban az egy kérdéshez tartozó adatok
