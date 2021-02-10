@@ -13,10 +13,16 @@ public class PostFinder {
     }
 
     public PostFinder(List<Post> posts) {
+        if (posts.isEmpty()) {
+            throw new IllegalArgumentException("list is empty.");
+        }
         this.posts = posts;
     }
 
     public List<Post> findPostsFor(String user) {
+        if (user == null || user.isBlank()) {
+            throw new IllegalArgumentException("not param");
+        }
         List<Post> result = new ArrayList<>();
         for (Post p: getPosts()) {
             if (p.getOwner().isEmpty() || p.getTitle().isEmpty()) {
