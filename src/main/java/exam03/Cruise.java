@@ -8,19 +8,36 @@ public class Cruise {
 
     private Boat boat;
 
-    private LocalDate sailling;
+    private LocalDate sailing;
 
     private double basicPrice;
 
+    public Boat getBoat() {
+        return boat;
+    }
+
+    public LocalDate getSailing() {
+        return sailing;
+    }
+
+    public double getBasicPrice() {
+        return basicPrice;
+    }
+
+    public List<Passenger> getPassengers() {
+        return passengers;
+    }
+
     private List<Passenger> passengers;
 
-    public Cruise(Boat boat, LocalDate sailling, double basicPrice) {
+    public Cruise(Boat boat, LocalDate sailing, double basicPrice) {
         this.boat = boat;
-        this.sailling = sailling;
+        this.sailing = sailing;
         this.basicPrice = basicPrice;
     }
 
     public void bookPassenger(Passenger passenger) {
+
 
     }
     public double getPriceForPassenger(Passenger passenger) {
