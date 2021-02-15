@@ -44,7 +44,14 @@ public class Cruise {
 
     }
     public double getPriceForPassenger(Passenger passenger) {
-        return 0.0;
+        double multipler = 1.0;
+        if (passenger.getCruiseClass() == CruiseClass.LUXURY) {
+            multipler = 3.0;
+        }
+        if (passenger.getCruiseClass() == CruiseClass.FIRST) {
+            multipler = 1.8;
+        }
+        return getBasicPrice() * multipler;
     }
 
     public Passenger findPassengerByName(String name) {
