@@ -37,7 +37,7 @@ public class Cruise {
     }
 
     public void bookPassenger(Passenger passenger) {
-
+        passengers.add(passenger);
 
     }
     public double getPriceForPassenger(Passenger passenger) {
