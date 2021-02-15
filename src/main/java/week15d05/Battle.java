@@ -1,50 +1,18 @@
 package week15d05;
 
-import _aaa.Basic;
-import week15d04.CovidPerWeek;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Battle {
 
-    private Map<String, Integer> battlesPerHouses = new LinkedHashMap<>();
+    private List<BattleNumberByHouses> battlesPerHouses = new ArrayList<>();
 
-    public Map<String, Integer> getBattlesPerHouses() {
-        return new LinkedHashMap<>(battlesPerHouses);
+    public List<BattleNumberByHouses> getBattlesPerHouses() {
+        return new ArrayList<>(battlesPerHouses);
     }
-    private int max = 0;
-
-    private String maxkey = "";
-
-    public void addBattlesPerHouses (String line) {
-        String[] value= line.split(",");
-        for (int i = 5; i < 13; i++) {
-            if (!battlesPerHouses.containsKey(value[i])) {
-                if (!value[i].isEmpty()) {
-                    battlesPerHouses.put(value[i], 1);
-                    if (max < 1) {
-                        max = 1;
-                        maxkey = value[i];
-                    }
-                }
-            }
-            else {
-                battlesPerHouses.put(value[i], battlesPerHouses.get(value[i]) + 1);
-                if (max < battlesPerHouses.get(value[i])) {
-                    max = battlesPerHouses.get(value[i]);
-                    maxkey = value[i];
-                }
-            }
-        }
-    }
-
 
     public void readFromFileToLines (String path) {
         try (BufferedReader br = Files.newBufferedReader(Path.of(path))){
@@ -52,16 +20,50 @@ public class Battle {
             while (null != (line = br.readLine())) {
                 addBattlesPerHouses(line);
             }
-            System.out.println(maxkey + " " + max);
-            System.out.println(battlesPerHouses);
         } catch (IOException e) {
             throw new IllegalStateException("Can not read file", e);
         }
     }
 
+    public void addBattlesPerHouses (String line) {
+        String[] value= line.split(",");
+        Set<String> temp = new LinkedHashSet<>();
+        String name;
+        int count;
+        for (int i = 5; i < 13; i++) {
+            temp.add(value[i]);
+        }
+        for (BattleNumberByHouses bn : getBattlesPerHouses()) {
+            if (temp.contains(bn.getName())) {
+                bn.setNumber(bn.getNumber() + 1);
+            }
+            else {
+//                battlesPerHouses.add(BattleNumberByHouses);
+            }
+        }
+    }
+
+    public String maxBattlesPerHouse() {
+        String result = "";
+        int maxValue = 0;
+        int value = 0;
+        String maxKey = "";
+  //      for (String key: battlesPerHouses.keySet()) {
+//            value = battlesPerHouses.get(key);
+//            if (maxValue < value) {
+//                maxValue = value;
+//                maxKey = key;
+//            }
+//        }
+//        result = maxKey;
+        return result;
+    }
+
     public static void main(String[] args) {
         Battle ba = new Battle();
         ba.readFromFileToLines("src/main/java/week15d05/battles.csv");
+        System.out.println(ba.getBattlesPerHouses());
+        System.out.println(ba.maxBattlesPerHouse());
     }
 
 }

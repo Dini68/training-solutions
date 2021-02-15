@@ -8,9 +8,12 @@ public class CovidPerWeek implements Comparable<CovidPerWeek> {
 
     private int caseNumber;
 
-    public CovidPerWeek(String week, int caseNumber) {
+    private String country;
+
+    public CovidPerWeek(String week, int caseNumber, String country) {
         this.week = week;
         this.caseNumber = caseNumber;
+        this.country = country;
     }
 
     public String getWeek() {
@@ -21,9 +24,14 @@ public class CovidPerWeek implements Comparable<CovidPerWeek> {
         return caseNumber;
     }
 
+
+    public String getCountry() {
+        return country;
+    }
+
     @Override
     public String toString() {
-        return week + ',' + caseNumber;
+        return "\n" + week + " " + caseNumber + " " + country;
     }
 
     @Override

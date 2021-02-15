@@ -1,0 +1,1 @@
+Az alkalmazott neve: {nev}, és a születési éve: {ev}
