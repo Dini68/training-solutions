@@ -29,10 +29,6 @@ public class Histogram {
         BufferedReader reader = new BufferedReader(new InputStreamReader(Histogram.class.getResourceAsStream("/histogram.txt")));
         String result = new Histogram().createHistogram(reader);
         System.out.println(result);
-//            assertEquals("***\n" +
-//                    "****\n" +
-//                    "**\n" +
-//                    "*\n", result);
     }
 
 }
