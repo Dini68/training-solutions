@@ -1,10 +1,7 @@
 package exam03;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Cruise {
 
@@ -90,7 +87,16 @@ public class Cruise {
     }
 
     public Map<CruiseClass, Integer> countPassengerByClass() {
-        return null;
+        Map<CruiseClass, Integer> result = new HashMap<>();
+        for (Passenger p: passengers) {
+            if (!result.containsKey(p.getCruiseClass())) {
+                result.put(p.getCruiseClass(), 1);
+            }
+            else {
+                result.put(p.getCruiseClass(), result.get(p.getCruiseClass()) + 1);
+            }
+        }
+        return result;
     }
 
     public static void main(String[] args) {
