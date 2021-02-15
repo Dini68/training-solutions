@@ -2,6 +2,7 @@ package exam03;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -64,7 +65,12 @@ public class Cruise {
     }
 
     public List<String> getPassengerNamesOrdered() {
-        return null;
+        List<String> sortedNames = new ArrayList<>();
+        for (Passenger p: passengers) {
+            sortedNames.add(p.getName());
+        }
+        Collections.sort(sortedNames);
+        return sortedNames;
     }
 
     public double sumAllBookingsCharged() {
