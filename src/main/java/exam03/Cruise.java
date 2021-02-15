@@ -55,7 +55,12 @@ public class Cruise {
     }
 
     public Passenger findPassengerByName(String name) {
-        return null;
+        for (Passenger p: passengers) {
+            if (p.getName().equals(name)) {
+                return p;
+            }
+        }
+        throw new IllegalArgumentException("not such name");
     }
 
     public List<String> getPassengerNamesOrdered() {
@@ -76,6 +81,9 @@ public class Cruise {
         Cruise cruise = new Cruise(boat, LocalDate.of(2021, 1, 1), 100_000);
 
         cruise.bookPassenger(new Passenger("John Doe", CruiseClass.LUXURY));
+        for (int i = 0; i < 5; i++) {
+            cruise.bookPassenger(new Passenger("John Doe", CruiseClass.LUXURY));
+        }
 
     }
 
