@@ -74,7 +74,19 @@ public class Cruise {
     }
 
     public double sumAllBookingsCharged() {
-        return 0.0;
+        double sum = 0;
+        for (Passenger p: passengers) {
+            if (p.getCruiseClass() == CruiseClass.LUXURY) {
+                sum += getBasicPrice() * 3.0;
+            }
+            if (p.getCruiseClass() == CruiseClass.FIRST) {
+                sum += getBasicPrice() * 1.8;
+            }
+            if (p.getCruiseClass() == CruiseClass.SECOND) {
+                sum += getBasicPrice() * 1.0;
+            }
+        }
+        return sum;
     }
 
     public Map<CruiseClass, Integer> countPassengerByClass() {
