@@ -1,14 +1,10 @@
 package schoolrecords;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Stack;
-
 public class Mark {
 
-    private MarkType markType;
-    private Subject subject;
-    private Tutor tutor;
+    private final MarkType markType;
+    private final Subject subject;
+    private final Tutor tutor;
 
     public Mark(MarkType markType, Subject subject, Tutor tutor) {
         if (subject == null) {

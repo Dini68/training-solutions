@@ -16,18 +16,13 @@ public enum MarkType {
         this.description = description;
     }
     public static MarkType findByValue(String value) {
-        switch (value){
-            case "4":
-                return B;
-            case "3":
-                return C;
-            case "2":
-                return D;
-            case "1":
-                return F;
-            default:
-                return A;
-        }
+        return switch (value) {
+            case "4" -> B;
+            case "3" -> C;
+            case "2" -> D;
+            case "1" -> F;
+            default -> A;
+        };
     }
     public int getValue() {
         return value;

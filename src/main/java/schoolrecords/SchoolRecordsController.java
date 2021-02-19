@@ -9,13 +9,9 @@ public class SchoolRecordsController {
     Scanner scanner = new Scanner(System.in);
 
     private ClassRecords classRecords;
-    private List<Subject> subjects = new ArrayList<>();
-    private List<Tutor> tutors = new ArrayList<>();
+    private final List<Subject> subjects = new ArrayList<>();
+    private final List<Tutor> tutors = new ArrayList<>();
 
-
-    public ClassRecords getClassRecords() {
-        return classRecords;
-    }
 
     public void setClassRecords(ClassRecords classRecords) {
         this.classRecords = classRecords;
@@ -49,21 +45,23 @@ public class SchoolRecordsController {
     }
 
     public void menuPointsToDisplay () {
-        System.out.println("\n\t\t1. Diákok nevének listázása\n" +
-                "\t\t2. Diák név alapján keresése\n" +
-                "\t\t3. Diák létrehozása\n" +
-                "\t\t4. Diák név alapján törlése\n" +
-                "\t\t5. Diák feleltetése\n" +
-                "\t\t6. Osztályátlag kiszámolása\n" +
-                "\t\t7. Tantárgyi átlag kiszámolása\n" +
-                "\t\t8. Diákok átlagának megjelenítése\n" +
-                "\t\t9. Diák átlagának kiírása\n" +
-                "\t\t10. Diák tantárgyhoz tartozó átlagának kiírása\n" +
-                "\t\t11. Kilépés");
+        System.out.println("""
+
+                \t\t1. Diákok nevének listázása
+                \t\t2. Diák név alapján keresése
+                \t\t3. Diák létrehozása
+                \t\t4. Diák név alapján törlése
+                \t\t5. Diák feleltetése
+                \t\t6. Osztályátlag kiszámolása
+                \t\t7. Tantárgyi átlag kiszámolása
+                \t\t8. Diákok átlagának megjelenítése
+                \t\t9. Diák átlagának kiírása
+                \t\t10. Diák tantárgyhoz tartozó átlagának kiírása
+                \t\t11. Kilépés""");
     }
 
     public int changeMenuPoint() {
-        int menuPoint = 0;
+        int menuPoint;
         System.out.print("\nMenüpont: ");
         menuPoint = scanner.nextInt();
         scanner.nextLine();
@@ -77,8 +75,7 @@ public class SchoolRecordsController {
 
     public void findByNameOfStudent() {     // 2.
         System.out.print("Kérem a tanuló nevét: ");
-        Student student = classRecords.findStudentByName(scanner.nextLine());
-//        System.out.print(student.getName());
+        //        System.out.print(student.getName());
         System.out.print("Megtaláltam a listában!\n\t\t>>> folytatás 'Enter' gombbal");
         scanner.nextLine();
     }
@@ -133,24 +130,7 @@ public class SchoolRecordsController {
         if (!isTutorAndSubject) return;
 
         Mark mark = new Mark(findByValue(givenMark), subjects.get(subjektIndex), tutors.get(tutorIndex));
-/*        switch (givenMark) {
-            case "5":
-                mark = new Mark(A, subjects.get(subjektIndex), tutors.get(tutorIndex));
-                break;
-            case "4":
-                mark = new Mark(B, subjects.get(subjektIndex), tutors.get(tutorIndex));
-                break;
-            case "3":
-                mark = new Mark(C, subjects.get(subjektIndex), tutors.get(tutorIndex));
-                break;
-            case "2":
-                mark = new Mark(D, subjects.get(subjektIndex), tutors.get(tutorIndex));
-                break;
-            case "1":
-                mark = new Mark(F, subjects.get(subjektIndex), tutors.get(tutorIndex));
-                break;
-        }
-  */      student.grading(mark);
+        student.grading(mark);
         System.out.print(student.getName() + " osztályozva!\n\t\t>>> folytatás 'Enter' gombbal");
         scanner.nextLine();
     }
@@ -170,7 +150,7 @@ public class SchoolRecordsController {
     }
 
     public void showAverageStudents() {     // 8.
-        List<StudyResultByName> lsrbn = new ArrayList<>();
+        List<StudyResultByName> lsrbn;
         lsrbn = classRecords.listStudyResults();
         for (int i = 0; i < lsrbn.size(); i++ ) {
             System.out.println(classRecords.listStudyResults().get(i).getStudentName() +
