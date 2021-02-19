@@ -1,7 +1,5 @@
 package schoolrecords;
 
-import java.util.Scanner;
-
 public enum MarkType {
 
     A(5, "excellent"),
@@ -19,8 +17,6 @@ public enum MarkType {
     }
     public static MarkType findByValue(String value) {
         switch (value){
-            case "5":
-                return A;
             case "4":
                 return B;
             case "3":
@@ -30,7 +26,7 @@ public enum MarkType {
             case "1":
                 return F;
             default:
-                    return A;
+                return A;
         }
     }
     public int getValue() {

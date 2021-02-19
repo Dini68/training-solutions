@@ -6,9 +6,13 @@ import java.util.Random;
 
 public class ClassRecords {
 
-    private String className;
-    private Random rnd;
-    private List<Student> students = new ArrayList<>();
+    private final String className;
+    private final Random rnd;
+    private final List<Student> students;
+
+    {
+        students = new ArrayList<>();
+    }
 
     public ClassRecords(String className, Random rnd) {
         if (isEmpty(className)) {
@@ -94,17 +98,12 @@ public class ClassRecords {
         if ((students == null) || (students.size() == 0)) {
             throw new IllegalStateException("No students to search!");
         }
-        boolean isExisting = false;
         for (Student st: students) {
             if (st.getName().equals(name)) {
-                isExisting = true;
                 return st;
             }
         }
-        if (!isExisting) {
-            throw new IllegalArgumentException("Student by this name cannot be found! " + name);
-        }
-        return null;
+        throw new IllegalArgumentException("Student by this name cannot be found! " + name);
     }// név szerint megkeres egy diákot az osztályban
 
     public Student repetition() {
@@ -126,13 +125,13 @@ public class ClassRecords {
     // és azok listáját adja vissza
 
     public String listStudentNames() {
-        String listStudents ="";
+        StringBuilder listStudents = new StringBuilder();
         for (Student st: students) {
-            if (!listStudents.equals("")) {
-                listStudents += ", ";
+            if (!listStudents.toString().equals("")) {
+                listStudents.append(", ");
             }
-            listStudents += st.getName();
+            listStudents.append(st.getName());
         }
-        return listStudents;
+        return listStudents.toString();
     }//kilistázza a diákok neveit, vesszővel elválasztva
 }

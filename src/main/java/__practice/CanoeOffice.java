@@ -6,6 +6,8 @@ import java.util.*;
 
 public class CanoeOffice {
 
+    private final static int HOURLY_RENTAL_PRICE = 5000;
+
     private List<CanoeRental> canoeRentals = new ArrayList<>();
 
     public List<CanoeRental> getCanoeRentals() {
@@ -33,15 +35,8 @@ public class CanoeOffice {
         CanoeRental actual = findRentalByName(name);
         double price = 0;
         int hour = (int) Duration.between(actual.getStartTime(), endTime).toHours() + 1;
-        if (actual.getCanoeType() == CanoeType.GREEN) {
-            price = 5000 * 1.2 * hour;
-        }
-        if (actual.getCanoeType() == CanoeType.BLUE) {
-            price = 5000 * 1.5 * hour;
-        }
-        if (actual.getCanoeType() == CanoeType.RED) {
-            price = 5000 * 1.0 * hour;
-        }
+        double multiplierByType = actual.getCanoeType().getMultiplier();
+            price = HOURLY_RENTAL_PRICE * hour * multiplierByType;
         return price;
     }
 

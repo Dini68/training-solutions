@@ -29,6 +29,9 @@ public class VowelFilter {
             if (!vowels.contains(Character.toString(c).toLowerCase())) {
                 sb.append(c);
             }
+            else {
+                sb.append("e");
+            }
         }
         sb.append("\n");
     }
