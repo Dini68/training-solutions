@@ -15,11 +15,11 @@ public class Company {
 
     private final List<Project> projects = new ArrayList<>();
 
+    private final List<TimeSheetItem> timeSheetItems = new ArrayList<>();
+
     public List<TimeSheetItem> getTimeSheetItems() {
         return new ArrayList<>(timeSheetItems);
     }
-
-    private final List<TimeSheetItem> timeSheetItems = new ArrayList<>();
 
     public List<Project> getProjects() {
         return new ArrayList<>(projects);
@@ -29,64 +29,56 @@ public class Company {
         return new ArrayList<>(employees);
     }
 
-    private StringBuilder sb = new StringBuilder();
-
-    private void addEmployee(int size, byte[] buffer) {
-        for (int i = 0; i < size; i++) {
-            char c = (char) (buffer[i]);
-            if (c != '\n' && c != '\r') sb.append(c);
-            if (c == '\n') {
-                String firstName = sb.toString().split(" ")[0];
-                String lastName = sb.toString().split(" ")[1];
-                employees.add(new Employee(firstName, lastName));
-                sb = new StringBuilder();
-            }
-        }
-    }
 
     private void addEmployeesFromFile(InputStream employeesFile) {
-        sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
         byte[] buffer = new byte[1000];
         int size;
         try {
             while ((size = employeesFile.read(buffer)) > 0) {
-                addEmployee(size, buffer);
+                for (int i = 0; i < size; i++) {
+                    char c = (char) (buffer[i]);
+                    if (c != '\n' && c != '\r') sb.append(c);
+                    if (c == '\n') {
+                        sb = addEmployee(sb);
+                    }
+                }
             }
             if (sb.length() > 0) {
-                String firstName = sb.toString().split(" ")[0];
-                String lastName = sb.toString().split(" ")[1];
-                employees.add(new Employee(firstName, lastName));
+                sb = addEmployee(sb);
             }
-            System.out.println(employees);
         }
         catch (IOException ioe) {
             throw new IllegalArgumentException("can not read file");
         }
     }
 
-    private void addProject(int size, byte[] buffer) {
-        for (int i = 0; i < size; i++) {
-            char c = (char) (buffer[i]);
-            if (c != '\n' && c != '\r') sb.append(c);
-            if (c == '\n') {
-                projects.add(new Project(sb.toString()));
-                sb = new StringBuilder();
-            }
-        }
+    private StringBuilder addEmployee(StringBuilder sb) {
+        String firstName = sb.toString().split(" ")[0];
+        String lastName = sb.toString().split(" ")[1];
+        employees.add(new Employee(firstName, lastName));
+        sb = new StringBuilder();
+        return sb;
     }
 
     private void addProjectsFromFile(InputStream projectsFile) {
-        sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
         byte[] buffer = new byte[10];
         int size;
         try {
             while ((size = projectsFile.read(buffer)) > 0) {
-                addProject(size, buffer);
+                for (int i = 0; i < size; i++) {
+                    char c = (char) (buffer[i]);
+                    if (c != '\n' && c != '\r') sb.append(c);
+                    if (c == '\n') {
+                        projects.add(new Project(sb.toString()));
+                        sb = new StringBuilder();
+                    }
+                }
             }
             if (sb.length() > 0) {
                 projects.add(new Project(sb.toString()));
             }
-            System.out.println(projects);
         }
         catch (IOException ioe) {
             throw new IllegalArgumentException("can not read file");
@@ -109,7 +101,6 @@ public class Company {
         for (Project p: getProjects()) {
             result.add(new ReportLine(p, 0));
         }
-        System.out.println(result);
         for (TimeSheetItem ts: getTimeSheetItems()) {
             if (ts.getEmployee().getName().equals(employeeName) &&
                 ts.getBeginDate().getYear() == year &&
@@ -121,7 +112,6 @@ public class Company {
                 }
             }
         }
-        System.out.println(result);
         return result;
     }
 
@@ -144,7 +134,6 @@ public class Company {
         StringBuilder result = new StringBuilder();
         int sumHour = 0;
         reports = calculateProjectByNameYearMonth(employeeName, year, month);
-        System.out.println(reports);
         for (ReportLine rl: reports) {
             sumHour +=rl.getTime();
             if (rl.getTime() > 0) {
