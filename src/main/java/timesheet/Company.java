@@ -1,20 +1,25 @@
 package timesheet;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Company {
 
-    private List<Employee> employees = new ArrayList<>();
+    private final List<Employee> employees = new ArrayList<>();
 
-    private List<Project> projects = new ArrayList<>();
+    private final List<Project> projects = new ArrayList<>();
 
-    private List<TimeSheetItem> timeSheetItems = new ArrayList<>();
+    public List<TimeSheetItem> getTimeSheetItems() {
+        return new ArrayList<>(timeSheetItems);
+    }
+
+    private final List<TimeSheetItem> timeSheetItems = new ArrayList<>();
 
     public List<Project> getProjects() {
         return new ArrayList<>(projects);
@@ -41,11 +46,10 @@ public class Company {
 
     private void addEmployeesFromFile(InputStream employeesFile) {
         sb = new StringBuilder();
-        InputStream is = employeesFile;
         byte[] buffer = new byte[1000];
         int size;
         try {
-            while ((size = is.read(buffer)) > 0) {
+            while ((size = employeesFile.read(buffer)) > 0) {
                 addEmployee(size, buffer);
             }
             if (sb.length() > 0) {
@@ -53,6 +57,7 @@ public class Company {
                 String lastName = sb.toString().split(" ")[1];
                 employees.add(new Employee(firstName, lastName));
             }
+            System.out.println(employees);
         }
         catch (IOException ioe) {
             throw new IllegalArgumentException("can not read file");
@@ -72,16 +77,16 @@ public class Company {
 
     private void addProjectsFromFile(InputStream projectsFile) {
         sb = new StringBuilder();
-        InputStream is = projectsFile;
         byte[] buffer = new byte[10];
         int size;
         try {
-            while ((size = is.read(buffer)) > 0) {
+            while ((size = projectsFile.read(buffer)) > 0) {
                 addProject(size, buffer);
             }
             if (sb.length() > 0) {
                 projects.add(new Project(sb.toString()));
             }
+            System.out.println(projects);
         }
         catch (IOException ioe) {
             throw new IllegalArgumentException("can not read file");
@@ -98,40 +103,68 @@ public class Company {
     }
 
     public List<ReportLine> calculateProjectByNameYearMonth(String employeeName, int year, int month) {
-        List<ReportLine> calc = new ArrayList<>();
-        boolean foundName = false;
-        for (TimeSheetItem ts: timeSheetItems) {
-            if (ts.getEmployee().getName().equals(employeeName)) {
-                foundName = true;
-            }
+        validNameControl(employeeName);
+
+        List<ReportLine> result = new ArrayList<>();
+        for (Project p: getProjects()) {
+            result.add(new ReportLine(p, 0));
+        }
+        System.out.println(result);
+        for (TimeSheetItem ts: getTimeSheetItems()) {
             if (ts.getEmployee().getName().equals(employeeName) &&
                 ts.getBeginDate().getYear() == year &&
                 ts.getBeginDate().getMonthValue() == month) {
-                boolean isFound = false;
-                for (ReportLine rl : calc) {
+                for ( ReportLine rl: result) {
                     if (rl.getProject().getName().equals(ts.getProject().getName())) {
                         rl.addTime(ts.hoursBetweenDates());
-                        isFound = true;
                     }
-                }
-                if (!isFound) {
-                    calc.add(new ReportLine(ts.getProject(), ts.hoursBetweenDates()));
                 }
             }
         }
-        if (foundName) {
-            return calc;
+        System.out.println(result);
+        return result;
+    }
+
+    private void validNameControl(String employeeName) {
+        boolean isFoundName = false;
+        for (Employee e: getEmployees()) {
+            if (e.getName().equals(employeeName)) {
+                isFoundName = true;
+            }
         }
-        throw new IllegalArgumentException("Not found name");
+        if (!isFoundName) {
+            throw new IllegalArgumentException("No such name among employees");
+        }
     }
 
     public void printToFile(String employeeName, int year, int month, Path file) {
-        String result = employeeName + "\t" + year + "-" + month + "\t" +
-        "John Connor\t2013-01\t14\n" +
-                "Java\t10\n" +
-                "C++\t4\n";
-//        Files.writeString(file, )
-//        System.out.println();
+        List<ReportLine> reports;
+        validNameControl(employeeName);
+        StringBuilder temp = new StringBuilder();
+        StringBuilder result = new StringBuilder();
+        int sumHour = 0;
+        reports = calculateProjectByNameYearMonth(employeeName, year, month);
+        System.out.println(reports);
+        for (ReportLine rl: reports) {
+            sumHour +=rl.getTime();
+            if (rl.getTime() > 0) {
+                temp.append(rl.getProject().getName()).append("\t").append(rl.getTime()).append("\n");
+            }
+        }
+
+        if (month < 10) {
+            result.append(employeeName).append("\t").append(year).append("-0")
+                  .append(month).append("\t").append(sumHour).append("\n").append(temp);
+        }
+        else {
+            result.append(employeeName).append("\t").append(year).append("-")
+                  .append(month).append("\t").append(sumHour).append("\n").append(temp);
+        }
+        try {
+            Files.writeString(file, result.toString());
+        } catch (IOException e) {
+            throw new IllegalStateException("can not read", e);
+        }
     }
 
     public static void main(String[] args) {
@@ -139,8 +172,37 @@ public class Company {
                 Company.class.getResourceAsStream("/employees.txt"),
                 Company.class.getResourceAsStream("/projects.txt"));
 
+        company.addTimeSheetItem(
+                new Employee("John", "Connor"),
+                new Project("Java"),
+                LocalDateTime.of(2013, Month.JANUARY, 27, 8, 0, 0),
+                LocalDateTime.of(2013, Month.JANUARY, 27, 16, 10, 0)
+        );
 
-        System.out.println(company.getEmployees().get(0).getName());
-        System.out.println(company.getEmployees().get(3).getName());
-        }
+
+        company.addTimeSheetItem(
+                new Employee("John", "Connor"),
+                new Project("Java"),
+                LocalDateTime.of(2013, Month.JANUARY, 26, 8, 0, 0),
+                LocalDateTime.of(2013, Month.JANUARY, 26, 10, 10, 0)
+        );
+
+
+        company.addTimeSheetItem(
+                new Employee("John", "Connor"),
+                new Project("C++"),
+                LocalDateTime.of(2013, Month.JANUARY, 25, 8, 0, 0),
+                LocalDateTime.of(2013, Month.JANUARY, 25, 12, 10, 0)
+        );
+        company.addTimeSheetItem(
+                new Employee("John", "Connor"),
+                new Project("C++"),
+                LocalDateTime.of(2013, Month.FEBRUARY, 25, 8, 0, 0),
+                LocalDateTime.of(2013, Month.FEBRUARY, 25, 12, 10, 0)
+        );
+        System.out.println(company.calculateProjectByNameYearMonth("John Connor", 2013, 1).get(0).getTime());
+        System.out.println(company.calculateProjectByNameYearMonth("John Connor", 2013, 1).get(1).getTime());
+        System.out.println(company.calculateProjectByNameYearMonth("John Connor", 2013, 1).get(3).getTime());
+
+    }
 }

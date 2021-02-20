@@ -1,7 +1,5 @@
 package timesheet;
 
-import java.io.InputStream;
-
 public class Employee {
 
     private final String firstName;
@@ -21,11 +19,9 @@ public class Employee {
         this.lastName = lastName;
     }
 
-    public String getFirstName() {        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
+    @Override
+    public String toString() {
+        return firstName + " " + lastName;
     }
 
     public String getName() {

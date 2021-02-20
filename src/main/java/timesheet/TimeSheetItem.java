@@ -44,4 +44,13 @@ public class TimeSheetItem {
         return Duration.between(beginDate, endDate).toHours();
     }
 
+    @Override
+    public String toString() {
+        return "TimeSheetItem{" +
+                "employee=" + employee +
+                ", project=" + project +
+                ", beginDate=" + beginDate +
+                ", endDate=" + endDate +
+                '}';
+    }
 }

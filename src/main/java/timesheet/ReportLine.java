@@ -2,7 +2,7 @@ package timesheet;
 
 public class ReportLine {
 
-    private Project project;
+    private final Project project;
 
     private long time;
 
@@ -21,5 +21,10 @@ public class ReportLine {
 
     public void addTime(long time) {
         this.time += time;
+    }
+
+    @Override
+    public String toString() {
+        return project + " " + time;
     }
 }
