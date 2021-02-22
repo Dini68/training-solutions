@@ -9,6 +9,10 @@ public class MailBox {
 
     private List<Mail> mails = new ArrayList<>();
 
+    public void addMail (Mail mail){
+        mails.add(mail);
+    }
+
     public List<Mail> getMails() {
         return new ArrayList<>(mails);
     }

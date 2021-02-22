@@ -13,22 +13,22 @@ public class MailBoxTest {
 
     @BeforeEach
     void init() {
-        MailTest mail1 = new MailTest(new Contact("John Doe", "johndoe@example.com"),
+        Mail mail1 = new Mail(new Contact("John Doe", "johndoe@example.com"),
                 List.of(new Contact("Jane Doe", "janedoe@example.com"), new Contact("Jack Doe", "jackdoe@example.com")),
                 "Doe Family",
                 "Hi All!");
 
-        MailTest mail2 = new MailTest(new Contact("John Doe", "johndoe@example.com"),
+        Mail mail2 = new Mail(new Contact("John Doe", "johndoe@example.com"),
                 List.of(new Contact("John Smith", "johnsmith@example.com")),
                 "Johnes",
                 "Hi!");
 
-        MailTest mail3 = new MailTest(new Contact("John Doe", "johndoe@example.com"),
+        Mail mail3 = new Mail(new Contact("John Doe", "johndoe@example.com"),
                 List.of(new Contact("Jane Smith", "janesmith@example.com")),
                 "John - Jane",
                 "Hello!");
 
-        MailTest mail4 = new MailTest(new Contact("Jane Doe", "janedoe@example.com"),
+        Mail mail4 = new Mail(new Contact("Jane Doe", "janedoe@example.com"),
                 List.of(new Contact("John Doe", "johndoe@example.com"), new Contact("Jack Doe", "jackdoe@example.com")),
                 "RE: Doe Family",
                 "Rerere!");
@@ -41,34 +41,34 @@ public class MailBoxTest {
 
     @Test
     void addMail() {
-        List<MailTest> mails = mailBox.getMails();
+        List<Mail> mails = mailBox.getMails();
         assertEquals(4, mails.size());
         assertEquals("Rerere!", mails.get(3).getMessage());
     }
 
     @Test
     void findFrom() {
-        List<MailTest> mails =  mailBox.findByCriteria("from:johndoe@example.com");
+        List<Mail> mails =  mailBox.findByCriteria("from:johndoe@example.com");
         assertEquals(3, mails.size());
     }
 
     @Test
     void findTo() {
-        List<MailTest> mails =  mailBox.findByCriteria("to:Jack Doe");
+        List<Mail> mails =  mailBox.findByCriteria("to:Jack Doe");
         assertEquals(2, mails.size());
 
     }
 
     @Test
     void findSubject() {
-        List<MailTest> mails =  mailBox.findByCriteria("Hi");
+        List<Mail> mails =  mailBox.findByCriteria("Hi");
         assertEquals(2, mails.size());
 
     }
 
     @Test
     void findMessage() {
-        List<MailTest> mails =  mailBox.findByCriteria("Rerere");
+        List<Mail> mails =  mailBox.findByCriteria("Rerere");
         assertEquals(1, mails.size());
 
     }
