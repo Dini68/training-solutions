@@ -8,13 +8,18 @@ public class TodoList {
     private List<Todo> todos = new ArrayList<>();
 
     public List<Todo> getTodos() {
-        return todos;
+        return new ArrayList<>(todos);
     }
 
 
     public void addTodo (String text, int priority) {
         todos.add(new Todo(text, priority));
     }
+
+    public void addTodo (Todo todo) {
+        todos.add(todo);
+    }
+
 
     public int getNumberOfItemsLeft() {
         int number = 0;
@@ -26,8 +31,8 @@ public class TodoList {
         return number;
     }
 
-    public List<Todo> getMostImportantTodosText() {
-        List<Todo> result = new ArrayList<>();
+    public List<String> getMostImportantTodosText() {
+        List<String> result = new ArrayList<>();
         int prior = 6;
         for (Todo t: getTodos()) {
             if (t.getPriority() < prior) {
@@ -36,7 +41,7 @@ public class TodoList {
         }
         for (Todo t: getTodos()) {
             if (t.getPriority() == prior) {
-                result.add(t);
+                result.add(t.getText());
             }
         }
         return result;
