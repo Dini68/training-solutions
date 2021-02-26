@@ -7,6 +7,9 @@ public class Todo {
     private int priority;
 
     public Todo(String text, int priority) {
+        if (priority < 1 || priority > 5) {
+            throw new IllegalArgumentException("wrong param");
+        }
         this.text = text;
         this.priority = priority;
         this.state = State.NON_COMPLETED;
