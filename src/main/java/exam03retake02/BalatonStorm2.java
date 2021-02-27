@@ -15,29 +15,33 @@ public class BalatonStorm2 {
         List<String> result = new ArrayList<>();
         try {
             String line;
-            String name = "";
-            int level = 0;
-            boolean foundStation = false;
+            String stationName = "";
             while ((line = reader.readLine()) != null) {
-                if (line.contains("allomas")) {
-                    name = line.split(":")[1].split("\"")[1];
-//                    System.out.println(name);
-                    foundStation = true;
-                }
-                if (line.contains("level") && foundStation) {
-                    level = line.split(":")[1].charAt(1) - 48;
-//                    System.out.println(level);
-                    foundStation = false;
-                    if (level == 3) {
-                        result.add(name);
-                    }
-                }
+                stationName = getName(line, stationName);
+                addResultByLevel(result, line, stationName);
             }
             Collections.sort(result, Collator.getInstance(new Locale("hu", "HU")));
             return result;
         } catch (IOException ioe) {
-            throw new IllegalStateException("can not read fil", ioe);
+            throw new IllegalStateException("can not read file", ioe);
         }
+    }
+
+    private void addResultByLevel(List<String> result, String line, String name) {
+        int level;
+        if (line.contains("level")) {
+            level = Character.getNumericValue(line.split(":")[1].charAt(1));
+            if (level == 3) {
+                result.add(name);
+            }
+        }
+    }
+
+    private String getName(String line, String name) {
+        if (line.contains("allomas")) {
+            name = line.split(":")[1].split("\"")[1];
+        }
+        return name;
     }
 
     public static void main(String[] args) {
