@@ -1,4 +1,4 @@
-package __practice;
+package _aaa.exam03;
 
 import java.time.LocalDateTime;
 

@@ -1,7 +1,6 @@
-package __practice;
+package _aaa.exam03;
 
 import java.time.*;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class CanoeOffice {

@@ -1,4 +1,4 @@
-package __practice.exam03;
+package _aaa.exam03;
 
 import org.junit.jupiter.api.Test;
 

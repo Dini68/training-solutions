@@ -1,6 +1,4 @@
-package __practice;
-
-import _aaa.variable.Flight;
+package _aaa;
 
 import java.io.BufferedReader;
 import java.io.IOException;

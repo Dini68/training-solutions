@@ -1,4 +1,4 @@
-package __practice;
+package _aaa.exam03;
 
 public enum CanoeType {
     RED(1.0), GREEN(1.2), BLUE(1.5);
