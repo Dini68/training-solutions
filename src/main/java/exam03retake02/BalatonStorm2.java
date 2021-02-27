@@ -20,13 +20,13 @@ public class BalatonStorm2 {
             boolean foundStation = false;
             while ((line = reader.readLine()) != null) {
                 if (line.contains("allomas")) {
-                    name = line.split(":")[1].substring(2, line.split(":")[1].length()-2);
-                    System.out.println(name);
+                    name = line.split(":")[1].split("\"")[1];
+//                    System.out.println(name);
                     foundStation = true;
                 }
                 if (line.contains("level") && foundStation) {
-                    level = Integer.parseInt(line.split(":")[1].substring(1, line.split(":")[1].length()-1));
-                    System.out.println(level);
+                    level = line.split(":")[1].charAt(1) - 48;
+//                    System.out.println(level);
                     foundStation = false;
                     if (level == 3) {
                         result.add(name);
