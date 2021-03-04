@@ -2,7 +2,6 @@ package __project;
 
 import org.mariadb.jdbc.MariaDbDataSource;
 
-import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,9 +27,6 @@ public class VaccinationManagement {
             sqlException.printStackTrace();
         }
         CitizenDao cd = new CitizenDao(dataSource);
-//        cd.insertCitizen(new Citizen("KD", "4224", 12, "kdini68@gmail.com", "027919396"));
-//        cd.insertCitizen(new Citizen("SF", "1181", 152, "kdini68@gmail.com", "123456788"));
-//        cd.insertCitizen(new Citizen("KD", "1031", 52, "kdini68@gmail.com", "123456788"));
 
         VaccinationManagement vm = new VaccinationManagement();
         int menuPoint= 0;
@@ -53,10 +49,6 @@ public class VaccinationManagement {
             }
         }
         while (menuPoint != 7);
-
-//        System.out.println(new Citizen("KD", "4224", 12, "kdini68@gmail.com", "027919396"));
-//        System.out.println(new Citizen(null, "1181", 152, "kdini68@gmail.com", "123456788"));
-//        System.out.println(new Citizen("KD", "1031", 52, "kdini68@gmail.com", "123456788"));
 
     }
 
@@ -102,7 +94,7 @@ public class VaccinationManagement {
         do {
             System.out.print("Kérem az irányítószámot: ");
             zip = scanner.nextLine();
-            city = rv.checkZip(zip);
+            city = rv.checkZip(cd.selectByZip(zip));
         }
         while (city.equals(""));
         System.out.println(city);
@@ -162,3 +154,11 @@ public class VaccinationManagement {
     }
 
 }
+//        cd.insertCitizen(new Citizen("KD", "4224", 12, "kdini68@gmail.com", "027919396"));
+//        cd.insertCitizen(new Citizen("SF", "1181", 152, "kdini68@gmail.com", "123456788"));
+//        cd.insertCitizen(new Citizen("KD", "1031", 52, "kdini68@gmail.com", "123456788"));
+
+//        System.out.println(new Citizen("KD", "4224", 12, "kdini68@gmail.com", "027919396"));
+//        System.out.println(new Citizen(null, "1181", 152, "kdini68@gmail.com", "123456788"));
+//        System.out.println(new Citizen("KD", "1031", 52, "kdini68@gmail.com", "123456788"));
+

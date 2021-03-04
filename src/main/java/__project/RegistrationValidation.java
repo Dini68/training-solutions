@@ -1,8 +1,14 @@
 package __project;
 
+import activitytracker.Activity;
+import activitytracker.TrackPoint;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -17,25 +23,15 @@ public class RegistrationValidation {
         return true;
     }
 
-    public String checkZip(String zip) {
-        List<String> cities = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(Citizen.class.getResourceAsStream("osszes_iranyitoszam.csv")))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if (line.split(";")[0].equals(zip)) {
-                    cities.add(getCityFromLine(line));
-                }
-            }
-            if (cities.size() == 1) {
-                return cities.get(0);
-            }
-            if (cities.size() > 1) {
-                return whichCityIfMoreThanOne(cities);
-            }
-            System.out.println("Nincs ilyen irányítószám!");
-        } catch (IOException ioException) {
-            throw new IllegalStateException("can not read file");
+
+    public String checkZip(List<String> cities) {
+        if (cities.size() == 1) {
+            return cities.get(0);
         }
+        if (cities.size() > 1) {
+            return whichCityIfMoreThanOne(cities);
+        }
+        System.out.println("Nincs ilyen irányítószám!");
         return "";
     }
 
