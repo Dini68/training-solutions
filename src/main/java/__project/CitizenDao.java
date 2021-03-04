@@ -57,7 +57,6 @@ public class CitizenDao {
                         city += ", " + city_part;
                     }
                     cities.add(city);
-                    System.out.println(city);
                 }
                 return cities;
             }
