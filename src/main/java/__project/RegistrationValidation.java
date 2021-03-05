@@ -100,8 +100,8 @@ public class RegistrationValidation {
                 count_2 ++;
             }
         }
-        if (count_1 != 1 || count_2 != 1) {
-            System.out.println("pontosan 1 '@' és 1 '.' karakter lehet.");
+        if (count_1 != 1 || count_2 < 1) {
+            System.out.println("pontosan 1 '@' és ,min 1 '.' karakter lehet.");
             return false;
         }
         return true;

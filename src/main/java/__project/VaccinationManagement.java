@@ -1,7 +1,12 @@
 package __project;
 
 import org.mariadb.jdbc.MariaDbDataSource;
+import stringtype.registration.Registration;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +41,7 @@ public class VaccinationManagement {
 
             switch (menuPoint) {
                 case 1 : vm.registration(cd); break;
-                case 2 : vm.bulkRegistration(); break;
+                case 2 : vm.bulkRegistration(cd); break;
                 case 3 : vm.generate(); break;
                 case 4 : vm.vaccination(); break;
                 case 5 : vm.vaccinationFailed(); break;
@@ -76,7 +81,43 @@ public class VaccinationManagement {
     private void generate() {
     }
 
-    private void bulkRegistration() {
+    private void bulkRegistration(CitizenDao cd) {
+        RegistrationValidation rv = new RegistrationValidation();
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(VaccinationManagement.class.getResourceAsStream("csoportos.csv")))){
+            String header = reader.readLine();
+            String line;
+            Boolean validReg;
+            while ((line = reader.readLine()) != null) {
+                String fullName = line.split(",")[0];
+                validReg = rv.checkName(fullName);
+
+                String zip = (line.split(",")[1]);
+                if (validReg) {
+                    validReg = !rv.checkZip(cd.selectByZip(zip)).equals("");
+                }
+                int age = Integer.parseInt(line.split(",")[2]);
+                if (validReg) {
+                    validReg = rv.checkAge(age);
+                }
+                String email = line.split(",")[3];
+                if (validReg) {
+                    validReg = rv.checkEmail(email);
+                }
+
+                String ssn = line.split(",")[4];
+                if (validReg) {
+                    validReg = rv.checkSocialSecurityNumber(ssn);
+                }
+
+                if (!validReg) {
+                    System.out.println(line);
+                }
+                reader.readLine();
+
+            }
+        } catch (IOException ioException) {
+            throw new IllegalStateException("cannot read file.", ioException);
+        }
     }
 
     private void registration(CitizenDao  cd) {
