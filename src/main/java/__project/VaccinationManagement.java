@@ -7,6 +7,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -83,37 +85,56 @@ public class VaccinationManagement {
 
     private void bulkRegistration(CitizenDao cd) {
         RegistrationValidation rv = new RegistrationValidation();
+        StringBuilder errorList = new StringBuilder();
+        errorList.append("Hibásan megadott regisztrációk: \n");
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(VaccinationManagement.class.getResourceAsStream("csoportos.csv")))){
             String header = reader.readLine();
             String line;
             Boolean validReg;
+            String error = "";
             while ((line = reader.readLine()) != null) {
+
                 String fullName = line.split(",")[0];
                 validReg = rv.checkName(fullName);
+                if (!validReg) {
+                    error = "Hibás név megadás: " + fullName;
+                }
 
                 String zip = (line.split(",")[1]);
                 if (validReg) {
                     validReg = !rv.checkZip(cd.selectByZip(zip)).equals("");
+                    error = "Hibás irányítószám: " + zip;
                 }
+
                 int age = Integer.parseInt(line.split(",")[2]);
                 if (validReg) {
                     validReg = rv.checkAge(age);
+                    error = "Hibás életkor: " + age;
                 }
                 String email = line.split(",")[3];
                 if (validReg) {
                     validReg = rv.checkEmail(email);
+                    error = "Hibás email" + email;
                 }
 
                 String ssn = line.split(",")[4];
                 if (validReg) {
                     validReg = rv.checkSocialSecurityNumber(ssn);
+                    error = "Hibás TAJ szám: " + ssn;
                 }
 
                 if (!validReg) {
-                    System.out.println(line);
+                    System.out.println(line + " >>> " + error + "\n");
+                    errorList.append("\t" + line + " >>> " + error + "\n");
                 }
                 reader.readLine();
-
+            }
+            System.out.println(errorList);
+            try {
+                Files.writeString(Path.of("hibalista.txt"), errorList);
+            }
+            catch (IOException ioe) {
+                throw new IllegalStateException("Can not write file", ioe);
             }
         } catch (IOException ioException) {
             throw new IllegalStateException("cannot read file.", ioException);
