@@ -84,40 +84,59 @@ public class VaccinationManagement {
 
         String fullName = "";
         do {
+            System.out.println("\t\t>>> Visszalépés a főmenübe - > x");
             System.out.print("Kérem a nevet: ");
             fullName = scanner.nextLine();
+            if (fullName.toLowerCase().equals("x")) {
+                return;
+            }
         }
         while (!rv.checkName(fullName));
 
         String zip = "";
         String city = "";
         do {
+            System.out.println("\t\t>>> Visszalépés a főmenübe - > x");
             System.out.print("Kérem az irányítószámot: ");
             zip = scanner.nextLine();
+            if (zip.toLowerCase().equals("x")) {
+                return;
+            }
             city = rv.checkZip(cd.selectByZip(zip));
         }
         while (city.equals(""));
         System.out.println(city);
 
-        int age = 0;
+        String age = "";
         do {
+            System.out.println("\t\t>>> Visszalépés a főmenübe - > x");
             System.out.print("Kérem az életkort: ");
-            age = scanner.nextInt();
-            scanner.nextLine();
+            age = scanner.nextLine();
+            if (age.toLowerCase().equals("x")) {
+                return;
+            }
         }
-        while (!rv.checkAge(age));
+        while (!rv.checkAge(Integer.parseInt(age)));
 
         String email = "";
         do {
+            System.out.println("\t\t>>> Visszalépés a főmenübe - > x");
             System.out.print("Kérem az emailt: ");
             email = scanner.nextLine();
+            if (email.toLowerCase().equals("x")) {
+                return;
+            }
         }
         while (!rv.checkEmail(email));
 
         String ssn = "";
         do {
+            System.out.println("\t\t>>> Visszalépés a főmenübe - > x");
             System.out.print("Kérem a TAJ számot: ");
             ssn = scanner.nextLine();
+            if (ssn.toLowerCase().equals("x")) {
+                return;
+            }
         }
         while (!rv.checkSocialSecurityNumber(ssn));
 
@@ -131,7 +150,7 @@ public class VaccinationManagement {
         System.out.print("Az adatok helyesek?");
         String yes = scanner.nextLine();
         if (yes.toLowerCase().equals("y")) {
-            Citizen actualCitizen = new Citizen(fullName, zip, age, email, ssn, city);
+            Citizen actualCitizen = new Citizen(fullName, zip, Integer.parseInt(age), email, ssn, city);
             citizens.add(actualCitizen);
             cd.insertCitizen(actualCitizen);
             System.out.println("felvéve");
