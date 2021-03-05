@@ -93,7 +93,6 @@ public class VaccinationManagement {
             Boolean validReg;
             String error = "";
             while ((line = reader.readLine()) != null) {
-
                 String fullName = line.split(",")[0];
                 validReg = rv.checkName(fullName);
                 if (!validReg) {
@@ -123,11 +122,13 @@ public class VaccinationManagement {
                     error = "Hibás TAJ szám: " + ssn;
                 }
 
-                if (!validReg) {
+                if (validReg) {
+                    cd.insertCitizen(new Citizen(fullName, zip, age, email, ssn));
+                }
+                else {
                     System.out.println(line + " >>> " + error + "\n");
                     errorList.append("\t" + line + " >>> " + error + "\n");
                 }
-                reader.readLine();
             }
             System.out.println(errorList);
             try {
@@ -209,7 +210,7 @@ public class VaccinationManagement {
         System.out.println("Email: " + email);
         System.out.println("TAJ szám: " + ssn);
 
-        System.out.print("Az adatok helyesek?");
+        System.out.print("Az adatok helyesek? (y) ");
         String yes = scanner.nextLine();
         if (yes.toLowerCase().equals("y")) {
             Citizen actualCitizen = new Citizen(fullName, zip, Integer.parseInt(age), email, ssn, city);
