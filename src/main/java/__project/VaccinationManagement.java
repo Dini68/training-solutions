@@ -76,6 +76,26 @@ public class VaccinationManagement {
     }
 
     private void vaccination() {
+        String ssn;
+        do {
+            System.out.print("Kérem a TAJ számot: ");
+            ssn = scanner.nextLine();
+        }
+        while (!new RegistrationValidation().checkSocialSecurityNumber(ssn));
+        LocalDateTime date = LocalDateTime.now();
+        String vacTyp;
+            System.out.println("Kérem az oltóanyag típusát: ");
+            System.out.println("\t1. PFIZER_BIONTECH");
+            System.out.println("\t2. MODERNA");
+            System.out.println("\t3. ASTRA_ZENECA");
+            System.out.println("\t4. SZPUTNYIK_V");
+            System.out.println("\t5. SINOPHARM");
+        do {
+            vacTyp = scanner.nextLine();
+        }
+        while (Integer.parseInt(vacTyp) < 1 && Integer.parseInt(vacTyp) > 5);
+        System.out.println(VaccineType.values()[Integer.parseInt(vacTyp) - 1]);
+
     }
 
     private void generate(CitizenDao cd) {
