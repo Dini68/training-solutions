@@ -5,8 +5,8 @@ import activitytracker.TrackPoint;
 
 import javax.sql.DataSource;
 import java.sql.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,6 +59,44 @@ public class CitizenDao {
                     cities.add(city);
                 }
                 return cities;
+            }
+        } catch (SQLException sqlException) {
+            throw new IllegalStateException("Cannot connect", sqlException);
+        }
+    }
+
+    public List<String> selectByZipAndAge(String zip) {
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement ps = conn.prepareStatement("SELECT * FROM citizens WHERE zip = ? ORDER BY age DESC LIMIT 16")){
+
+            ps.setString(1, zip);
+            try (ResultSet rs = ps.executeQuery()) {
+                List<String> names = new ArrayList<>();
+                int hour = 8;
+                int minute = 00;
+                LocalTime time;
+                String name;
+                String zipcode;
+                int age;
+                String email;
+                String ssn;
+                int numVac = 0;
+                Date lastVac;
+                while (rs.next()) {
+                    name = rs.getString("citizen_name");
+                    zipcode = rs.getString("zip");
+                    age = rs.getInt("age");
+                    email = rs.getString("email");
+                    ssn = rs.getString("taj");
+                    time = LocalTime.of(hour, minute);
+                    numVac = rs.getInt("number_of_vaccination");
+                    lastVac = rs.getDate("last_vaccination");
+                    names.add(time + ";" + name + ";" + zipcode + ";" + age + ";" + email
+                            + ";" + ssn + ";" + numVac+ ";" + lastVac);
+                    hour = hour + minute / 30;
+                    minute = (minute + 30) % 60;
+                }
+                return names;
             }
         } catch (SQLException sqlException) {
             throw new IllegalStateException("Cannot connect", sqlException);

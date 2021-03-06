@@ -4,9 +4,10 @@ import org.mariadb.jdbc.MariaDbDataSource;
 import stringtype.registration.Registration;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.sql.*;
@@ -44,7 +45,7 @@ public class VaccinationManagement {
             switch (menuPoint) {
                 case 1 : vm.registration(cd); break;
                 case 2 : vm.bulkRegistration(cd); break;
-                case 3 : vm.generate(); break;
+                case 3 : vm.generate(cd); break;
                 case 4 : vm.vaccination(); break;
                 case 5 : vm.vaccinationFailed(); break;
                 case 6 : vm.report(); break;
@@ -80,14 +81,34 @@ public class VaccinationManagement {
     private void vaccination() {
     }
 
-    private void generate() {
+    private void generate(CitizenDao cd) {
+        System.out.print("Kérem az irányítószámot: ");
+        String zip = scanner.nextLine();
+        System.out.print("Kérem a mentett fájl nevét: ");
+        String fileName = scanner.nextLine();
+        List <String> genList = new ArrayList<>(cd.selectByZipAndAge(zip));
+//        System.out.println(cd.selectByZipAndAge(zip));
+//        try (BufferedWriter bw = Files.newBufferedWriter(file, Charset.forName("ISO-8859-2"))){
+        Path file = Path.of(fileName);
+        try (BufferedWriter bw = Files.newBufferedWriter(file)){
+            bw.write("Időpont;Név;Irányítószám;Életkor;E-mail cím;TAJ szám;beoltás száma;beoltás ideje\n");
+            for (String s: genList) {
+                bw.write(s + "\n");
+                System.out.println(s);
+            }
+        } catch (IOException ioException) {
+            throw new IllegalStateException("cannot write file", ioException);
+        }
+
     }
 
     private void bulkRegistration(CitizenDao cd) {
+        System.out.print("Kérem a fájl elérési útvonalát: ");
+        String path = scanner.nextLine();
         RegistrationValidation rv = new RegistrationValidation();
         StringBuilder errorList = new StringBuilder();
         errorList.append("Hibásan megadott regisztrációk: \n");
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(VaccinationManagement.class.getResourceAsStream("csoportos.csv")))){
+        try (BufferedReader reader = Files.newBufferedReader(Path.of(path))){
             String header = reader.readLine();
             String line;
             Boolean validReg;
