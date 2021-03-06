@@ -71,7 +71,7 @@ public class CitizenDao {
              PreparedStatement ps = conn.prepareStatement("SELECT * FROM citizens " +
                      "WHERE zip = ? " +
                      "AND (number_of_vaccination = 0 " +
-                     "OR  (`number_of_vaccination` = 1 AND ADDDATE(`last_vaccination`, 14) < ?))" +
+                     "OR  (`number_of_vaccination` = 1 AND ADDDATE(`last_vaccination`, 15) < ?))" +
                      "ORDER BY `age` DESC, `citizen_name` LIMIT 16")){
 //             PreparedStatement ps = conn.prepareStatement("SELECT * FROM citizens WHERE zip = ? ORDER BY age DESC LIMIT 16")){
 
