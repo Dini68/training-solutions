@@ -1,16 +1,13 @@
 package __project;
 
 import org.mariadb.jdbc.MariaDbDataSource;
-import stringtype.registration.Registration;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -82,11 +79,25 @@ public class VaccinationManagement {
     }
 
     private void generate(CitizenDao cd) {
+        LocalDateTime date = LocalDateTime.now().plusDays(1);
+        System.out.print("Az oltás alapértelmezett napja: ");
+        System.out.println(date.toLocalDate());
+        System.out.print("Megfelel (y, n) ? ");
+        String ans = scanner.nextLine();
+        if (ans.toLowerCase().equals("n")) {
+            System.out.print("kérem az oltás dátumát (éé-hh-nn): ");
+            ans = scanner.nextLine();
+            int yy = Integer.parseInt(ans.split("-")[0]) + 2000;
+            int mm = Integer.parseInt(ans.split("-")[1]);
+            int dd = Integer.parseInt(ans.split("-")[2]);
+            date = LocalDateTime.of(yy, mm, dd, 8, 0);
+        }
         System.out.print("Kérem az irányítószámot: ");
         String zip = scanner.nextLine();
         System.out.print("Kérem a mentett fájl nevét: ");
         String fileName = scanner.nextLine();
-        List <String> genList = new ArrayList<>(cd.selectByZipAndAge(zip));
+
+        List <String> genList = new ArrayList<>(cd.selectByZipAndAge(zip, date));
 //        System.out.println(cd.selectByZipAndAge(zip));
 //        try (BufferedWriter bw = Files.newBufferedWriter(file, Charset.forName("ISO-8859-2"))){
         Path file = Path.of(fileName);

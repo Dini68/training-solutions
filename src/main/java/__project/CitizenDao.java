@@ -5,6 +5,7 @@ import activitytracker.TrackPoint;
 
 import javax.sql.DataSource;
 import java.sql.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -65,11 +66,19 @@ public class CitizenDao {
         }
     }
 
-    public List<String> selectByZipAndAge(String zip) {
+    public List<String> selectByZipAndAge(String zip, LocalDateTime vacDate) {
         try (Connection conn = dataSource.getConnection();
-             PreparedStatement ps = conn.prepareStatement("SELECT * FROM citizens WHERE zip = ? ORDER BY age DESC LIMIT 16")){
+             PreparedStatement ps = conn.prepareStatement("SELECT * FROM citizens " +
+                     "WHERE zip = ? " +
+                     "AND (number_of_vaccination = 0 " +
+                     "OR  (`number_of_vaccination` = 1 AND ADDDATE(`last_vaccination`, 14) < ?))" +
+                     "ORDER BY `age` DESC, `citizen_name` LIMIT 16")){
+//             PreparedStatement ps = conn.prepareStatement("SELECT * FROM citizens WHERE zip = ? ORDER BY age DESC LIMIT 16")){
 
             ps.setString(1, zip);
+//            ps.setDate(2, 2021-02-15);
+            ps.setTimestamp(2, Timestamp.valueOf(vacDate));
+
             try (ResultSet rs = ps.executeQuery()) {
                 List<String> names = new ArrayList<>();
                 int hour = 8;
