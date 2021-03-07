@@ -89,6 +89,24 @@ public class CitizenDao {
         }
     }
 
+    public void updateVaccination(Vaccination vaccination) {
+
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(
+                     "UPDATE vaccinations SET vaccination_date = ?, status = ?, note = ?, vaccination_type = ? WHERE citizen_id = ?",
+                                Statement.RETURN_GENERATED_KEYS)) {
+                stmt.setTimestamp(1, vaccination.getVaccination_date());
+                stmt.setString(2, vaccination.getStatus());
+                stmt.setString(3, vaccination.getNote());
+                stmt.setString(4, vaccination.getVaccination_type());
+                stmt.setLong(5, vaccination.getCitizen_id());
+                stmt.executeUpdate();
+        }
+        catch (SQLException se) {
+            throw new IllegalStateException("Can not update", se);
+        }
+    }
+
     public List<String> selectCityByZip(String zip) {
         try (Connection conn = dataSource.getConnection();
              PreparedStatement ps = conn.prepareStatement("SELECT city, city_part FROM cities WHERE zip= ?")){

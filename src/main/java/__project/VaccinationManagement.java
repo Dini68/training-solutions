@@ -83,6 +83,8 @@ public class VaccinationManagement {
         }
         while (!new RegistrationValidation().checkSocialSecurityNumber(ssn));
 
+        int id = cd.getIdBySsn(ssn);
+
         int numVac = cd.getNumVacBySsn(ssn);
         if (numVac == 0) {
             String vacTyp;
@@ -96,14 +98,16 @@ public class VaccinationManagement {
                 vacTyp = scanner.nextLine();
             }
             while (Integer.parseInt(vacTyp) < 1 && Integer.parseInt(vacTyp) > 5);
-            int id = cd.getIdBySsn(ssn);
+            Timestamp actTime = Timestamp.valueOf(LocalDateTime.now());
             if (cd.countVaccination(id) == 0) {
-                Timestamp actTime = Timestamp.valueOf(LocalDateTime.now());
-//                System.out.println(actTime);
-//                System.out.println(VaccineType.values()[Integer.parseInt(vacTyp) - 1]);
                 Vaccination vac = new Vaccination(id, actTime, "1", "Első oltás beadva",
                         VaccineType.values()[Integer.parseInt(vacTyp) - 1].toString());
                 cd.insertVaccination(vac);
+            }
+            else {
+                Vaccination vac = new Vaccination(id, actTime, "1", "Első oltás beadva",
+                        VaccineType.values()[Integer.parseInt(vacTyp) - 1].toString());
+                cd.updateVaccination(vac);
             }
 
         }
