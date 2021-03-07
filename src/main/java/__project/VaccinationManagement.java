@@ -43,7 +43,7 @@ public class VaccinationManagement {
                 case 1 : vm.registration(cd); break;
                 case 2 : vm.bulkRegistration(cd); break;
                 case 3 : vm.generate(cd); break;
-                case 4 : vm.vaccination(); break;
+                case 4 : vm.vaccination(cd); break;
                 case 5 : vm.vaccinationFailed(); break;
                 case 6 : vm.report(); break;
                 case 7 : vm.exit(); break;
@@ -75,26 +75,40 @@ public class VaccinationManagement {
     private void vaccinationFailed() {
     }
 
-    private void vaccination() {
+    private void vaccination(CitizenDao cd) {
         String ssn;
         do {
             System.out.print("Kérem a TAJ számot: ");
             ssn = scanner.nextLine();
         }
         while (!new RegistrationValidation().checkSocialSecurityNumber(ssn));
-        LocalDateTime date = LocalDateTime.now();
-        String vacTyp;
+
+        int numVac = cd.getNumVacBySsn(ssn);
+        if (numVac == 0) {
+            String vacTyp;
             System.out.println("Kérem az oltóanyag típusát: ");
             System.out.println("\t1. PFIZER_BIONTECH");
             System.out.println("\t2. MODERNA");
             System.out.println("\t3. ASTRA_ZENECA");
             System.out.println("\t4. SZPUTNYIK_V");
             System.out.println("\t5. SINOPHARM");
-        do {
-            vacTyp = scanner.nextLine();
+            do {
+                vacTyp = scanner.nextLine();
+            }
+            while (Integer.parseInt(vacTyp) < 1 && Integer.parseInt(vacTyp) > 5);
+            int id = cd.getIdBySsn(ssn);
+            if (cd.countVaccination(id) == 0) {
+                Timestamp actTime = Timestamp.valueOf(LocalDateTime.now());
+//                System.out.println(actTime);
+//                System.out.println(VaccineType.values()[Integer.parseInt(vacTyp) - 1]);
+                Vaccination vac = new Vaccination(id, actTime, "1", "Első oltás beadva",
+                        VaccineType.values()[Integer.parseInt(vacTyp) - 1].toString());
+                cd.insertVaccination(vac);
+            }
+
         }
-        while (Integer.parseInt(vacTyp) < 1 && Integer.parseInt(vacTyp) > 5);
-        System.out.println(VaccineType.values()[Integer.parseInt(vacTyp) - 1]);
+
+
 
     }
 
@@ -153,7 +167,7 @@ public class VaccinationManagement {
 
                 String zip = (line.split(",")[1]);
                 if (validReg) {
-                    validReg = !rv.checkZip(cd.selectByZip(zip)).equals("");
+                    validReg = !rv.checkZip(cd.selectCityByZip(zip)).equals("");
                     error = "Hibás irányítószám: " + zip;
                 }
 
@@ -217,7 +231,7 @@ public class VaccinationManagement {
             if (zip.toLowerCase().equals("x")) {
                 return;
             }
-            city = rv.checkZip(cd.selectByZip(zip));
+            city = rv.checkZip(cd.selectCityByZip(zip));
         }
         while (city.equals(""));
         System.out.println(city);

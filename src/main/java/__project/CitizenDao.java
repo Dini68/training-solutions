@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class CitizenDao {
 
@@ -42,7 +43,53 @@ public class CitizenDao {
         }
     }
 
-    public List<String> selectByZip(String zip) {
+    public void insertVaccination() {
+
+        List<Vaccination> vaccinations = new ArrayList<>();
+        vaccinations = selectByNumVac1();
+        System.out.println(vaccinations.size());
+        System.out.println(vaccinations);
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(
+                     "INSERT INTO vaccinations (citizen_id, vaccination_date, status, note, vaccination_type) values (?,?,?,?,?)",
+                                Statement.RETURN_GENERATED_KEYS)) {
+//                     "INSERT INTO citizens (citizen_name, zip, age, email, taj, " +
+//                             "number_of_vaccination, last_vaccination) values (?,?,?,?,?,?,?)",
+//                                 Statement.RETURN_GENERATED_KEYS)) {
+            for (int i = 0; i < vaccinations.size(); i++) {
+                stmt.setLong(1, vaccinations.get(i).getCitizen_id());
+                stmt.setTimestamp(2, vaccinations.get(i).getVaccination_date());
+                stmt.setString(3, vaccinations.get(i).getStatus());
+                stmt.setString(4, vaccinations.get(i).getNote());
+                stmt.setString(5, vaccinations.get(i).getVaccination_type());
+                stmt.executeUpdate();
+
+            }
+        }
+        catch (SQLException se) {
+            throw new IllegalStateException("Can not insert", se);
+        }
+    }
+
+    public void insertVaccination(Vaccination vaccination) {
+
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(
+                     "INSERT INTO vaccinations (citizen_id, vaccination_date, status, note, vaccination_type) values (?,?,?,?,?)",
+                                Statement.RETURN_GENERATED_KEYS)) {
+                stmt.setLong(1, vaccination.getCitizen_id());
+                stmt.setTimestamp(2, vaccination.getVaccination_date());
+                stmt.setString(3, vaccination.getStatus());
+                stmt.setString(4, vaccination.getNote());
+                stmt.setString(5, vaccination.getVaccination_type());
+                stmt.executeUpdate();
+        }
+        catch (SQLException se) {
+            throw new IllegalStateException("Can not insert", se);
+        }
+    }
+
+    public List<String> selectCityByZip(String zip) {
         try (Connection conn = dataSource.getConnection();
              PreparedStatement ps = conn.prepareStatement("SELECT city, city_part FROM cities WHERE zip= ?")){
 
@@ -60,6 +107,83 @@ public class CitizenDao {
                     cities.add(city);
                 }
                 return cities;
+            }
+        } catch (SQLException sqlException) {
+            throw new IllegalStateException("Cannot connect", sqlException);
+        }
+    }
+
+    public int getNumVacBySsn(String ssn) {
+        int numVac = 0;
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement ps = conn.prepareStatement( "SELECT number_of_vaccination FROM citizens WHERE taj = ?")){
+
+            ps.setString(1, ssn);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    numVac = rs.getInt("number_of_vaccination");
+                    return numVac;
+                }
+            }
+            throw new IllegalArgumentException("Nincs ilyen TAJ szám a regisztráltak között");
+        } catch (SQLException sqlException) {
+            throw new IllegalStateException("Cannot connect", sqlException);
+        }
+    }
+    public int getIdBySsn(String ssn) {
+        int id = 0;
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement ps = conn.prepareStatement( "SELECT citizen_id FROM citizens WHERE taj = ?")){
+
+            ps.setString(1, ssn);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    id = rs.getInt("citizen_id");
+                    return id;
+                }
+            }
+            throw new IllegalArgumentException("Nincs ilyen TAJ szám a regisztráltak között");
+        } catch (SQLException sqlException) {
+            throw new IllegalStateException("Cannot connect", sqlException);
+        }
+    }
+
+    public int countVaccination(int id) {
+        int count = 0;
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement ps = conn.prepareStatement( "SELECT note FROM vaccinations WHERE citizen_id = ?")){
+
+            ps.setLong(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    count++;
+                }
+            }
+            return count;
+        } catch (SQLException sqlException) {
+            throw new IllegalStateException("Cannot connect", sqlException);
+        }
+    }
+
+    public List<Vaccination> selectByNumVac1() {
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement ps = conn.prepareStatement("SELECT * FROM citizens WHERE number_of_vaccination = 1")){
+
+//            ps.setString(1, zip);
+            try (ResultSet rs = ps.executeQuery()) {
+                List<Vaccination> vaccinations = new ArrayList<>();
+                String status = "1";
+                String note = "Első oltás beadva";
+                Random rnd = new Random();
+                String vacType;
+                while (rs.next()) {
+                    int id = rs.getInt("citizen_id");
+                    Timestamp vacDate = rs.getTimestamp("last_vaccination");
+                    vacDate = Timestamp.valueOf(vacDate.toLocalDateTime().plusDays(rnd.nextInt(20)));
+                    vacType = VaccineType.values()[rnd.nextInt(5)].toString();
+                    vaccinations.add(new Vaccination(id, vacDate, status, note, vacType));
+                }
+                return vaccinations;
             }
         } catch (SQLException sqlException) {
             throw new IllegalStateException("Cannot connect", sqlException);
