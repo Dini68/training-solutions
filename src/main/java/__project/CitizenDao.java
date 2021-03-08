@@ -166,6 +166,28 @@ public class CitizenDao {
         }
     }
 
+    public Vaccination getVaccinationById(int id) {
+        Vaccination result = null;
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement ps = conn.prepareStatement( "SELECT * FROM vaccinations WHERE citizen_id = ?")){
+
+            ps.setLong(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Timestamp date = rs.getTimestamp("vaccination_date");
+                    String status = rs.getString("status");
+                    String note = rs.getString("note");
+                    String vacType = rs.getString("vaccination_type");
+
+                    return new Vaccination(id, date, status,note, vacType);
+                }
+            }
+            throw new IllegalArgumentException("Nincs ilyen Id szám a regisztráltak között");
+        } catch (SQLException sqlException) {
+            throw new IllegalStateException("Cannot connect", sqlException);
+        }
+    }
+
     public int countVaccination(int id) {
         int count = 0;
         try (Connection conn = dataSource.getConnection();

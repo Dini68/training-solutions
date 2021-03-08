@@ -86,8 +86,10 @@ public class VaccinationManagement {
         int id = cd.getIdBySsn(ssn);
 
         int numVac = cd.getNumVacBySsn(ssn);
+
         if (numVac == 0) {
             String vacTyp;
+
             System.out.println("Kérem az oltóanyag típusát: ");
             System.out.println("\t1. PFIZER_BIONTECH");
             System.out.println("\t2. MODERNA");
@@ -98,22 +100,33 @@ public class VaccinationManagement {
                 vacTyp = scanner.nextLine();
             }
             while (Integer.parseInt(vacTyp) < 1 && Integer.parseInt(vacTyp) > 5);
+
             Timestamp actTime = Timestamp.valueOf(LocalDateTime.now());
+
             if (cd.countVaccination(id) == 0) {
                 Vaccination vac = new Vaccination(id, actTime, "1", "Első oltás beadva",
                         VaccineType.values()[Integer.parseInt(vacTyp) - 1].toString());
                 cd.insertVaccination(vac);
-            }
-            else {
+            } else {
                 Vaccination vac = new Vaccination(id, actTime, "1", "Első oltás beadva",
                         VaccineType.values()[Integer.parseInt(vacTyp) - 1].toString());
                 cd.updateVaccination(vac);
             }
-
         }
 
+        if (numVac == 1) {
+            Vaccination actVac = cd.getVaccinationById(id);
+            String vacTyp = actVac.getVaccination_type();
 
+            Timestamp actTime = Timestamp.valueOf(LocalDateTime.now());
 
+            System.out.println("Az 1. oltás időpontja: " + actVac.getVaccination_date());
+            System.out.println("Az oltóanyag típusa: " + vacTyp);
+
+            Vaccination vac = new Vaccination(id, actTime, "2", "Második oltás beadva", vacTyp);
+            cd.updateVaccination(vac);
+            System.out.println("Az 2. oltás beadva: " + actTime);
+        }
     }
 
     private void generate(CitizenDao cd) {
