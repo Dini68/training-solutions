@@ -44,7 +44,7 @@ public class VaccinationManagement {
                 case 2 : vm.bulkRegistration(cd); break;
                 case 3 : vm.generate(cd); break;
                 case 4 : vm.vaccination(cd); break;
-                case 5 : vm.vaccinationFailed(); break;
+                case 5 : vm.vaccinationFailed(cd); break;
                 case 6 : vm.report(); break;
                 case 7 : vm.exit(); break;
                 default : {
@@ -72,7 +72,28 @@ public class VaccinationManagement {
     private void report() {
     }
 
-    private void vaccinationFailed() {
+    private void vaccinationFailed(CitizenDao cd) {
+        String ssn;
+        do {
+            System.out.print("Kérem a TAJ számot: ");
+            ssn = scanner.nextLine();
+        }
+        while (!new RegistrationValidation().checkSocialSecurityNumber(ssn));
+        System.out.println("Kérem a meghiúsulás okát!");
+        String note = scanner.nextLine();
+
+        int id = cd.getIdBySsn(ssn);
+        Timestamp actTime = Timestamp.valueOf(LocalDateTime.now());
+
+        if (cd.countVaccination(id) == 0) {
+            Vaccination vac = new Vaccination(id, actTime, "0", note, null);
+            cd.insertVaccination(vac);
+        } else {
+            Vaccination actVac = cd.getVaccinationById(id);
+            Vaccination vac = new Vaccination(id, actTime, actVac.getStatus(), note, actVac.getVaccination_type());
+            cd.updateVaccination(vac);
+        }
+
     }
 
     private void vaccination(CitizenDao cd) {
