@@ -45,7 +45,7 @@ public class VaccinationManagement {
                 case 3 : vm.generate(cd); break;
                 case 4 : vm.vaccination(cd); break;
                 case 5 : vm.vaccinationFailed(cd); break;
-                case 6 : vm.report(); break;
+                case 6 : vm.report(cd); break;
                 case 7 : vm.exit(); break;
                 default : {
                     System.out.println("Nincs ilyen menüpont! 1 .. 7 között lehet választani.");
@@ -69,7 +69,22 @@ public class VaccinationManagement {
 
     }
 
-    private void report() {
+    private void report(CitizenDao cd) {
+        List<String> zips = cd.getZips();
+        if (zips.size() == 0) {
+            System.out.println("Még nincs regisztrált személy az adatbázisban.");
+            return;
+        }
+        int i = 0;
+        System.out.println("\n--------- Oltások száma irányítószámok szerint ---------");
+        for (String s: zips) {
+            System.out.print("\t" + s + ": ");
+            System.out.print("Beoltatlan: " + cd.getNumberNotVaccinatedByZip(zips.get(i), "0"));
+            System.out.print(", 1x oltott: " + cd.getNumberNotVaccinatedByZip(zips.get(i), "1"));
+            System.out.println(", 2x oltott: " + cd.getNumberNotVaccinatedByZip(zips.get(i), "2"));
+            i++;
+        }
+        System.out.println("--------------------------------------------------------");
     }
 
     private void vaccinationFailed(CitizenDao cd) {

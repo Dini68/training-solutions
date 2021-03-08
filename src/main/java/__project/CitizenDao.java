@@ -245,6 +245,38 @@ public class CitizenDao {
         }
     }
 
+    public List<String> getZips () {
+        List<String> result = new ArrayList<>();
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement ps = conn.prepareStatement( "SELECT DISTINCT zip  FROM citizens ORDER BY zip")){
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    result.add(rs.getString("zip"));
+                }
+                return result;
+            }
+        } catch (SQLException sqlException) {
+            throw new IllegalStateException("Cannot connect", sqlException);
+        }
+    }
+
+    public int getNumberNotVaccinatedByZip (String zip, String number_of_vaccination) {
+        int num = 0;
+        try (Connection conn = dataSource.getConnection();
+            PreparedStatement ps = conn.prepareStatement("SELECT COUNT(zip) FROM citizens WHERE zip = ? AND number_of_vaccination = ?")) {
+            ps.setString(1, zip);
+            ps.setString(2, number_of_vaccination);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    num = rs.getInt("COUNT(zip)");
+                }
+            }
+            return num;
+        } catch (SQLException sqlException) {
+            throw new IllegalStateException("Cannot connect", sqlException);
+        }
+    }
+
     public List<String> selectByZipAndAge(String zip, LocalDateTime vacDate) {
         try (Connection conn = dataSource.getConnection();
              PreparedStatement ps = conn.prepareStatement("SELECT * FROM citizens " +
