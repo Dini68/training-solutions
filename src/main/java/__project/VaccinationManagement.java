@@ -107,10 +107,12 @@ public class VaccinationManagement {
                 Vaccination vac = new Vaccination(id, actTime, "1", "Első oltás beadva",
                         VaccineType.values()[Integer.parseInt(vacTyp) - 1].toString());
                 cd.insertVaccination(vac);
+                cd.updateCitizen(vac);
             } else {
                 Vaccination vac = new Vaccination(id, actTime, "1", "Első oltás beadva",
                         VaccineType.values()[Integer.parseInt(vacTyp) - 1].toString());
                 cd.updateVaccination(vac);
+                cd.updateCitizen(vac);
             }
         }
 
@@ -125,7 +127,19 @@ public class VaccinationManagement {
 
             Vaccination vac = new Vaccination(id, actTime, "2", "Második oltás beadva", vacTyp);
             cd.updateVaccination(vac);
+            cd.updateCitizen(vac);
             System.out.println("Az 2. oltás beadva: " + actTime);
+        }
+        if (numVac == 2) {
+            Vaccination actVac = cd.getVaccinationById(id);
+            String vacTyp = actVac.getVaccination_type();
+
+            Timestamp actTime = Timestamp.valueOf(LocalDateTime.now());
+
+            System.out.println("Figyelem! A 2. oltás már be beadva!");
+            System.out.println("Az 2. oltás időpontja: " + actVac.getVaccination_date());
+            System.out.println("Az oltóanyag típusa: " + vacTyp);
+
         }
     }
 

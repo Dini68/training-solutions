@@ -92,7 +92,7 @@ public class CitizenDao {
     public void updateVaccination(Vaccination vaccination) {
 
         try (Connection conn = dataSource.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(
+            PreparedStatement stmt = conn.prepareStatement(
                      "UPDATE vaccinations SET vaccination_date = ?, status = ?, note = ?, vaccination_type = ? WHERE citizen_id = ?",
                                 Statement.RETURN_GENERATED_KEYS)) {
                 stmt.setTimestamp(1, vaccination.getVaccination_date());
@@ -100,6 +100,21 @@ public class CitizenDao {
                 stmt.setString(3, vaccination.getNote());
                 stmt.setString(4, vaccination.getVaccination_type());
                 stmt.setLong(5, vaccination.getCitizen_id());
+                stmt.executeUpdate();
+        }
+        catch (SQLException se) {
+            throw new IllegalStateException("Can not update", se);
+        }
+    }
+    public void updateCitizen(Vaccination vaccination) {
+
+        try (Connection conn = dataSource.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(
+                     "UPDATE citizens SET number_of_vaccination = ?, last_vaccination = ? WHERE citizen_id = ?",
+                                Statement.RETURN_GENERATED_KEYS)) {
+                stmt.setLong(1, Integer.parseInt(vaccination.getStatus()));
+                stmt.setTimestamp(2, vaccination.getVaccination_date());
+                stmt.setLong(3, vaccination.getCitizen_id());
                 stmt.executeUpdate();
         }
         catch (SQLException se) {
