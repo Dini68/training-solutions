@@ -4,10 +4,17 @@ import java.time.LocalDate;
 
 public class TrackPoint {
 
-    private Long id;
+    private long id;
     private LocalDate time;
     private double lat;
     private double lon;
+
+    public TrackPoint(long id, LocalDate time, double lat, double lon) {
+        this.id = id;
+        this.time = time;
+        this.lat = lat;
+        this.lon = lon;
+    }
 
     public TrackPoint(LocalDate time, double lat, double lon) {
         this.time = time;
@@ -15,14 +22,7 @@ public class TrackPoint {
         this.lon = lon;
     }
 
-    public TrackPoint(Long id, LocalDate time, double lat, double lon) {
-        this.id = id;
-        this.time = time;
-        this.lat = lat;
-        this.lon = lon;
-    }
-
-    public Long getId() {
+    public long getId() {
         return id;
     }
 

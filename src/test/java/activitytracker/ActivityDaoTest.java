@@ -17,7 +17,7 @@ class ActivityDaoTest {
     ActivityDao activityDao;
 
     @BeforeEach
-    public void init() {
+    public void init(){
         MariaDbDataSource dataSource;
 
         try{
@@ -25,51 +25,49 @@ class ActivityDaoTest {
             dataSource.setUrl("jdbc:mariadb://localhost:3306/activitytracker?useUnicode=true");
             dataSource.setUser("activitytracker");
             dataSource.setPassword("activitytracker");
-        } catch (SQLException sqlException) {
+        }
+        catch (
+                SQLException sqlException) {
             throw new IllegalStateException("Cannot connect!", sqlException);
         }
-
         Flyway flyway = Flyway.configure().dataSource(dataSource).load();
         flyway.clean();
         flyway.migrate();
 
-        activityDao =  new ActivityDao(dataSource);
-
+        activityDao = new ActivityDao(dataSource);
     }
 
     @Test
-    public void insertElementTest() {
-        Activity activity = new Activity(LocalDateTime.of(2021,02,23,10,11), "Biking in Zemplén", ActivityType.BIKING);
-        activityDao.insertActivity(activity);
+    public void insertActivityTest() {
+        Activity activity = activityDao.findById(1L);
 
-        assertEquals(activityDao.selectAllActivities().size(), 4);
+        assertEquals(ActivityType.BIKING, activity.getActivityType());
     }
 
     @Test
-    public void selectByTypeTest() {
-        assertEquals(activityDao.selectActivitiesByType(ActivityType.BIKING).size(), 1);
+    public void selectBeforeDateTest() {
+        System.out.println(activityDao.selectActivitiesBeforeDate(LocalDate.of(2020, 2, 1)));
     }
 
     @Test
-    public void selectBeforeDateTest () {
-        System.out.println(activityDao.selectActivitiesBeforeDate(LocalDate.of(2020,02,01)));
+    public void findByIdTest() {
+        Activity activity = new Activity(LocalDateTime.of(2021,02,15,15,00), "Basketball in park", ActivityType.BASKETBALL);
+        Activity result = activityDao.insertActivity(activity);
+
+        assertEquals("Basketball in park", activityDao.findById(result.getId()).getDesc());
     }
-//    @Test
-//    public void findById() {
-//        Activity activity = new Activity(LocalDateTime.of(2021,02,23,10,11), "Biking in Zemplén", ActivityType.BIKING);
-//        Activity result = activityDao.insertActivity(activity);
-//        assertEquals("Biking in Zemplén", activityDao.selectById(result.getId()).getDesc());
-//    }
-//    @Test
-//    public void insertActivityWithTrackPointsTest() {
-//        Activity activity = new Activity(LocalDateTime.of(2021,02,23,10,11), "Biking in Zemplén", ActivityType.BIKING);
-//        activity.addTrackPoints(List.of(
-//                new TrackPoint(LocalDate.of(2021,02,23), 67, 23),
-//                new TrackPoint(LocalDate.of(2021,02,23), 68, 22),
-//                new TrackPoint(LocalDate.of(2021,02,23), 67, 21)));
-//
-//        Activity ac = activityDao.insertActivity(activity);
-//
-//        System.out.println(activityDao.selectById(ac.getId()));
-//    }
+
+    @Test
+    public void insertActivityWithTrackPointsTest() {
+        Activity activity = new Activity(LocalDateTime.of(2021,03,15,15,00), "Biking in Zemplén", ActivityType.BIKING);
+        activity.addTrackPoints(List.of(
+                new TrackPoint(LocalDate.of(2021, 02, 23), 67, 23),
+                new TrackPoint(LocalDate.of(2021, 02, 23), 68, 22),
+                new TrackPoint(LocalDate.of(2021, 02, 23), 67, 21)));
+        Activity ac = activityDao.insertActivity(activity);
+        System.out.println(activityDao.findById(ac.getId()));
+    }
+
+
+
 }

@@ -6,11 +6,8 @@ import java.util.List;
 public class Mail {
 
     private Contact from;
-
     private List<Contact> to = new ArrayList<>();
-
     private String subject;
-
     private String message;
 
     public Mail(Contact from, List<Contact> to, String subject, String message) {
@@ -34,5 +31,15 @@ public class Mail {
 
     public String getMessage() {
         return message;
+    }
+
+    @Override
+    public String toString() {
+        return "Mail{" +
+                "from=" + from +
+                ", to=" + to +
+                ", subject='" + subject + '\'' +
+                ", message='" + message + '\'' +
+                '}';
     }
 }

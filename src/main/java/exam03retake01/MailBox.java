@@ -1,7 +1,5 @@
 package exam03retake01;
 
-import _toto.ppp.A;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,49 +7,62 @@ public class MailBox {
 
     private List<Mail> mails = new ArrayList<>();
 
-    public void addMail (Mail mail){
-        mails.add(mail);
-    }
-
     public List<Mail> getMails() {
         return new ArrayList<>(mails);
     }
 
+    public void addMail(Mail mail) {
+        mails.add(mail);
+
+    }
+
     public List<Mail> findByCriteria(String criteria) {
-        List<Mail> result = new ArrayList<>();
-        if (criteria.startsWith("from:")) {
-            String temp = criteria.substring(5);
-            for (Mail m: getMails()) {
-                if (m.getFrom().getName().equals(temp) ||
-                m.getFrom().getEmail().equals(temp)) {
-                    result.add(m);
-                }
-            }
-            return result;
-        }
         if (criteria.startsWith("to:")) {
-            String temp = criteria.substring(3);
-            for (Mail m: getMails()) {
-                for (Contact c: m.getTo()) {
-                    if (c.getName().equals(temp) ||
-                    c.getEmail().equals(temp)) {
-                        result.add(m);
-                    }
-                }
-            }
-            return result;
+            return findByTo(criteria.substring(3));
         }
-        for (Mail m: getMails()) {
-            if (m.getMessage().contains(criteria) ||
-                m.getSubject().contains(criteria)) {
-                result.add(m);
+        else if (criteria.startsWith("from:")) {
+            return findByFrom(criteria.substring(5));
+        }
+        else {
+            return findByContent(criteria);
+        }
+    }
+
+    private List<Mail> findByContent(String criteria) {
+        List<Mail> result = new ArrayList<>();
+        for (Mail mail: getMails()) {
+            if (mail.getSubject().contains(criteria) ||
+                    mail.getMessage().contains(criteria)) {
+                result.add(mail);
             }
         }
         return result;
     }
 
-    public static void main(String[] args) {
-        System.out.println("from:hjkhhkjh".substring(5));
+    private List<Mail> findByFrom(String substring) {
+        List<Mail> result = new ArrayList<>();
+        for (Mail mail: getMails()) {
+            if (mail.getFrom().getName().equals(substring) ||
+                    mail.getFrom().getEmail().equals(substring)) {
+                result.add(mail);
+            }
+        }
+        return result;
+    }
 
+    private List<Mail> findByTo(String substring) {
+        List<Mail> result = new ArrayList<>();
+        for (Mail mail: getMails()) {
+            boolean isContain = false;
+            for (Contact c: mail.getTo()) {
+                if (c.getName().equals(substring) || c.getEmail().equals(substring)) {
+                    isContain = true;
+                }
+            }
+            if (isContain) {
+                result.add(mail);
+            }
+        }
+        return result;
     }
 }

@@ -1,11 +1,7 @@
 package __project;
 
-import activitytracker.Activity;
-import activitytracker.TrackPoint;
-
 import javax.sql.DataSource;
 import java.sql.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;

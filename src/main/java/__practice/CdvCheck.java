@@ -1,6 +1,6 @@
 package __practice;
 
-public class CvdCheck {
+public class CdvCheck {
 
     private final static int NUMBER_OF_DIGITS_IN_CVD = 10;
 

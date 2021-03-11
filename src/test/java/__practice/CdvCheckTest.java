@@ -1,11 +1,10 @@
 package __practice;
 
-import exam03retake01.CdvCheck;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CvdCheckTest {
+class CdvCheckTest {
 
     @Test
     void check() {

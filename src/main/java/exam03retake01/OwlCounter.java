@@ -1,27 +1,42 @@
 package exam03retake01;
 
+import javax.imageio.IIOException;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
 public class OwlCounter {
 
-    private Map<String, Integer> numberOfOwlsPerCounty = new HashMap<>();
+    private Map<String, Integer> owls = new HashMap<>();
 
-    public void readFromFile(BufferedReader reader) throws IOException {
-        String line;
-        String county;
-        int numberOfOwls;
-        while ((line = reader.readLine()) != null) {
-            county = line.split("=")[0];
-            numberOfOwls = Integer.parseInt(line.split("=")[1]);
-            numberOfOwlsPerCounty.put(county, numberOfOwls);
-        }
-        System.out.println(numberOfOwlsPerCounty);
+    public Map<String, Integer> getOwls() {
+        return new HashMap<>(owls);
     }
 
-    public int getNumberOfOwls (String county) {
-        return numberOfOwlsPerCounty.get(county);
+    public void readFromFile(BufferedReader reader) throws IOException {
+
+        String line;
+        while ((line = reader.readLine())  != null) {
+            String county = line.split("=")[0];
+            int count = Integer.parseInt(line.split("=")[1]);
+            System.out.println(line);
+            owls.put(county, count);
+        }
+    }
+
+    public int getNumberOfOwls(String s) {
+        return getOwls().get(s);
+    }
+
+    public static void main(String[] args) {
+        OwlCounter owlCounter = new OwlCounter();
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(OwlCounter.class.getResourceAsStream("owls.txt")))) {
+            owlCounter.readFromFile(reader);
+        } catch (IOException ioException) {
+            throw new IllegalStateException("not read file", ioException);
+        }
+
     }
 }

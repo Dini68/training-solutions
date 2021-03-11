@@ -9,20 +9,21 @@ public class Activity {
     private long id;
     private LocalDateTime startTime;
     private String desc;
-    private ActivityType type;
+    private ActivityType activityType;
     private List<TrackPoint> trackPoints = new ArrayList<>();
 
-    public Activity(long id, LocalDateTime startTime, String desc, ActivityType type) {
+    public Activity(long id, LocalDateTime startTime, String desc, ActivityType activityType) {
         this.id = id;
         this.startTime = startTime;
         this.desc = desc;
-        this.type = type;
+        this.activityType = activityType;
+
     }
 
-    public Activity(LocalDateTime startTime, String desc, ActivityType type) {
+    public Activity(LocalDateTime startTime, String desc, ActivityType activityType) {
         this.startTime = startTime;
         this.desc = desc;
-        this.type = type;
+        this.activityType = activityType;
     }
 
     public void addTrackPoint(TrackPoint trackPoint) {
@@ -49,8 +50,8 @@ public class Activity {
         return desc;
     }
 
-    public ActivityType getType() {
-        return type;
+    public ActivityType getActivityType() {
+        return activityType;
     }
 
     @Override
@@ -59,7 +60,7 @@ public class Activity {
                 "id=" + id +
                 ", startTime=" + startTime +
                 ", desc='" + desc + '\'' +
-                ", type=" + type +
+                ", activityType=" + activityType +
                 ", trackPoints=" + trackPoints +
                 '}';
     }
