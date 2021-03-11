@@ -1,4 +1,4 @@
-package exam03re;
+package _aaa.exam03;
 
 import org.junit.jupiter.api.Test;
 
