@@ -1,0 +1,2 @@
+Az alkalmazott neve: John Doe, születési éve: 1980
+Az alkalmazott neve: Jane Doe, születési éve: 1990

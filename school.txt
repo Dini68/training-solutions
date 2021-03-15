@@ -1,0 +1,89 @@
+    Tanárok száma: 49
+Albatrosz Aladin
+Antilop Anett
+Bagoly Barbara
+Bivaly Biti
+Borz Borka
+Cet Celina
+Csincsilla Csilla
+Daru Dalbert
+Delfin Deniel
+Emu Emil
+Farkas Farkas
+Fecske Ferenc
+Gibbon Gida
+Giliszta Gilbert
+Gorilla Gotfrid
+Hal Hajnal
+Hangya Hanna
+Hermelin Herman
+Impala Izabella
+Kaffer Kada
+Kenguru Kevin
+Krokodil Kreola
+Kutya Kuniginda
+Lemming Lea
+Lepke Lenke
+Majmocska Maja
+Maky Marcell
+Medve Melani
+Mormota Molli
+Nyerst Nyikos
+Oposszum Opika
+Panda Patrik
+Pekry Petra
+Pingvin Piroska
+Pocok Polett
+Poloska Polli
+Pulyka Pozsinka
+Puma Pongor
+Sas Samu
+Siketfajd Simon
+Szarvas Szamanta
+Tatu Tamara
+Teve Teofil
+Tobzoska Tobor
+Vadmacska Vadony
+Vakondok Valter
+Vidra Viktor
+Zebra Zebulon
+Zerge Zenina
+    Tantárgyak száma: 17
+angol
+biologia
+eletvitel
+enek
+etika
+filozofia
+fizika
+foldrajz
+informatika
+kemia
+magyar
+matematika
+nemet
+osztalyfonoki
+testneveles
+tortenelem
+vizualis
+    Osztályok száma: 20
+10.a
+10.b
+10.c
+10.d
+10.x
+11.a
+11.b
+11.c
+11.d
+11.x
+12.a
+12.b
+12.c
+12.d
+12.x
+9.a
+9.b
+9.c
+9.d
+9.x

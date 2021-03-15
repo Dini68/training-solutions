@@ -1,0 +1,38 @@
+package _aaa;
+
+public enum MarkType {
+    A(5, "excellent"),
+    B(4, "very good"),
+    C(3, "improvement needed"),
+    D(2, "close fail"),
+    E(1, "fail");
+
+    private int value;
+    private String description;
+
+    MarkType(int value, String description) {
+        this.value = value;
+        this.description = description;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(A.getValue());
+        System.out.println(A.getDescription());
+    }
+
+    @Override
+    public String toString() {
+        return "MarkType{" +
+                "value=" + value +
+                ", description='" + description + '\'' +
+                '}';
+    }
+}

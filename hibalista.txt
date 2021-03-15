@@ -1,0 +1,8 @@
+Hibásan megadott regisztrációk: 
+	Nomi Dominey,0181,84,ndominey0@weebly.com,323651831 >>> Hibás irányítószám: 0181
+	Anita Deme,1181,46,ademe9@mashable.com,252952859 >>> Hibás TAJ szám: 252952859
+	Alexio Costan,2181,8,acostanc@i2i.jp,873842626 >>> Hibás életkor: 8
+	Carny Lebrun,0118,22,clebrunv@merriamwebster.com,589537308 >>> Hibás irányítószám: 0118
+	Lisabeth McKeeman,1181,35,lmckeeman1kwufoo.com,510553632 >>> Hibás emaillmckeeman1kwufoo.com
+	Archy Osichev,1181,50,aosichev1y@trellian.com,51815809 >>> Hibás TAJ szám: 51815809
+	Mady Girardengo,1181,70,mgirardengo2l@pagespersoorange.fr,149820989 >>> Hibás TAJ szám: 149820989
