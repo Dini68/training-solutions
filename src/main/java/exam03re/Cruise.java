@@ -86,11 +86,11 @@ public class Cruise {
     public Map<CruiseClass, Integer> countPassengerByClass() {
         Map<CruiseClass, Integer> result = new HashMap<>();
         for(Passenger p: passengers) {
-            if (!result.containsKey(p.getCruiseClass())) {
-                result.put(p.getCruiseClass(), 1);
+            if (result.containsKey(p.getCruiseClass())) {
+                result.put(p.getCruiseClass(), result.get(p.getCruiseClass()) + 1);
             }
             else {
-                result.put(p.getCruiseClass(), result.get(p.getCruiseClass()) + 1);
+                result.put(p.getCruiseClass(), 1);
             }
         }
         return result;
