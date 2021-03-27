@@ -10,21 +10,21 @@ public class ExamplesStore {
 
     public static final String  TITLE_MARKER = "# ";
 
+    private List<String> titles = new ArrayList<>();
+
     public List<String> getTitlesOfExamples() {
-        List<String> titles = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(ExamplesStore.class.getResourceAsStream("/examples.md")))) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(ExamplesStore.class.getResourceAsStream("examples.md")))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                addTitles(titles, line);
+                addTitles(line);
             }
             return titles;
-
         } catch (IOException ioe) {
             throw new IllegalStateException("Cannot read file", ioe);
         }
     }
 
-    private void addTitles(List<String> titles, String line) {
+    private void addTitles(String line) {
         if (line.startsWith(TITLE_MARKER)) {
             titles.add(line.substring(2));
         }
