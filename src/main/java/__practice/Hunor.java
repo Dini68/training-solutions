@@ -15,10 +15,10 @@ public class Hunor {
         System.out.print("Hunor ma esti rutinja: ");
         switch (day % 3) {
             case 0 :
-                System.out.println("fürdés");
+                System.out.println("fürdés vagy zuhanyzás");
                 break;
             case 1 :
-                System.out.println("zuhanyzás");
+                System.out.println("zuhanyzás vagy fürdés");
                 break;
             default :
                 System.out.println("átöltözés");
