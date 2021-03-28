@@ -13,15 +13,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class HikingFileTest {
 
     @Test
-    void getElevation() {
+    void getElevation() throws FileNotFoundException {
         HikingFile hf = new HikingFile();
-        Path path = Path.of("src/main/java/week10d01/senior/gps.txt");
-        try (InputStream is = new FileInputStream(String.valueOf(path))){
-            ElevationDate ev = hf.getElevation(is);
-            assertEquals(170, ev.getIncrease());
-            assertEquals(160, ev.getDecrease());
-        } catch (IOException ioException) {
-            throw new IllegalStateException("Cannot read file", ioException);
-        }
+        ElevationDate ev = hf.getElevation(new FileInputStream("src/main/java/week10d01/senior/gps.txt"));
+        assertEquals(170, ev.getIncrease());
+        assertEquals(160, ev.getDecrease());
     }
 }

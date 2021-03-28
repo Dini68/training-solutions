@@ -37,14 +37,4 @@ public class HikingFile {
         preHeight = actHeight;
     }
 
-    public static void main(String[] args) {
-        HikingFile hf = new HikingFile();
-        Path path = Path.of("src/main/java/week10d01/senior/gps.txt");
-        try {
-            InputStream is = new FileInputStream(String.valueOf(path));
-            System.out.println(hf.getElevation(is));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
 }
