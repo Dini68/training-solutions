@@ -26,6 +26,13 @@ public class Demo {
         return result;
     }
 
+    public List<String> getList4() {
+        List<String> result = new ArrayList<>(); // változtatható lista
+        result.add("Joe");
+        result.add("Smith");
+
+        return List.copyOf(result);
+    }
     public static void main(String[] args) {
         Demo demo = new Demo();
         List<String> names = demo.getList();
@@ -38,5 +45,8 @@ public class Demo {
         System.out.println(names2);
         List<String> names3 = demo.getList3();
         System.out.println(names3);
+        List<String> names4 = demo.getList4();
+//        names4.add("Jack");
+        System.out.println(names4);
     }
 }
